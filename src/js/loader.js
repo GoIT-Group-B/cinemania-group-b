@@ -9,5 +9,3 @@ export async function loadHTML(id, filePath) {
     console.error(`Hata: ${filePath}`, err);
   }
 }
-
-
