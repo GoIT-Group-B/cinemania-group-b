@@ -5,6 +5,7 @@ const moviesContainer = document.getElementById("movies");
 
 
 function search() {
+    
     const value = input.value.trim();
     moviesContainer.innerHTML = ""; // film alanları boş kalsın
 
@@ -22,9 +23,11 @@ input.addEventListener("input", () => { /*çarpıyı input değeri varsa göster
      clearButton.style.display = input.value ? "block" : "none";
 });
 function clearSearch() {
+    
     input.value = "";
     clearButton.style.display = "none";
     moviesContainer.innerHTML = "";
     input.focus();
 
 }
+
