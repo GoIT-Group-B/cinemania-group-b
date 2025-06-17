@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> search area </title>
+    <link rel="stylesheet" href="./css/search.css" />
+    <!-- Font Awesome için gerekli bağlantı -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="search-form">
+        <input type="text" id="search" placeholder="Search">
+        <span onclick="clearSearch()" class="clear-button" id="clearButton">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+       
+       <button onclick="search()" class="search-button">
+            <i class="fas fa-search"></i> <!--Font Awesome kullandık büyüteç ikonu için-->
+        </button>
+       
+    </div>
+    <div id="movies" class="movies-section"></div>
+    <!-- <div id="message-box" class="message" style="display: none;"></div> -->
+
+
+    <script src="./js/search.js"></script>
+</body>
+
+</html>
