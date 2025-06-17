@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh; 
     display: flex;
     justify-content: center;/* yatayda ortala */
     align-items: flex-end;/* dikeyde en alta */
@@ -13,6 +13,10 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 40px;
+    margin: 60px auto 40px auto;
+        /* Yukarıdan boşluk ekle */
+        max-width: 60px;
+        /* ortalamaya yardımcı olur */
     /* sayfanın en altından biraz yukarıda olsunmasını sağlar */
 }
 
@@ -68,3 +72,15 @@ body {
 .clear-button:hover {
     color: #555;
 }  
+.gude{
+    font-family: Roboto;
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 36px;
+        letter-spacing: 0%;
+        text-align: center;
+    width: 684;
+        height: 124;
+        top: 968px;
+        left: 297px;
+}

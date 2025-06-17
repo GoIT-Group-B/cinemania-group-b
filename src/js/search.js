@@ -12,9 +12,10 @@ function search() {
         alert("Warning! 'Please enter a search term.'");
         return;
     }
-    // showMessage("Searching, please wait...", "loading");
-    moviesContainer.scrollIntoView({ behavior: "smooth" });// Sayfayı filmler bölümüne kaydır
-}
+    
+        movies.scrollIntoView({ behavior: "smooth" });// Sayfayı filmler bölümüne kaydır
+    }
+
 
 
 input.addEventListener("input", () => { /*çarpıyı input değeri varsa gösterir style.display görünürlük demek*/
