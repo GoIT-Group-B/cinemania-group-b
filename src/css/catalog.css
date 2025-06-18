@@ -124,7 +124,7 @@ body {
   color: #333;
 }
 
-.main-nav {
+/* .main-nav {
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -146,7 +146,7 @@ body {
 .main-nav a.active {
   color: #ff6b00;
   text-decoration: underline;
-}
+} */
 
 #search {
   margin: 40px auto;
