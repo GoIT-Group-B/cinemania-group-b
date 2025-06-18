@@ -10,6 +10,15 @@
     />
     <title>Vanilla App Template</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+  
   </head>
   <body>
     <load src="./partials/header.html" />
@@ -19,6 +28,10 @@
       <load src="./partials/upcoming.html" />
     </main>
 
+<<<<<<< HEAD
+=======
+    <script type="module" src="./js/theme.js"></script>
+>>>>>>> 786fa489489cd9fbd83bee261c100af941faac86
     <script type="module" src="./main.js"></script>
     <script type="module" src="./js/upcoming.js"></script>
   </body>
