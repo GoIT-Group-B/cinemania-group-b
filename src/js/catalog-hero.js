@@ -1,13 +1,19 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
 
 async function fetchTrendingMovie() {
-  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
-  console.log("response:", response.results)
+   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
   const data = await response.results;
-  console.log("data:", data)
-  const movie = data[0];
-  console.log("movie:",movie )
-  updateHero(movie);
+
+  let index = 0;
+
+  // İlk filmi hemen göster
+  updateHero(data[index]);
+
+  // Belirli aralıklarla sıradaki filmi göster
+  setInterval(() => {
+    index = (index + 1) % data.length; // Başa dönsün
+    updateHero(data[index]);
+  }, 5000); // 5 saniyede bir değiş
 }
 
 function updateHero(movie) {
