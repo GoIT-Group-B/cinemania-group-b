@@ -1,13 +1,12 @@
-
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '52238d7fab5c2c01b99e751619dd16ec';
+import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
 
 async function fetchTrendingMovie() {
-  const response = await fetch(
-    `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`
-  );
-  const data = await response.json();
-  const movie = data.results[0];
+  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
+  console.log("response:", response.results)
+  const data = await response.results;
+  console.log("data:", data)
+  const movie = data[0];
+  console.log("movie:",movie )
   updateHero(movie);
 }
 
@@ -29,9 +28,9 @@ heroContainer.innerHTML = `
   </div>
 </div>
 <div class="hero-image-container">
-  <img src="https://image.tmdb.org/t/p/original${movie.backdrop_path}" alt="${movie.title} backdrop" class="hero-backdrop-image">
+  <img src="${IMG_BASE_URL}/original${movie.backdrop_path}" alt="${movie.title} backdrop" class="hero-backdrop-image">
 </div>
-`;
+`;  
   
 }
 
