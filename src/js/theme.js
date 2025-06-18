@@ -1,17 +1,20 @@
 window.addEventListener('DOMContentLoaded', () => {
     const themeToggleItem = document.getElementById('theme-switcher');
-    const body = document.body;
+    const root = document.documentElement; // <html>
   
     const savedTheme = localStorage.getItem('theme');
   
+    // Sayfa ilk açıldığında tema ayarlanır
     if (savedTheme === 'light') {
-      body.classList.add('light-theme');
-
-      body.classList.toggle('light-theme');
+      root.classList.add('light-theme');
+    } else {
+      root.classList.remove('light-theme');
     }
   
+    // Toggle butonu ile tema değişir
     themeToggleItem.addEventListener('click', () => {
-      const isLight = body.classList.toggle('light-theme');
-      localStorage.setItem('theme', isLight ? 'light-mode' : 'dark-mode');
+      const isLight = root.classList.toggle('light-theme');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
     });
   });
+  

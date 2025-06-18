@@ -11,32 +11,45 @@ body {
   color: var(--text-color);
 }
 
-body.light-theme {
+html.light-theme {
   --background-color: #fff;
   --text-color: #000;
 }
 
-#icon-sun {
-    opacity: 0;
-  }
-  
-#icon-moon {
-opacity: 1;
+html.light-theme header, 
+html.light-theme .logo-text,
+html.light-theme .nav-link {
+    background-color: #ffffff;
+    color: #000000;
+    /* border, box-shadow gibi fark yaratacak detaylar da eklenebilir */
 }
 
-body.light-theme #icon-sun {
+html.light-theme #icon-sun {
   opacity: 1;
 }
 
-body.light-theme #icon-moon {
+html.light-theme #icon-moon {
   opacity: 0;
 }
 
-body:not(.light-theme) #icon-sun {
+html:not(.light-theme) #icon-sun {
   opacity: 0;
 }
 
-body:not(.light-theme) #icon-moon {
+html:not(.light-theme) #icon-moon {
+  opacity: 1;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#icon-sun {
+  opacity: 0;
+}
+
+#icon-moon {
   opacity: 1;
 }
 
@@ -52,6 +65,6 @@ body:not(.light-theme) #icon-moon {
   z-index: 3;
 }
 
-body.light-theme .toggle-circle {
+html.light-theme .toggle-circle {
   left: 6px;
 }
