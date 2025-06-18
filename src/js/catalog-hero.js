@@ -1,14 +1,31 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
+import { generateStars } from './generate-stars';
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
-  console.log("response:", response.results)
   const data = await response.results;
-  console.log("data:", data)
-  const movie = data[0];
-  console.log("movie:",movie )
-  updateHero(movie);
+
+  let index = 0;
+  const heroContainer = document.querySelector('.hero-container');
+
+  // İlk film
+  updateHero(data[index]);
+
+  setInterval(() => {
+    // Opaklığı sıfırla (kaybolsun)
+    heroContainer.style.opacity = '0';
+
+    // Bekle ve sonra değiştir
+    setTimeout(() => {
+      index = (index + 1) % data.length;
+      updateHero(data[index]);
+      
+      // Yeni film geldiğinde tekrar görünür yap
+      heroContainer.style.opacity = '1';
+    }, 500); // Geçiş efekti süresi
+  }, 5000);
 }
+
 
 function updateHero(movie) {
   
@@ -18,12 +35,12 @@ function updateHero(movie) {
   const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
     heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
 
+const starsHTML = generateStars(movie.vote_average);
+
 heroContainer.innerHTML = `
 <div class="hero-content">
   <h1 class="hero-title">${movie.title}</h1>
-  <div class="hero-rating">
-    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-empty">★</span> 
-  </div>
+  <div class="hero-rating">${starsHTML}</div>
   <p class="hero-description">${movie.overview}</p>
   <div class="hero-buttons">
     <button class="watch-trailer-btn">Watch trailer</button>

@@ -14,6 +14,8 @@ body {
     justify-content: flex-start;
     overflow: hidden;
     margin: 0 auto;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
 }
 .hero-container:before{
   content: "";
@@ -107,6 +109,19 @@ body {
   display: block; /* Remove extra space below image */
   object-fit: cover; /* Important to ensure image fills space and is cropped if needed */
   width: 700px; /* Or a fixed width/percentage */
+}
+.star {
+  color: orange;
+  font-size: 1.5em;
+}
+.star-empty {
+  color: #777;
+  font-size: 1.5em;
+}
+.half-star {
+  color: orange;
+  font-size: 1.5em;
+  position: relative;
 }
 
 /* Adjustments for responsiveness if needed */
@@ -234,7 +249,6 @@ body {
   width: 100%; 
   box-sizing: border-box; 
 }
-
 
 
 .library-list { 
