@@ -1,6 +1,57 @@
+:root {
+  --background-color: #111111;
+  --text-color: #ffffff;
+  --font-family: 'Roboto Regular', sans-serif;
+  --white: #ffffff;
+  --black: #000000;
+}
+
 body {
-    max-width: 1280px;
-    margin: auto;
-    background-color: #111111;
-    
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+body.light-theme {
+  --background-color: #fff;
+  --text-color: #000;
+}
+
+#icon-sun {
+    opacity: 0;
+  }
+  
+#icon-moon {
+opacity: 1;
+}
+
+body.light-theme #icon-sun {
+  opacity: 1;
+}
+
+body.light-theme #icon-moon {
+  opacity: 0;
+}
+
+body:not(.light-theme) #icon-sun {
+  opacity: 0;
+}
+
+body:not(.light-theme) #icon-moon {
+  opacity: 1;
+}
+
+.toggle-circle {
+  position: absolute;
+  top: 6px;
+  left: 44px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+body.light-theme .toggle-circle {
+  left: 6px;
 }
