@@ -110,6 +110,19 @@ body {
   object-fit: cover; /* Important to ensure image fills space and is cropped if needed */
   width: 700px; /* Or a fixed width/percentage */
 }
+.star {
+  color: orange;
+  font-size: 1.5em;
+}
+.star-empty {
+  color: #777;
+  font-size: 1.5em;
+}
+.half-star {
+  color: orange;
+  font-size: 1.5em;
+  position: relative;
+}
 
 /* Adjustments for responsiveness if needed */
 @media (max-width: 768px) {

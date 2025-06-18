@@ -1,4 +1,5 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
+import { generateStars } from './generate-stars';
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
@@ -34,12 +35,12 @@ function updateHero(movie) {
   const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
     heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
 
+const starsHTML = generateStars(movie.vote_average);
+
 heroContainer.innerHTML = `
 <div class="hero-content">
   <h1 class="hero-title">${movie.title}</h1>
-  <div class="hero-rating">
-    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-empty">★</span> 
-  </div>
+  <div class="hero-rating">${starsHTML}</div>
   <p class="hero-description">${movie.overview}</p>
   <div class="hero-buttons">
     <button class="watch-trailer-btn">Watch trailer</button>
