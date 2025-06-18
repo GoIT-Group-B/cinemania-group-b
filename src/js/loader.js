@@ -1,4 +1,4 @@
-async function loadHTML(id, filePath) {
+export async function loadHTML(id, filePath) {
   const container = document.getElementById(id);
   try {
     const res = await fetch(filePath);
@@ -9,7 +9,3 @@ async function loadHTML(id, filePath) {
     console.error(`Hata: ${filePath}`, err);
   }
 }
-
-// Parçaları yükle
-loadHTML("header", "./partials/header.html");
-loadHTML("library-list", "./partials/library-list.html");
