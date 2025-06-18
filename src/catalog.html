@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cinemania Catalog</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div id="header"></div>
+    
+
+    <main>
+      <div id="hero"></div>
+      <section id="search">
+        <div class="search-container">
+          <input type="text" placeholder="Search" class="search-input" />
+          <div class="search-icon">🔍</div>
+        </div>
+      </section>
+      <section id="category" data-include="/src/partials/category.html"></section>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="./js/hero.js"></script>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

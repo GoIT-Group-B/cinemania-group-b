@@ -1,0 +1,184 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+#heroContainer {
+  display: flex;
+  background-color: #000; /* Dark background */
+  color: #fff;
+  align-items: center; /* Vertically align items */
+  padding: 40px; /* Adjust as needed */
+  gap: 30px; /* Space between text and image */
+  max-width: 1200px; /* Or a suitable max-width for your design */
+  margin: 0 auto; /* Center the container */
+  border-radius: 10px; /* Slightly rounded corners for the whole container */
+  overflow: hidden; /* Important for image overflow */
+}
+
+.hero-content {
+  flex: 1; /* Take up available space */
+  max-width: 50%; /* Adjust as needed, the image will take the rest */
+  padding-right: 20px; /* Space before the image */
+}
+
+.hero-title {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero-rating .star {
+  color: orange; /* Or the color of your stars */
+  font-size: 1.5em;
+  margin-right: 2px;
+}
+
+.hero-description {
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.watch-trailer-btn,
+.more-details-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watch-trailer-btn {
+  background-color: #ff6600; /* Orange */
+  color: #fff;
+}
+
+.watch-trailer-btn:hover {
+  background-color: #e65c00;
+}
+
+.more-details-btn {
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.more-details-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-image-container {
+  flex: 1; /* Take up the remaining space */
+  display: flex; /* To center the image if needed, or control its size */
+  justify-content: flex-end; /* Push image to the right */
+  align-items: center;
+}
+
+.hero-backdrop-image {
+  max-width: 100%; /* Ensure image fits container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Remove extra space below image */
+  border-radius: 10px; /* If the image itself needs rounded corners */
+  object-fit: cover; /* Important to ensure image fills space and is cropped if needed */
+  width: 700px; /* Or a fixed width/percentage */
+  height: 350px; /* Or a fixed height */
+}
+
+/* Adjustments for responsiveness if needed */
+@media (max-width: 768px) {
+  #heroContainer {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .hero-content {
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .hero-image-container {
+    justify-content: center;
+  }
+}
+
+
+
+.info-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 74px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background-color: #1a1a1a;
+  padding: 20px 0;
+}
+
+.main-nav a {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.main-nav a.active {
+  color: #ff6b00;
+  text-decoration: underline;
+}
+
+#search {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 40px auto;
+}
+
+.search-input {
+  width: 360px;
+  font-size: 14px;
+  padding: 12px 20px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+}
+
+.search-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffc226, #ff6b00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
