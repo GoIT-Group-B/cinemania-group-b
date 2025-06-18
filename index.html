@@ -9,19 +9,63 @@
       content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://image.tmdb.org data:; connect-src 'self' https://api.themoviedb.org"
     />
     <title>Vanilla App Template</title>
-    <script type="module" crossorigin src="/cinemania-group-b/assets/main-DKE9bqm9.js"></script>
-    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/main-DIM5ouTF.css">
+    <script type="module" crossorigin src="/cinemania-group-b/assets/main-B5Qt9EMX.js"></script>
+    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/styles-BjxEvMm5.css">
   </head>
   <body>
-    <div id="header"></div>
+    <header class="header">
+  <div class="container">
+    <div class="logo-container">
+      <a href="/src/index.html">
+        <div class="logo">
+          <img
+            src="../images/header-logo@2x.png"
+            loading="lazy"
+            alt="logo"
+            class="logo-img"
+            width="48"
+            height="48"
+          />
+          <span class="logo-text">Cinemania</span>
+        </div>
+      </a>
+    </div>
+    <div class="nav-container">
+      <nav class="nav main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html" class="active">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./catalog.html">CATALOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./library.html">LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-theme-container">
+      <div class="header-theme-switcher" id="theme-switcher">
+        <svg id="icon-moon">
+          <use href="../images/sprite.svg#icon-moon"></use>
+        </svg>
+        <svg id="icon-sun">
+          <use href="../images/sprite.svg#icon-sun"></use>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
 
     <main>
       
-      <a href="./library.html">library-list</a>
-      <!-- buraya load ile html konulabilir. -->
+      
     </main>
-
-    
 
   </body>
 </html>
