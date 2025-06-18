@@ -1,20 +1,30 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
 
 async function fetchTrendingMovie() {
-   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
+  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
   const data = await response.results;
 
   let index = 0;
+  const heroContainer = document.querySelector('.hero-container');
 
-  // İlk filmi hemen göster
+  // İlk film
   updateHero(data[index]);
 
-  // Belirli aralıklarla sıradaki filmi göster
   setInterval(() => {
-    index = (index + 1) % data.length; // Başa dönsün
-    updateHero(data[index]);
-  }, 5000); // 5 saniyede bir değiş
+    // Opaklığı sıfırla (kaybolsun)
+    heroContainer.style.opacity = '0';
+
+    // Bekle ve sonra değiştir
+    setTimeout(() => {
+      index = (index + 1) % data.length;
+      updateHero(data[index]);
+      
+      // Yeni film geldiğinde tekrar görünür yap
+      heroContainer.style.opacity = '1';
+    }, 500); // Geçiş efekti süresi
+  }, 5000);
 }
+
 
 function updateHero(movie) {
   
