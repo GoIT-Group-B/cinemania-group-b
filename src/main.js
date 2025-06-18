@@ -1,1 +1,1 @@
-import './js/fetchMovies';
+
