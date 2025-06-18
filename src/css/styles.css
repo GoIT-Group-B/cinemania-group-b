@@ -4,5 +4,9 @@
   | default @import url()
   |============================
 */
-
+@import url('./header.css');
 @import url('./catalog.css');
+@import url('./library.css');
+@import url('./footer.css');
+@import url('./font.css');
+@import url('./theme.css');

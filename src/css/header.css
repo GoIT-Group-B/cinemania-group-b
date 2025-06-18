@@ -1,0 +1,114 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Roboto Regular';
+    font-weight: 400;
+    padding: 22px 32px;
+  }
+  
+  .header {
+    background-color: #000000;  
+  }
+  
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-container a {
+    text-decoration: none;
+  }
+  
+  .logo-text {
+    color: white;
+    font-weight: 400;
+    font-size: 24px;
+    padding-left: 8px;
+    font-family: 'Roboto Medium';
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+  }
+  
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 40px;
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    list-style-type: none;
+    text-decoration: none;
+  }
+  
+  .nav-link {
+    position: relative;
+    display: block;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: 200ms ease-in;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .nav-link:hover,
+  .nav-link:focus {
+    color: #F87719;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    width: 110%;
+    height: 4px;
+    border-radius: 4px;
+    transform-origin: center;
+    animation: stretch 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms both;
+  }
+  .nav-link.active::after {
+    background: #747bff;
+  }
+  
+  .header-theme-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    cursor: pointer;
+    width: 60px;
+    height: 24px;
+    background: linear-gradient(to left, #F87719, #FFCA0F);
+    border-radius: 194px;
+    padding: 5px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  #icon-moon,
+  #icon-sun {
+    width: 18px;
+    height: 18px;
+  }
+  
+  #icon-sun {
+    border-radius: 50px;
+    background-color: white;
+  }
+  
