@@ -1,1 +1,1 @@
-//import './js/header.js'
+import './js/fetchMovies.js'
