@@ -124,7 +124,7 @@ body {
   color: #333;
 }
 
-.main-nav {
+/* .main-nav {
   display: flex;
   justify-content: center;
   gap: 40px;
@@ -146,7 +146,7 @@ body {
 .main-nav a.active {
   color: #ff6b00;
   text-decoration: underline;
-}
+} */
 
 #search {
   margin: 40px auto;
@@ -181,4 +181,230 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.catalog-page-body {
+  background-color: #1a1a1a;
+  color: #ffffff; 
+  font-family: 'Roboto', sans-serif; 
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+}
+
+.main-container {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px;
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+
+
+.library-list { 
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+  gap: 20px; 
+  padding: 40px 0; 
+  justify-content: center; 
+}
+
+.movie-card {
+  background-color: #2a2a2a; 
+  border-radius: 8px;
+  overflow: hidden; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; 
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%; 
+}
+
+.movie-card:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); 
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto; 
+  display: block; 
+  object-fit: cover;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.movie-title {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 10px 10px 5px 10px; 
+  text-align: center;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.movie-info {
+  font-size: 0.9em;
+  color: #b0b0b0;
+  margin: 0 10px 10px 10px; 
+  text-align: center;
+}
+
+
+.no-results-message,
+.error-message {
+  text-align: center;
+  font-size: 1.5em;
+  color: #ff6b6b; 
+  padding: 50px 20px;
+  grid-column: 1 / -1; 
+}
+
+
+/* --- Arama Çubuğu (Selin'in Görevi için Yer Tutucu Stil) --- */
+.search-section {
+  padding: 20px 0;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 30px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-input:focus {
+  border-color: #007bff; 
+}
+
+.search-button,
+.clear-search-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #e50914; 
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover,
+.clear-search-button:hover {
+  background-color: #c00c14;
+}
+
+/* --- Sayfalama (Fatih'in Görevi için Yer Tutucu Stil) --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 0;
+}
+
+.pagination-button {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination-button:hover {
+  background-color: #5a5a5a;
+  border-color: #777;
+}
+
+.pagination-button.active {
+  background-color: #e50914;
+  border-color: #e50914;
+  font-weight: bold;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* --- Responsive Ayarlamalar --- */
+@media (max-width: 768px) {
+  .library-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 15px;
+  }
+
+  .movie-title {
+    font-size: 1em;
+  }
+
+  .search-form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-input {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .library-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+    gap: 10px;
+  }
+
+  .movie-poster {
+    /* Mobil görünümde posterin daha iyi görünmesi için gerekirse ayarlama yapılabilir */
+  }
+
+  .movie-title {
+    font-size: 0.9em;
+    margin: 8px 5px 3px 5px;
+  }
+
+  .movie-info {
+    font-size: 0.8em;
+    margin: 0 5px 8px 5px;
+  }
+
+  .search-button,
+  .clear-search-button {
+    width: 100%;
+    max-width: 250px; 
+  }
+
+  .pagination-button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
 }
