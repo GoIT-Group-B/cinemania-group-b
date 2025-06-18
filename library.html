@@ -4,7 +4,16 @@
     <title>LIBRARY</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/styles-BjxEvMm5.css">
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>  
+    <script type="module" crossorigin src="/cinemania-group-b/assets/theme-DTXbdikP.js"></script>
+    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/theme-BAzrSMUk.css">
   </head>
   <body>
     <header class="header">
@@ -41,12 +50,17 @@
     </div>
     <div class="header-theme-container">
       <div class="header-theme-switcher" id="theme-switcher">
-        <svg id="icon-moon">
-          <use href="../images/sprite.svg#icon-moon"></use>
-        </svg>
-        <svg id="icon-sun">
-          <use href="../images/sprite.svg#icon-sun"></use>
-        </svg>
+        <div class="icon">
+          <svg id="icon-moon">
+            <use href="../images/sprite.svg#icon-moon"></use>
+          </svg>
+        </div>
+        <div class="icon">
+          <svg id="icon-sun">
+            <use href="../images/sprite.svg#icon-sun"></use>
+          </svg>
+        </div>
+        <div class="toggle-circle"></div>
       </div>
     </div>
   </div>
@@ -57,6 +71,17 @@
 
 
     <main>
+      <section class="library-hero">
+  <div class="library-hero-overlay">
+    <h1>Create Your Dream Cinema</h1>
+    <p>
+      Is a guide to designing a personalized movie theater experience with the
+      right equipment, customized decor, and favorite films. This guide helps
+      you bring the cinema experience into your own home with cozy seating, dim
+      lighting, and movie theater snacks.
+    </p>
+  </div>
+</section>
 
     </main>
 
@@ -77,6 +102,7 @@
 </footer>
 
 
-    <script src="./js/main.js"></script>
+    <!-- <script src="./js/library-list.js"></script> -->
+    
   </body>
 </html>

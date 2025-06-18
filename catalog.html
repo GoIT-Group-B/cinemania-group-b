@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinemania Catalog</title>
+    <script>
+      (function () {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+          document.documentElement.classList.add('light-theme');
+        }
+      })();
+    </script>
+  
     <script type="module" crossorigin src="/cinemania-group-b/catalog.js"></script>
-    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/theme-DTXbdikP.js">
     <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/vendor-DDD7fsZd.js">
-    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/styles-BjxEvMm5.css">
+    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/theme-BAzrSMUk.css">
   </head>
   <body>
     <header class="header">
@@ -44,12 +53,17 @@
     </div>
     <div class="header-theme-container">
       <div class="header-theme-switcher" id="theme-switcher">
-        <svg id="icon-moon">
-          <use href="../images/sprite.svg#icon-moon"></use>
-        </svg>
-        <svg id="icon-sun">
-          <use href="../images/sprite.svg#icon-sun"></use>
-        </svg>
+        <div class="icon">
+          <svg id="icon-moon">
+            <use href="../images/sprite.svg#icon-moon"></use>
+          </svg>
+        </div>
+        <div class="icon">
+          <svg id="icon-sun">
+            <use href="../images/sprite.svg#icon-sun"></use>
+          </svg>
+        </div>
+        <div class="toggle-circle"></div>
       </div>
     </div>
   </div>
@@ -93,6 +107,6 @@
   </div>
 </footer>
 
-    
+
   </body>
 </html>
