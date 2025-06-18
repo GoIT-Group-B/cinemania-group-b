@@ -15,6 +15,9 @@ function updateHero(movie) {
   const heroContainer = document.querySelector('.hero-container');
   console.log(movie);
 
+  const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+    heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+
 heroContainer.innerHTML = `
 <div class="hero-content">
   <h1 class="hero-title">${movie.title}</h1>
@@ -27,11 +30,8 @@ heroContainer.innerHTML = `
     <button class="more-details-btn">More details</button>
   </div>
 </div>
-<div class="hero-image-container">
-  <img src="${IMG_BASE_URL}/original${movie.backdrop_path}" alt="${movie.title} backdrop" class="hero-backdrop-image">
-</div>
+
 `;  
-  
 }
 
 async function fetchCategories() {
