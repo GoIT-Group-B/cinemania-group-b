@@ -6,25 +6,20 @@ body {
 }
 
 .hero-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  height: 400px;
+    position: relative;
+    width: 1280px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    margin: 0 auto;
 }
-.hero-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-}
+
 .hero-content {
-  position: absolute;
+  position: relative;
   z-index: 2;
-  max-width: 60%;
+  max-width: 100%;
   padding-right: 20px;
   padding-left: 20px;
   color: #fff;
@@ -88,6 +83,7 @@ body {
   display: flex; /* To center the image if needed, or control its size */
   justify-content: flex-end; /* Push image to the right */
   align-items: center;
+  margin: 0 auto;
 }
 
 .hero-backdrop-image {
