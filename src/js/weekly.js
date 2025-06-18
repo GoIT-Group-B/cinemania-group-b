@@ -11,24 +11,41 @@ let allMovies = [];
 let genresMap = {};
 
 export async function loadWeeklyTrends() {
-  const container = document.getElementById('trends-container');
+  const trendsContainer = document.getElementById('trends-container');
   const seeAllBtn = document.getElementById('see-all-trends');
 
   genresMap = await fetchGenres();
   const data = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_WEEK);
   allMovies = data.results;
 
-  renderMovies(container, allMovies.slice(0, 3));
+  // İlk yüklemede ekran genişliğine göre render et
+  const initialCount = window.innerWidth < 768 ? 1 : 3;
+  renderMovies(trendsContainer, allMovies.slice(0, initialCount));
 
+  // Butona tıklama olayı
   seeAllBtn.addEventListener('click', () => {
-    if (!isExpanded) {
-      renderMovies(container, allMovies); // tümünü göster
+    const isCurrentlyExpanded =
+      trendsContainer.classList.contains('is-expanded');
+
+    if (!isCurrentlyExpanded) {
+      renderMovies(trendsContainer, allMovies); // tümünü göster
+      trendsContainer.classList.add('is-expanded');
       seeAllBtn.textContent = 'Show Less';
       isExpanded = true;
     } else {
-      renderMovies(container, allMovies.slice(0, 3)); // sadece ilk 3
+      const count = window.innerWidth < 768 ? 1 : 3;
+      renderMovies(trendsContainer, allMovies.slice(0, count)); // sadece ilk film(ler)
+      trendsContainer.classList.remove('is-expanded');
       seeAllBtn.textContent = 'See All';
       isExpanded = false;
+    }
+  });
+
+  // Ekran boyutu değiştiğinde kart sayısını güncelle
+  window.addEventListener('resize', () => {
+    if (!isExpanded) {
+      const count = window.innerWidth < 768 ? 1 : 3;
+      renderMovies(trendsContainer, allMovies.slice(0, count));
     }
   });
 }
@@ -68,11 +85,11 @@ function renderStars(vote) {
 
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
-      stars += '★';
+      stars += '<span class="star full">★</span>';
     } else if (rating >= i - 0.5) {
-      stars += '★';
+      stars += '<span class="star half">★</span>';
     } else {
-      stars += '☆';
+      stars += '<span class="star">☆</span>';
     }
   }
 

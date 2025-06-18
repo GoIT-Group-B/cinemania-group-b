@@ -1,3 +1,8 @@
+.weekly-trends {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
 .weekly-trends .section-header {
   display: flex;
   justify-content: space-between;
@@ -14,17 +19,12 @@
   color: #ffffff;
   line-height: 100%;
   margin-right: 32px;
-
 }
 
-.section-header h2 {
-      margin-left: 320px;
-
+.light-theme .weekly-trends .section-header h2 {
+  color: #111111;
 }
-.section-header p {
-      margin-right: 320px;
 
-}
 #see-all-trends {
   font-family: 'Roboto', sans-serif;
   font-size: 28px;
@@ -41,12 +41,11 @@
   text-decoration: underline;
 }
 
-
 .trends-container {
   display: grid;
   grid-template-columns: repeat(3, 395px);
   justify-content: center;
-  gap: 40px;
+  gap: 45px;
 }
 
 .trend-card {
@@ -58,6 +57,10 @@
   background: linear-gradient(to bottom, #000000 0%, #000000 100%);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: fadeZoom 1.5s ease forwards;
+  will-change: transform;
   cursor: pointer;
 }
 
@@ -97,18 +100,147 @@
 .trend-stars {
   font-size: 18px;
   color: #ff9800;
+  display: flex;
 }
 
-.trend-card {
-  opacity: 0;
-  transform: scale(0.95) translateY(20px);
-  animation: fadeZoom 1.5s ease forwards;
+.trend-stars .star {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 2px;
+}
+
+.trend-stars .star::before {
+  content: '☆';
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 20px;
+  color: #ff9800;
+}
+
+.trend-stars .star.full::before {
+  content: '★';
+}
+
+.trend-stars .star.half::before {
+  content: '★';
+  width: 50%;
+  overflow: hidden;
+  display: inline-block;
 }
 
 @keyframes fadeZoom {
-  to {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
 }
+
+/* TABLET TASARIMI */
+@media (max-width: 1279px) and (min-width: 768px) {
+  .weekly-trends {
+    padding: 0 24px;
+  }
+
+  .weekly-trends .section-header {
+    padding: 0 8px;
+    margin-bottom: 24px;
+  }
+
+  .weekly-trends .section-header h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  #see-all-trends {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .trends-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .trend-card {
+    max-width: 224px;
+    height: 325px;
+  }
+
+  .trend-info {
+    padding: 12px;
+  }
+
+  .trend-info h3 {
+    font-size: 16px;
+  }
+
+  .trend-info p {
+    font-size: 12px;
+  }
+
+  .trend-stars {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .weekly-trends {
+    padding: 0 20px;
+  }
+
+  .trends-container {
+    display: block;
+  }
+
+  /* Başta sadece 1 kart */
+  .trends-container:not(.is-expanded) .trend-card:not(:first-child) {
+    display: none;
+  }
+
+  .trend-card {
+    width: 100%;
+    max-width: 100%;
+    height: 406px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+  }
+
+  .trend-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .trend-info {
+    padding: 12px;
+  }
+
+  .trend-info h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .trend-info p {
+    font-size: 11px;
+    margin: 4px 0;
+    color: #ccc;
+  }
+
+  .trend-stars {
+    font-size: 12px;
+    gap: 2px;
+  }
+}
+
 
