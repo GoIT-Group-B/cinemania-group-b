@@ -6,39 +6,75 @@ import {
   fetchGenres,
 } from './fetchMovies.js';
 
+let isExpanded = false;
+let allMovies = [];
+let genresMap = {};
+
 export async function loadWeeklyTrends() {
   const container = document.getElementById('trends-container');
   const seeAllBtn = document.getElementById('see-all-trends');
-  const genresMap = await fetchGenres();
-  const data = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_WEEK);
-  const movies = data.results;
 
-  const initialMovies = movies.slice(0, 3);
-  container.innerHTML = initialMovies
-    .map(movie => renderMovieCard(movie, genresMap))
-    .join('');
+  genresMap = await fetchGenres();
+  const data = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_WEEK);
+  allMovies = data.results;
+
+  renderMovies(container, allMovies.slice(0, 3));
 
   seeAllBtn.addEventListener('click', () => {
-    const remainingMovies = movies.slice(3);
-    container.innerHTML += remainingMovies
-      .map(movie => renderMovieCard(movie, genresMap))
-      .join('');
-    seeAllBtn.style.display = 'none';
+    if (!isExpanded) {
+      renderMovies(container, allMovies); // tümünü göster
+      seeAllBtn.textContent = 'Show Less';
+      isExpanded = true;
+    } else {
+      renderMovies(container, allMovies.slice(0, 3)); // sadece ilk 3
+      seeAllBtn.textContent = 'See All';
+      isExpanded = false;
+    }
   });
 }
 
-function renderMovieCard(movie, genresMap) {
+function renderMovies(container, movieList) {
+  container.innerHTML = movieList
+    .map((movie, index) => {
+      const delay = index >= 3 ? (index - 2) * 100 : 0; // 4. karttan itibaren gecikmeli
+      return renderMovieCard(movie, delay);
+    })
+    .join('');
+}
+
+function renderMovieCard(movie, delay = 0) {
   const genres = movie.genre_ids.map(id => genresMap[id]).join(', ');
+  const stars = renderStars(movie.vote_average);
+
   return `
-    <div class="trend-card" data-id="${movie.id}">
+    <div class="trend-card" data-id="${
+      movie.id
+    }" style="animation-delay: ${delay}ms;">
       <img src="${IMG_BASE_URL}${ENDPOINTS.IMG_W500}${
     movie.poster_path
   }" alt="${movie.title}">
       <div class="trend-info">
         <h3>${movie.title}</h3>
-        <p>${genres}</p>
-        <p>${movie.release_date?.split('-')[0] || 'N/A'}</p>
+        <p>${genres} | ${movie.release_date?.split('-')[0] || 'N/A'}</p>
+        <div class="trend-stars">${stars}</div>
       </div>
     </div>
   `;
+}
+
+function renderStars(vote) {
+  const rating = vote / 2; // 10 üzerinden 5’e indiriyoruz
+  let stars = '';
+
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) {
+      stars += '★';
+    } else if (rating >= i - 0.5) {
+      stars += '★';
+    } else {
+      stars += '☆';
+    }
+  }
+
+  return stars;
 }

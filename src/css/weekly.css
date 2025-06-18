@@ -1,30 +1,114 @@
-#see-all-trends {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.weekly-trends .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
 }
 
+.weekly-trends .section-header h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
+  line-height: 100%;
+  margin-right: 32px;
+
+}
+
+.section-header h2 {
+      margin-left: 320px;
+
+}
+.section-header p {
+      margin-right: 320px;
+
+}
+#see-all-trends {
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: #F87719;
+  padding: 0;
+  cursor: pointer;
+  line-height: 100%;
+  transition: opacity 0.2s ease;
+}
+
+#see-all-trends:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+
 .trends-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 395px);
+  justify-content: center;
+  gap: 40px;
 }
 
 .trend-card {
-  width: calc(33.33% - 1rem);
-  background: #fff;
-  border-radius: 8px;
+  width: 395px;
+  height: 574px;
+  border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: relative;
+  background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.trend-card:hover {
+  transform: scale(1.02);
 }
 
 .trend-card img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
+
+.trend-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 60%, transparent);
+  color: white;
+}
+
+.trend-info h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.trend-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.trend-stars {
+  font-size: 18px;
+  color: #ff9800;
+}
+
+.trend-card {
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: fadeZoom 1.5s ease forwards;
+}
+
+@keyframes fadeZoom {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
