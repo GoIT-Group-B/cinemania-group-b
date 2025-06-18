@@ -4,7 +4,8 @@ import {
   ENDPOINTS,
   BASE_URL,
   IMG_BASE_URL,
-} from './api.js';
+} from './fetchMovies.js';
+
 async function main() {
   const filmContainer = document.getElementById('upcoming-films');
   filmContainer.innerHTML = 'Yükleniyor...';
@@ -40,7 +41,7 @@ function renderMovie(
   },
   genres
 ) {
-  const filmContainer = document.getElementById('films');
+  const filmContainer = document.getElementById('upcoming-films');
   filmContainer.innerHTML = '';
   const filmGenres =
     genre_ids && genre_ids.length > 0
