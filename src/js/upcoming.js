@@ -57,16 +57,20 @@ function renderMovie(
   const filmElement = document.createElement('div');
   filmElement.classList.add('film-card');
   filmElement.innerHTML = `
-    <img src="${poster}" alt="${title}">
+    <img class="upcom-img" src="${poster}" alt="${title}" width="805" height="458">
+    <div class="upcom">
     <h2>${title}</h2>
-    <p><strong>Release date:</strong> ${release_date || 'Unknown'}</p>
+    <p class="upcom-date"><strong>Release date:</strong> ${
+      release_date || 'Unknown'
+    }</p>
     <p><strong>Vote/Votes:</strong> ${vote_average.toFixed(
       1
     )} / ${vote_count}</p>
     <p><strong>Popularity:</strong> ${popularity}</p>
     <p><strong>Genre:</strong> ${filmGenres}</p>
-    <p><strong>ABOUT:</strong> ${overviewText}</p>
+    <p class="upcom-about"><strong class="strong-about">ABOUT:</strong> ${overviewText}</p>
     <button class="add-library-btn">Add to my library</button>
+    </div>
   `;
   filmElement
     .querySelector('.add-library-btn')
