@@ -5,32 +5,37 @@ body {
   color: #fff;
 }
 
-#heroContainer {
+.hero-container {
+  position: relative;
   display: flex;
-  background-color: #000; /* Dark background */
-  color: #fff;
-  align-items: center; /* Vertically align items */
-  padding: 40px; /* Adjust as needed */
-  gap: 30px; /* Space between text and image */
-  max-width: 1200px; /* Or a suitable max-width for your design */
-  margin: 0 auto; /* Center the container */
-  border-radius: 10px; /* Slightly rounded corners for the whole container */
-  overflow: hidden; /* Important for image overflow */
+  align-items: center;
+  overflow: hidden;
+  height: 400px;
 }
-
+.hero-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
 .hero-content {
-  flex: 1; /* Take up available space */
-  max-width: 50%; /* Adjust as needed, the image will take the rest */
-  padding-right: 20px; /* Space before the image */
+  position: absolute;
+  z-index: 2;
+  max-width: 60%;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #fff;
 }
-
 .hero-title {
-  font-size: 3em;
+  font-size: 2.8em;
   margin-bottom: 10px;
 }
 
 .hero-rating .star {
-  color: orange; /* Or the color of your stars */
+  color: orange;
   font-size: 1.5em;
   margin-right: 2px;
 }
@@ -38,7 +43,7 @@ body {
 .hero-description {
   font-size: 1.1em;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin: 15px 0 25px;
 }
 
 .hero-buttons {
@@ -57,7 +62,7 @@ body {
 }
 
 .watch-trailer-btn {
-  background-color: #ff6600; /* Orange */
+  background-color: #ff6600;
   color: #fff;
 }
 
@@ -66,7 +71,7 @@ body {
 }
 
 .more-details-btn {
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.1);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
@@ -76,7 +81,9 @@ body {
 }
 
 .hero-image-container {
-  flex: 1; /* Take up the remaining space */
+  height: 100%;
+  width: 100%;
+   /* Take up the remaining space */
   display: flex; /* To center the image if needed, or control its size */
   justify-content: flex-end; /* Push image to the right */
   align-items: center;
@@ -86,10 +93,8 @@ body {
   max-width: 100%; /* Ensure image fits container */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Remove extra space below image */
-  border-radius: 10px; /* If the image itself needs rounded corners */
   object-fit: cover; /* Important to ensure image fills space and is cropped if needed */
   width: 700px; /* Or a fixed width/percentage */
-  height: 350px; /* Or a fixed height */
 }
 
 /* Adjustments for responsiveness if needed */

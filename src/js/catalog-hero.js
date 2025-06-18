@@ -30,7 +30,7 @@ heroContainer.innerHTML = `
 <div class="hero-image-container">
   <img src="${IMG_BASE_URL}/original${movie.backdrop_path}" alt="${movie.title} backdrop" class="hero-backdrop-image">
 </div>
-`;
+`;  
   
 }
 
