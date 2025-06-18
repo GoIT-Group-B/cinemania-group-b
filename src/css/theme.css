@@ -1,6 +1,70 @@
+:root {
+  --background-color: #111111;
+  --text-color: #ffffff;
+  --font-family: 'Roboto Regular', sans-serif;
+  --white: #ffffff;
+  --black: #000000;
+}
+
 body {
-    max-width: 1280px;
-    margin: auto;
-    background-color: #111111;
-    
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+html.light-theme {
+  --background-color: #fff;
+  --text-color: #000;
+}
+
+html.light-theme header, 
+html.light-theme .logo-text,
+html.light-theme .nav-link {
+    background-color: #ffffff;
+    color: #000000;
+    /* border, box-shadow gibi fark yaratacak detaylar da eklenebilir */
+}
+
+html.light-theme #icon-sun {
+  opacity: 1;
+}
+
+html.light-theme #icon-moon {
+  opacity: 0;
+}
+
+html:not(.light-theme) #icon-sun {
+  opacity: 0;
+}
+
+html:not(.light-theme) #icon-moon {
+  opacity: 1;
+}
+
+html {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+#icon-sun {
+  opacity: 0;
+}
+
+#icon-moon {
+  opacity: 1;
+}
+
+.toggle-circle {
+  position: absolute;
+  top: 6px;
+  left: 44px;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+html.light-theme .toggle-circle {
+  left: 6px;
 }
