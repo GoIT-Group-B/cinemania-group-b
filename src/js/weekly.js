@@ -1,10 +1,5 @@
-import {
-  BASE_URL,
-  IMG_BASE_URL,
-  ENDPOINTS,
-  fetchMovies,
-  fetchGenres,
-} from './fetchMovies.js';
+import { BASE_URL, IMG_BASE_URL, ENDPOINTS, fetchMovies, fetchGenres } from './fetchMovies.js';
+import { createStarRating } from './stars';
 
 let isExpanded = false;
 let allMovies = [];
@@ -61,37 +56,16 @@ function renderMovies(container, movieList) {
 
 function renderMovieCard(movie, delay = 0) {
   const genres = movie.genre_ids.map(id => genresMap[id]).join(', ');
-  const stars = renderStars(movie.vote_average);
+  const starRating = createStarRating(movie.vote_average);
 
   return `
-    <div class="trend-card" data-id="${
-      movie.id
-    }" style="animation-delay: ${delay}ms;">
-      <img src="${IMG_BASE_URL}${ENDPOINTS.IMG_W500}${
-    movie.poster_path
-  }" alt="${movie.title}">
+    <div class="trend-card" data-id="${movie.id}" style="animation-delay: ${delay}ms;">
+      <img src="${IMG_BASE_URL}${ENDPOINTS.IMG_W500}${movie.poster_path}" alt="${movie.title}">
       <div class="trend-info">
         <h3>${movie.title}</h3>
         <p>${genres} | ${movie.release_date?.split('-')[0] || 'N/A'}</p>
-        <div class="trend-stars">${stars}</div>
+        <div class="trend-stars">${starRating}</div>
       </div>
     </div>
   `;
-}
-
-function renderStars(vote) {
-  const rating = vote / 2; // 10 üzerinden 5’e indiriyoruz
-  let stars = '';
-
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) {
-      stars += '<span class="star full">★</span>';
-    } else if (rating >= i - 0.5) {
-      stars += '<span class="star half">★</span>';
-    } else {
-      stars += '<span class="star">☆</span>';
-    }
-  }
-
-  return stars;
 }
