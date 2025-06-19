@@ -54,11 +54,31 @@
 }
 
 .add-library-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #ff4747;
+  position: relative;
+  background: transparent;
   color: white;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
-  cursor: pointer;
+  border-radius: 12px;
+  z-index: 1;
+  overflow: hidden;
+  width: 140px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-library-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 12px;
+  background: linear-gradient(45deg, #FFC226, #F84119);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
 }

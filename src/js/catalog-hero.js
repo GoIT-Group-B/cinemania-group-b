@@ -1,5 +1,6 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
 import { generateStars } from './generate-stars';
+import { openMovieDetailModal }from './pop-up.js'
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
@@ -50,6 +51,10 @@ heroContainer.innerHTML = `
 `;  
 const watchBtn = document.querySelector('.watch-trailer-btn');
   watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
+
+  const moreBtn = document.querySelector('.more-details-btn');
+  moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
+
 }
 
 async function fetchCategories() {
