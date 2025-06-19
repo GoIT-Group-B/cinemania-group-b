@@ -1,4 +1,19 @@
-<section  class="hero-container">
+<section class="hero-container">
+  <div class="catalog-hero-overlay"></div>
     <h1 class="hero-title">Loading...</h1>
-    <p class="hero-description">Please wait while we fetch the trending movie.</p>
-  </section>
+    <p class="hero-description">
+      Please wait while we fetch the trending movie.
+    </p>
+</section>
+
+<div id="trailerModal" class="trailer-modal" style="display: none;">
+  <div class="trailer-content">
+    <iframe id="trailerIframe" width="1280" height="450" frameborder="0" allowfullscreen></iframe>
+    <button id="closeTrailer" class="close-trailer-btn">X</button>
+  </div>
+</div>
+
+<!-- Trailer bulunamadığında mesaj kutusu -->
+<div id="trailerError" style="display: none;" class="trailer-error">
+  <p>🎥 Üzgünüz, bu film için fragman bulunamadı.</p>
+</div>

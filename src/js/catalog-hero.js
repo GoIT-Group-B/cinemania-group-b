@@ -1,37 +1,60 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
+import { createStarRating } from './stars';
+import { openMovieDetailModal } from './pop-up.js'
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
-  console.log("response:", response.results)
   const data = await response.results;
-  console.log("data:", data)
-  const movie = data[0];
-  console.log("movie:",movie )
-  updateHero(movie);
+
+  let index = 0;
+  const heroContainer = document.querySelector('.hero-container');
+
+  // İlk film
+  updateHero(data[index]);
+
+  setInterval(() => {
+    // Opaklığı sıfırla (kaybolsun)
+    heroContainer.style.opacity = '0';
+
+    // Bekle ve sonra değiştir
+    setTimeout(() => {
+      index = (index + 1) % data.length;
+      updateHero(data[index]);
+
+      // Yeni film geldiğinde tekrar görünür yap
+      heroContainer.style.opacity = '1';
+    }, 500); // Geçiş efekti süresi
+  }, 5000);
 }
 
+
 function updateHero(movie) {
-  
   const heroContainer = document.querySelector('.hero-container');
   console.log(movie);
 
-heroContainer.innerHTML = `
-<div class="hero-content">
-  <h1 class="hero-title">${movie.title}</h1>
-  <div class="hero-rating">
-    <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star-empty">★</span> 
-  </div>
-  <p class="hero-description">${movie.overview}</p>
-  <div class="hero-buttons">
-    <button class="watch-trailer-btn">Watch trailer</button>
-    <button class="more-details-btn">More details</button>
-  </div>
-</div>
-<div class="hero-image-container">
-  <img src="${IMG_BASE_URL}/original${movie.backdrop_path}" alt="${movie.title} backdrop" class="hero-backdrop-image">
-</div>
-`;
-  
+  const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+
+  const starsHTML = createStarRating(movie.vote_average);
+
+  heroContainer.innerHTML = `
+    <div class="hero-content">
+      <h1 class="hero-title">${movie.title}</h1>
+      <div class="hero-rating">${starsHTML}</div>
+      <p class="hero-description">${movie.overview}</p>
+      <div class="hero-buttons">
+        <button class="watch-trailer-btn">Watch trailer</button>
+        <button class="more-details-btn">More details</button>
+      </div>
+    </div>
+  `;
+
+  const watchBtn = document.querySelector('.watch-trailer-btn');
+  watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
+
+  const moreBtn = document.querySelector('.more-details-btn');
+  moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
+
 }
 
 async function fetchCategories() {
@@ -59,3 +82,30 @@ fetchTrendingMovie();
 fetchCategories();
 
 export { fetchTrendingMovie, updateHero, fetchCategories, renderCategories };
+
+async function openTrailerModal(movieId) {
+  const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=52238d7fab5c2c01b99e751619dd16ec&language=en-US`);
+  const data = await response.json();
+
+  // YouTube videoları içinde trailer olanı bul
+  const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+  const iframe = document.getElementById('trailerIframe');
+  const modal = document.getElementById('trailerModal');
+
+  if (trailer) {
+    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
+    modal.style.display = 'block';
+  } else {
+    alert("Trailer bulunamadı.");
+  }
+}
+
+// Modal kapatma
+document.getElementById('closeTrailer').addEventListener('click', () => {
+  const modal = document.getElementById('trailerModal');
+  const iframe = document.getElementById('trailerIframe');
+
+  modal.style.display = 'none';
+  iframe.src = ''; // Temizle
+});
