@@ -53,14 +53,6 @@ function search() {
         console.log("hata", error);
     });
     
-    
-    // else if (value === "a")
-    // {
-    //     selinv2.style.display = "none";
-    // }
-    
-    
-    
 }
 
 
@@ -75,4 +67,4 @@ function clearSearch() {
     input.focus();
 
 }
-
+export { search, clearSearch };
