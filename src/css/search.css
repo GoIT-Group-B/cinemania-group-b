@@ -72,7 +72,11 @@ body {
 .clear-button:hover {
     color: #555;
 }  
-.gude{
+
+
+
+.gude
+{
     font-family: Roboto;
         font-weight: 400;
         font-size: 32px;
@@ -85,3 +89,4 @@ body {
         left: 297px;
         
 }
+
