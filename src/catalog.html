@@ -5,21 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinemania Catalog</title>
     <link rel="stylesheet" href="./css/styles.css" />
-    <script>
-      (function () {
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light') {
-          document.documentElement.classList.add('light-theme');
-        }
-      })();
-    </script>
-  
+    <script src="./js/theme-loader.js"></script>
   </head>
   <body>
     <load src="./partials/header.html" />
   
     <main>
       <load src="./partials/catalog-hero.html" />
+      <load src="./partials/pop-up.html" />
 
       <load src="./partials/catalog-list.html" /> 
     </main>
