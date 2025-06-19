@@ -4,7 +4,6 @@
   font-family: 'Roboto Regular';
   height: 380px;
   padding: 0px;
-
 }
 
 /* Arka plan görseli */
@@ -12,15 +11,17 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-
 }
-
 
 .background-image::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 10%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
   z-index: 2;
 }
 
@@ -37,14 +38,12 @@
   color: white;
   padding: 20px 20px;
   max-width: 400px;
-
 }
 
 .title {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 16px;
-
 }
 
 .title-fallback {
@@ -79,8 +78,6 @@
 
 .description-fallback {
   display: none;
-  ;
-
 }
 
 .description-fallback-mobile {
@@ -97,13 +94,15 @@
   border: none;
   border-radius: 30px;
   background: linear-gradient(to right, #f5921b, #ff2e00);
-  color: white;
+  color: #111111;
   font-weight: 500;
   font-size: 12px;
   margin-right: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
   font-family: 'Roboto Regular';
+  width: 117px;
+  height: 36px;
 }
 
 .getstarted-btn {
@@ -111,13 +110,15 @@
   border: none;
   border-radius: 30px;
   background: linear-gradient(to right, #f5921b, #ff2e00);
-  color: white;
+  color: #111111;
   font-weight: 500;
   font-size: 12px;
   margin-right: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
   font-family: 'Roboto Regular';
+  width: 117px;
+  height: 36px;
 }
 
 .more-details__btn {
@@ -132,11 +133,18 @@
   margin-right: 10px;
   cursor: pointer;
   transition: background 0.3s ease;
+  width: 117px;
+  height: 36px;
 }
 
 .watch-trailer__btn:hover {
   background: white;
-  color: black;
+  color: #f87719;
+  border: #f5921b;
+}
+.more-details__btn:hover {
+  color: #f87719;
+  border-color: #f5921b;
 }
 
 .notification-trailer-fail {
@@ -144,7 +152,6 @@
   max-height: 289px;
   background-color: black;
 }
-
 
 @media (min-width: 481px) {
   .background-image {
@@ -171,10 +178,12 @@
     position: absolute;
     inset: 0;
     background: none;
-    background: linear-gradient(to right,
-        rgba(0, 0, 0, 1) 0%,
-        rgba(0, 0, 0, 0.5) 50%,
-        rgba(0, 0, 0, 0) 80%);
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 80%
+    );
 
     z-index: 0;
   }
@@ -231,7 +240,6 @@
     color: white;
     padding: 40px 20px;
     max-width: 500px;
-
   }
 
   .start-rate__hero {
@@ -240,6 +248,24 @@
     font-size: 20px;
     width: 116px;
     height: 20px;
+  }
+  .watch-trailer__btn {    
+    width: 128px;
+    height: 40px;
+    
+    font-size: 14px;
+  }
+
+  .getstarted-btn {
+    width: 128px;
+    height: 40px;    
+    font-size: 14px;
+  }
+
+  .more-details__btn {    
+    width: 128px;
+    height: 40px;    
+    font-size: 14px;
   }
 }
 
@@ -268,7 +294,6 @@
     overflow: hidden;
     background-color: rgba(1, 1, 1, 1);
   }
-
 
   .title {
     font-size: 64px;
@@ -301,7 +326,6 @@
     color: white;
     padding: 40px 20px;
     width: 1020px;
-
   }
 
   .start-rate__hero {
@@ -310,5 +334,22 @@
     font-size: 20px;
     width: 116px;
     height: 20px;
+  }
+    .watch-trailer__btn {    
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .getstarted-btn {
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .more-details__btn {    
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
   }
 }
