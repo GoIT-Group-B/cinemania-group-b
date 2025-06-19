@@ -68,3 +68,19 @@ html {
 html.light-theme .toggle-circle {
   left: 6px;
 }
+
+html.light-theme .menu-toggle {
+  color: var(--text-color);
+}
+
+html.light-theme .mobile-menu {
+  background-color: var(--white);
+}
+
+html.light-theme .mobile-menu .nav-list {
+  color: var(--black);
+}
+
+html.light-theme .mobile-menu .nav-item a {
+  color: var(--black);
+}
