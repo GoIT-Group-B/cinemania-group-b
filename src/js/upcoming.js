@@ -74,7 +74,7 @@ function renderMovie(
   const filmElement = document.createElement('div');
   filmElement.classList.add('film-card');
   filmElement.innerHTML = `
-    <img class="upcom-img" src="${poster}" alt="${title}" width="805" height="458">
+    <img class="upcom-img" src="${poster}" alt="${title}"">
     <div class="upcom">
       <h2>${title}</h2>
       <p class="release-info"><strong>Release date:</strong> ${
