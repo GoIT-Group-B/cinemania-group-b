@@ -1,0 +1,2 @@
+import"./assets/theme-BnMLkBly.js";const n=document.querySelector(".menu-toggle"),e=document.getElementById("mobileMenu"),o=document.getElementById("mobileOverlay");n.addEventListener("click",()=>{e.classList.toggle("open"),o.classList.toggle("active")});document.addEventListener("click",t=>{const c=e.contains(t.target),s=n.contains(t.target);!c&&!s&&(e.classList.remove("open"),o.classList.remove("active"))});
+//# sourceMappingURL=library.js.map
