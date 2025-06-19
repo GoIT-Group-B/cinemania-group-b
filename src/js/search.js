@@ -1,11 +1,11 @@
 const input = document.getElementById("search");
-const selinv2 = document.getElementById("goktug");
-const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
+const warningMessage = document.getElementById("warning");
 const moviesContainer = document.getElementById("movies");
 const clearButton = document.querySelector(".clear-button");
+
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
-
+const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
 
 
 
@@ -26,10 +26,10 @@ function search() {
         .then(data => {
             if (data.results.length === 0)
                 {
-                   selinv2.style.display = "block";
+                   warningMessage.style.display = "block";
             }
             else {
-                selinv2.style.display = "none";
+                warningMessage.style.display = "none";
             }
             
       // Sadece filmleri ekle
