@@ -1,6 +1,6 @@
 .weekly-trends {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 80px auto;
 }
 
 .weekly-trends .section-header {
@@ -11,14 +11,14 @@
 }
 
 .weekly-trends .section-header h2 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Medium';
   font-size: 28px;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0;
   color: #ffffff;
   line-height: 100%;
-  margin-right: 32px;
+  margin-left: 32px;
 }
 
 .light-theme .weekly-trends .section-header h2 {
@@ -26,11 +26,10 @@
 }
 
 #see-all-trends {
-  font-family: 'Roboto', sans-serif;
-  font-size: 28px;
-  font-weight: 500;
+  font-family: 'Roboto Medium';
+  font-size: 18px;
   color: #F87719;
-  padding: 0;
+  padding-right: 32px;
   cursor: pointer;
   line-height: 100%;
   transition: opacity 0.2s ease;
@@ -95,40 +94,6 @@
   margin: 4px 0;
   font-size: 14px;
   color: #ccc;
-}
-
-.trend-stars {
-  font-size: 18px;
-  color: #ff9800;
-  display: flex;
-}
-
-.trend-stars .star {
-  position: relative;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  margin-right: 2px;
-}
-
-.trend-stars .star::before {
-  content: '☆';
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 20px;
-  color: #ff9800;
-}
-
-.trend-stars .star.full::before {
-  content: '★';
-}
-
-.trend-stars .star.half::before {
-  content: '★';
-  width: 50%;
-  overflow: hidden;
-  display: inline-block;
 }
 
 @keyframes fadeZoom {
