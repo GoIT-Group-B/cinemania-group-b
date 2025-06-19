@@ -122,7 +122,7 @@
   display: flex;
   color: white;
   font-size: 16px;
-  margin-bottom: 6px;
+  margin-bottom: 16px;
   gap: 8px;
   font-family: var(--font-family);
 }
@@ -157,18 +157,32 @@
 }
 
 .add-library-btn {
+  box-sizing: border-box;
+  display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  border: none;
-  border-radius: 100px;
-  font-weight: bold;
-  font-size: 16px;
+  width: 155px !important;
+  height: 40px;
+  border-radius: 74px;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.3s;
   border: 2px solid orange;
   background-color: orange;
   color: #111;
   font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.add-library-btn:hover {
+  background-color: #e76f00;
+  border-color: #e76f00;
+  color: #111;
 }
 
 .upcom p strong {
@@ -177,7 +191,27 @@
   font-family: var(--font-family);
 }
 
-/* @media (max-width: 1279px) and (min-width: 768px) {
+@media (max-width: 767px) {
+  .upcoming-container-header {
+    text-align: center;
+    margin-right: 100px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+  }
+
+  .upcom h2 {
+    font-family: var(--font-family);
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
   .film-card {
     display: flex;
     flex-direction: column;
@@ -186,11 +220,108 @@
     margin: 0 auto;
   }
 
+  .upcom-img {
+    width: 280px;
+    height: 402px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
   .upcom {
     padding: 20px;
-    max-width: 704px;
+    max-width: 280px;
     display: flex;
     flex-direction: column;
+  }
+  .add-library-btn {
+    width: 140px;
+    height: 38px;
+    font-size: 14px;
+    border-radius: 40px;
+    margin-top: 15px;
+    align-self: flex-start;
+    width: 140px !important;
+  }
+
+  .add-library-btn:hover {
+    background-color: #e76f00;
+    border-color: #e76f00;
+    color: #111;
+  }
+
+  .upcom-about {
+    width: 280px;
+    max-width: 280px;
+  }
+}
+
+/* 
+@media (max-width: 767px) {
+  .film-card {
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px; 
+    margin: 0 auto;
+  }
+
+  .upcom-img {
+    width: 280px; 
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .upcom {
+    padding: 15px 10px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upcom h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    font-family: var(--font-family);
+  }
+
+  .vote-info,
+  .release-info,
+  .popularity-info,
+  .genre-info,
+  .upcom-about {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: var(--font-family);
+  }
+
+  .vote-box,
+  .vote-info .slash,
+  .popularity-info strong,
+  .genre-info strong,
+  .release-info strong {
+    position: static;
+    left: 0;
+    right: 0;
+    margin: 0;
+  }
+
+  .popularity-info {
+    margin-left: 0;
+  }
+
+  .genre-info span {
+    margin-left: 0;
+  }
+
+  .add-library-btn {
+    width: 140px; 
+    height: 38px;
+    font-size: 14px;
+    border-radius: 40px;
+    margin-top: 15px;
+    align-self: flex-start;
+    width: 140px !important;
   }
 }
  */
