@@ -5,32 +5,45 @@ body {
   color: #fff;
 }
 
-#heroContainer {
-  display: flex;
-  background-color: #000; /* Dark background */
-  color: #fff;
-  align-items: center; /* Vertically align items */
-  padding: 40px; /* Adjust as needed */
-  gap: 30px; /* Space between text and image */
-  max-width: 1200px; /* Or a suitable max-width for your design */
-  margin: 0 auto; /* Center the container */
-  border-radius: 10px; /* Slightly rounded corners for the whole container */
-  overflow: hidden; /* Important for image overflow */
+.hero-container {
+    position: relative;
+    max-width: 1280px;
+    height: 660px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    margin: 0 auto;
+    transition: opacity 1s ease-in-out;
+    opacity: 1;
 }
-
+.hero-container:before{
+  content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.95) 0%,    /* %0 - tam siyah */
+    rgba(0, 0, 0, 0.95) 40%,   /* %40'a kadar tam karanlık */
+    rgba(0, 0, 0, 0.0) 100%    /* %40'tan sonra şeffaf */
+  );
+    z-index: 1;
+}
 .hero-content {
-  flex: 1; /* Take up available space */
-  max-width: 50%; /* Adjust as needed, the image will take the rest */
-  padding-right: 20px; /* Space before the image */
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  padding: 0 134px;
+  color: #fff;
 }
-
 .hero-title {
-  font-size: 3em;
+  font-size: 2.8em;
   margin-bottom: 10px;
 }
 
 .hero-rating .star {
-  color: orange; /* Or the color of your stars */
+  color: orange;
   font-size: 1.5em;
   margin-right: 2px;
 }
@@ -38,7 +51,8 @@ body {
 .hero-description {
   font-size: 1.1em;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin: 15px 0 25px;
+  width: 367px;
 }
 
 .hero-buttons {
@@ -50,25 +64,29 @@ body {
 .more-details-btn {
   padding: 12px 25px;
   border: none;
-  border-radius: 5px;
+  border-radius: 74px;
   font-size: 1em;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .watch-trailer-btn {
-  background-color: #ff6600; /* Orange */
-  color: #fff;
+  background: linear-gradient(
+  to bottom right,
+  rgba(255, 194, 38, 1) 0%,   /* Üst kısım karanlık */
+  rgba(248, 65, 25, 1));
+  color: black;
 }
 
 .watch-trailer-btn:hover {
-  background-color: #e65c00;
+  background-color: #ffffff;
 }
 
 .more-details-btn {
-  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  background-color: transparent;
+ 
   color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid #ffffff;
 }
 
 .more-details-btn:hover {
@@ -76,20 +94,34 @@ body {
 }
 
 .hero-image-container {
-  flex: 1; /* Take up the remaining space */
+  height: 100%;
+  width: 100%;
+   /* Take up the remaining space */
   display: flex; /* To center the image if needed, or control its size */
   justify-content: flex-end; /* Push image to the right */
   align-items: center;
+  margin: 0 auto;
 }
 
 .hero-backdrop-image {
   max-width: 100%; /* Ensure image fits container */
   height: auto; /* Maintain aspect ratio */
   display: block; /* Remove extra space below image */
-  border-radius: 10px; /* If the image itself needs rounded corners */
   object-fit: cover; /* Important to ensure image fills space and is cropped if needed */
   width: 700px; /* Or a fixed width/percentage */
-  height: 350px; /* Or a fixed height */
+}
+.star {
+  color: orange;
+  font-size: 1.5em;
+}
+.star-empty {
+  color: #777;
+  font-size: 1.5em;
+}
+.half-star {
+  color: orange;
+  font-size: 1.5em;
+  position: relative;
 }
 
 /* Adjustments for responsiveness if needed */
@@ -103,6 +135,7 @@ body {
     padding-right: 0;
     margin-bottom: 20px;
     text-align: center;
+   
   }
   .hero-buttons {
     justify-content: center;
@@ -112,7 +145,22 @@ body {
   }
 }
 
-
+.catalog-hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(75deg,
+                rgba(17, 17, 17, 1) 42%,
+                rgba(17, 17, 17, 0.95) 45%,
+                rgba(17, 17, 17, 0.75)50%,
+                rgba(17, 17, 17, 0.4) 55%,
+                rgba(17, 17, 17, 0.15) 80%,
+                rgba(17, 17, 17, 0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 60px;
+    color: var(--white);
+}
 
 .info-btn {
   padding: 12px 24px;
@@ -201,7 +249,6 @@ body {
   width: 100%; 
   box-sizing: border-box; 
 }
-
 
 
 .library-list { 
