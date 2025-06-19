@@ -6,10 +6,10 @@
     <title>Cinemania Catalog</title>
     <script src="./js/theme-loader.js"></script>
     <script type="module" crossorigin src="/cinemania-group-b/catalog.js"></script>
-    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/theme-CnDw7Ayj.js">
+    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/theme-C3VdtH2B.js">
     <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/vendor-DDD7fsZd.js">
     <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/fetchMovies-DXPj_YoO.js">
-    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/theme-Ct7tBJqe.css">
+    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/theme-8hahIaCk.css">
   </head>
   <body>
     <header class="header">
@@ -73,8 +73,40 @@
     <p class="hero-description">
       Please wait while we fetch the trending movie.
     </p>
- 
 </section>
+
+<div id="trailerModal" class="trailer-modal" style="display: none;">
+  <div class="trailer-content">
+    <iframe id="trailerIframe" width="1280" height="450" frameborder="0" allowfullscreen></iframe>
+    <button id="closeTrailer" class="close-trailer-btn">❌ Close</button>
+  </div>
+</div>
+
+<!-- Trailer bulunamadığında mesaj kutusu -->
+<div id="trailerError" style="display: none;" class="trailer-error">
+  <p>🎥 Üzgünüz, bu film için fragman bulunamadı.</p>
+</div>
+
+      <!-- Film Detay Modal -->
+<div id="movieDetailModal" class="detail-modal">
+  <div class="detail-modal-content">
+    <button id="closeDetailModal" class="detail-close-btn">X</button>
+    <div class="detail-modal-body">
+      <div class="detail-image">
+        <img id="detailPoster" src="" alt="Movie Poster" />
+      </div>
+      <div class="detail-info">
+        <h2 id="detailTitle"></h2>
+        <p><strong>Vote / Votes:</strong> <span id="detailVotes"></span></p>
+        <p><strong>Popularity:</strong> <span id="detailPopularity"></span></p>
+        <p><strong>Genre:</strong> <span id="detailGenres"></span></p>
+        <p><strong>About:</strong></p>
+        <p id="detailOverview"></p>
+        <button class="add-library-btn">Add to my library</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
       <section id="search">
