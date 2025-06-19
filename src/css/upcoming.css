@@ -74,10 +74,10 @@
     color: #111;
     padding: 2px 8px;
     border-radius: 5px;
-    font-weight: bold;
+    font-weight: 500;
     font-size: 14px;
     position: relative;
-    left: 62px;
+    left: 55px;
   }
   .vote-box-whole {
     position: absolute;
@@ -85,7 +85,7 @@
   }
   .vote-info .slash {
     position: relative;
-    left: 62px;
+    left: 55px;
   }
 
   .release-info {
@@ -126,7 +126,7 @@
     font-family: var(--font-family);
   }
   .genre-info span {
-    margin-left: 50px;
+    margin-left: 44px;
   }
 
   .genre-info strong {
