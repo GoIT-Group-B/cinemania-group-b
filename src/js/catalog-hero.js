@@ -104,29 +104,3 @@ document.getElementById('closeTrailer').addEventListener('click', () => {
   modal.style.display = 'none';
   iframe.src = ''; // Temizle
 });
-async function openTrailerModal(movieId) {
-  const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=52238d7fab5c2c01b99e751619dd16ec&language=en-US`);
-  const data = await response.json();
-
-  const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-
-  const iframe = document.getElementById('trailerIframe');
-  const modal = document.getElementById('trailerModal');
-
-  if (trailer) {
-    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
-    modal.classList.add('active');
-  } else {
-    showTrailerErrorMessage();
-  }
-}
-
-function showTrailerErrorMessage() {
-  const errorBox = document.getElementById('trailerError');
-  errorBox.style.display = 'block';
-
-  // Mesajı birkaç saniye sonra otomatik gizle
-  setTimeout(() => {
-    errorBox.style.display = 'none';
-  }, 3000);
-}
