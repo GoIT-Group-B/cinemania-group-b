@@ -1,7 +1,7 @@
 <header class="header">
   <div class="container">
     <div class="logo-container">
-      <a href="/src/index.html">
+      <a href="/index.html">
         <div class="logo">
           <img
             src="../images/header-logo@2x.png"
@@ -15,6 +15,12 @@
         </div>
       </a>
     </div>
+
+    <!-- Hamburger button (mobile only) -->
+    <button class="menu-toggle" aria-label="Toggle menu">
+      MENU
+    </button>
+
     <div class="nav-container">
       <nav class="nav main-nav">
         <ul class="nav-list">
@@ -47,6 +53,18 @@
     </div>
   </div>
 </header>
+
+<!-- Mobile Sidebar Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="nav-list">
+    <li class="nav-item"><a href="./index.html">Home</a></li>
+    <li class="nav-item"><a href="./catalog.html">Catalog</a></li>
+    <li class="nav-item"><a href="./library.html">Library</a></li>
+  </ul>
+</div>
+
+<!-- Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
 
 
 

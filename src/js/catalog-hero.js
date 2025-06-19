@@ -1,5 +1,6 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
-import { generateStars } from './generate-stars';
+import { createStarRating } from './stars';
+import { openMovieDetailModal }from './pop-up.js'
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
@@ -35,7 +36,7 @@ function updateHero(movie) {
   const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
     heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
 
-const starsHTML = generateStars(movie.vote_average);
+const starsHTML = createStarRating(movie.vote_average);
 
 heroContainer.innerHTML = `
 <div class="hero-content">
@@ -47,8 +48,13 @@ heroContainer.innerHTML = `
     <button class="more-details-btn">More details</button>
   </div>
 </div>
-
 `;  
+const watchBtn = document.querySelector('.watch-trailer-btn');
+  watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
+
+  const moreBtn = document.querySelector('.more-details-btn');
+  moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
+
 }
 
 async function fetchCategories() {
@@ -76,3 +82,30 @@ fetchTrendingMovie();
 fetchCategories();
 
 export { fetchTrendingMovie, updateHero, fetchCategories, renderCategories };
+
+async function openTrailerModal(movieId) {
+  const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=52238d7fab5c2c01b99e751619dd16ec&language=en-US`);
+  const data = await response.json();
+
+  // YouTube videoları içinde trailer olanı bul
+  const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
+
+  const iframe = document.getElementById('trailerIframe');
+  const modal = document.getElementById('trailerModal');
+
+  if (trailer) {
+    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
+    modal.style.display = 'block';
+  } else {
+    alert("Trailer bulunamadı.");
+  }
+}
+
+// Modal kapatma
+document.getElementById('closeTrailer').addEventListener('click', () => {
+  const modal = document.getElementById('trailerModal');
+  const iframe = document.getElementById('trailerIframe');
+
+  modal.style.display = 'none';
+  iframe.src = ''; // Temizle
+});
