@@ -1,12 +1,13 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies';
+import { createStarRating } from './stars';
 
 const movieList = document.getElementById('movieList');
-const API_KEY = '52238d7fab5c2c01b99e751619dd16ec';
 
 async function fetchFirstPageMovies() {
-  const response = await fetch(`${BASE_URL}${ENDPOINTS.POPULAR_MOVIES}?api_key=${API_KEY}&language=en-US&page=1`);
-  const data = await response.json();
-  renderMovieCards(data.results);
+  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
+  const data = await response.results;
+  console.log(data)
+  renderMovieCards(data);
 }
 
 function renderMovieCards(movies) {
@@ -15,6 +16,7 @@ function renderMovieCards(movies) {
       const { title, poster_path, release_date, vote_average, genre_ids } = movie;
       const year = release_date ? release_date.split('-')[0] : 'N/A';
       const genres = genre_ids.slice(0, 2).map(id => genreMap[id]).join(', '); // Genre mapping gerekir
+      const starRating = createStarRating(vote_average)
 
       return `
         <div class="movie-card">
@@ -25,7 +27,7 @@ function renderMovieCards(movies) {
                 <h3 class="movie-title">${title}</h3>
                 <p class="movie-details">${genres} | ${year}</p>
               </div>
-              <div class="movie-rating">⭐ ${vote_average.toFixed(1)}</div>
+              <div class="movie-rating">${starRating}</div>
             </div>
           </div>
         </div>

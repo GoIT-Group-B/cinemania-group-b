@@ -30,7 +30,6 @@ async function fetchTrendingMovie() {
 
 function updateHero(movie) {
   const heroContainer = document.querySelector('.hero-container');
-  console.log(movie);
 
   const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
   heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
