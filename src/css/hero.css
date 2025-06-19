@@ -15,11 +15,6 @@
 
 }
 
-.star {
-  width: 16px;
-  height: 16px;
-  margin-right: 4px;
-}
 
 .background-image::after {
   content: '';
@@ -246,14 +241,6 @@
     width: 116px;
     height: 20px;
   }
-
-  .star {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-  }
-
-
 }
 
 @media (min-width: 769px) {
@@ -324,11 +311,4 @@
     width: 116px;
     height: 20px;
   }
-
-  .star {
-    width: 20px;
-    height: 20px;
-    margin-right: 4px;
-  }
-
 }
