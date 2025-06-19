@@ -1,19 +1,64 @@
 <header class="header">
   <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html" aria-label="Site logo">
-        <svg class="nav-logo-icon" width="100" height="30">
-          <use href="{=$icon-path}"></use>
-        </svg>
+    <div class="logo-container">
+      <a href="../index.html">
+        <div class="logo">
+          <img
+            src="/images/header-logo.png"
+            alt="logo"
+            class="logo-img"
+            width="48"
+            height="48"
+          />
+          <span class="logo-text">Cinemania</span>
+        </div>
       </a>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul>
-    </nav>
+    </div>
+
+    <!-- Hamburger button (mobile only) -->
+    <button class="menu-toggle" aria-label="Toggle menu">MENU</button>
+
+    <div class="nav-container">
+      <nav class="nav main-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a class="nav-link" href="./index.html" class="active">HOME</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./catalog.html">CATALOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./library.html">LIBRARY</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header-theme-container">
+      <div class="header-theme-switcher" id="theme-switcher">
+        <div class="icon">
+          <svg id="icon-moon">
+            <use href="/images/sprite.svg#icon-moon"></use>
+          </svg>
+        </div>
+        <div class="icon">
+          <svg id="icon-sun">
+            <use href="/images/sprite.svg#icon-sun"></use>
+          </svg>
+        </div>
+        <div class="toggle-circle"></div>
+      </div>
+    </div>
   </div>
 </header>
+
+<!-- Mobile Sidebar Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul class="nav-list">
+    <li class="nav-item"><a href="./index.html">Home</a></li>
+    <li class="nav-item"><a href="./catalog.html">Catalog</a></li>
+    <li class="nav-item"><a href="./library.html">Library</a></li>
+  </ul>
+</div>
+
+<!-- Overlay -->
+<div class="mobile-overlay" id="mobileOverlay"></div>

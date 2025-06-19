@@ -1,0 +1,211 @@
+.weekly-trends {
+  max-width: 1280px;
+  margin: 80px auto;
+}
+
+.weekly-trends .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1rem;
+}
+
+.weekly-trends .section-header h2 {
+  font-family: 'Roboto Medium';
+  font-size: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: #ffffff;
+  line-height: 100%;
+  margin-left: 32px;
+}
+
+.light-theme .weekly-trends .section-header h2 {
+  color: #111111;
+}
+
+#see-all-trends {
+  font-family: 'Roboto Medium';
+  font-size: 18px;
+  color: #F87719;
+  padding-right: 32px;
+  cursor: pointer;
+  line-height: 100%;
+  transition: opacity 0.2s ease;
+}
+
+#see-all-trends:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.trends-container {
+  display: grid;
+  grid-template-columns: repeat(3, 395px);
+  justify-content: center;
+  gap: 45px;
+}
+
+.trend-card {
+  width: 395px;
+  height: 574px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease;
+  opacity: 0;
+  transform: scale(0.95) translateY(20px);
+  animation: fadeZoom 1.5s ease forwards;
+  will-change: transform;
+  cursor: pointer;
+}
+
+.trend-card:hover {
+  transform: scale(1.02);
+}
+
+.trend-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.trend-info {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 60%, transparent);
+  color: white;
+}
+
+.trend-info h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.trend-info p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+@keyframes fadeZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* TABLET TASARIMI */
+@media (max-width: 1279px) and (min-width: 768px) {
+  .weekly-trends {
+    padding: 0 24px;
+  }
+
+  .weekly-trends .section-header {
+    padding: 0 8px;
+    margin-bottom: 24px;
+  }
+
+  .weekly-trends .section-header h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  #see-all-trends {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  .trends-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .trend-card {
+    max-width: 224px;
+    height: 325px;
+  }
+
+  .trend-info {
+    padding: 12px;
+  }
+
+  .trend-info h3 {
+    font-size: 16px;
+  }
+
+  .trend-info p {
+    font-size: 12px;
+  }
+
+  .trend-stars {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .weekly-trends {
+    padding: 0 20px;
+  }
+
+  .trends-container {
+    display: block;
+  }
+
+  /* Başta sadece 1 kart */
+  .trends-container:not(.is-expanded) .trend-card:not(:first-child) {
+    display: none;
+  }
+
+  .trend-card {
+    width: 100%;
+    max-width: 100%;
+    height: 406px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+  }
+
+  .trend-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .trend-info {
+    padding: 12px;
+  }
+
+  .trend-info h3 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .trend-info p {
+    font-size: 11px;
+    margin: 4px 0;
+    color: #ccc;
+  }
+
+  .trend-stars {
+    font-size: 12px;
+    gap: 2px;
+  }
+}
+
+

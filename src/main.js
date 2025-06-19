@@ -1,1 +1,4 @@
-//import './js/header.js'
+import './js/fetchMovies';
+import { loadWeeklyTrends } from './js/weekly';
+
+loadWeeklyTrends();

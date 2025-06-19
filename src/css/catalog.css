@@ -1,0 +1,569 @@
+body {
+  margin: 0 auto;
+  max-width: 1280px;
+  font-family: 'Roboto Regular';
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+:root {
+  --font-family: 'Roboto', sans-serif;
+  --white: #FFFFFF;
+  --secondary-text: #AAAAAA;
+  --background: #000000;
+}
+
+.hero-container {
+  position: relative;
+  max-width: 1280px;
+  height: 660px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  margin: 0 auto;
+  transition: opacity 1s ease-in-out;
+  opacity: 1;
+}
+
+.hero-container:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      /* %0 - tam siyah */
+      rgba(0, 0, 0, 0.95) 40%,
+      /* %40'a kadar tam karanlık */
+      rgba(0, 0, 0, 0.0) 100%
+      /* %40'tan sonra şeffaf */
+    );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 100%;
+  padding: 0 134px;
+  color: #fff;
+}
+
+.hero-title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 64px;
+  margin-bottom: 10px;
+}
+
+.hero-rating .star {
+  color: orange;
+  font-size: 1.5em;
+  margin-right: 2px;
+}
+
+.hero-description {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 15px 0 25px;
+  width: 367px;
+  color: var(--secondary-text);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.watch-trailer-btn,
+.more-details-btn {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 74px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.watch-trailer-btn {
+  background: linear-gradient(to bottom right,
+      rgba(255, 194, 38, 1) 0%,
+      /* Üst kısım karanlık */
+      rgba(248, 65, 25, 1));
+  color: black;
+}
+
+.watch-trailer-btn:hover {
+  background-color: #ffffff;
+}
+
+.more-details-btn {
+  background-color: transparent;
+
+  color: #fff;
+  border: 1px solid #ffffff;
+}
+
+.more-details-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-image-container {
+  height: 100%;
+  width: 100%;
+  /* Take up the remaining space */
+  display: flex;
+  /* To center the image if needed, or control its size */
+  justify-content: flex-end;
+  /* Push image to the right */
+  align-items: center;
+  margin: 0 auto;
+}
+
+.hero-backdrop-image {
+  max-width: 100%;
+  /* Ensure image fits container */
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove extra space below image */
+  object-fit: cover;
+  /* Important to ensure image fills space and is cropped if needed */
+  width: 700px;
+  /* Or a fixed width/percentage */
+}
+
+.star {
+  color: orange;
+  font-size: 1.5em;
+}
+
+.star-empty {
+  color: #777;
+  font-size: 1.5em;
+}
+
+.half-star {
+  color: orange;
+  font-size: 1.5em;
+  position: relative;
+}
+
+/* Adjustments for responsiveness if needed */
+@media (max-width: 768px) {
+  #heroContainer {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding-right: 0;
+    margin-bottom: 20px;
+    text-align: center;
+
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image-container {
+    justify-content: center;
+  }
+}
+
+.catalog-hero-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(75deg,
+      rgba(17, 17, 17, 1) 42%,
+      rgba(17, 17, 17, 0.95) 45%,
+      rgba(17, 17, 17, 0.75)50%,
+      rgba(17, 17, 17, 0.4) 55%,
+      rgba(17, 17, 17, 0.15) 80%,
+      rgba(17, 17, 17, 0) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 60px;
+  color: var(--white);
+}
+
+.info-btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 74px;
+  background-color: #ffffff;
+  color: #333;
+}
+
+#trailerModal {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#trailerModal.active {
+  display: flex;
+}
+
+.trailer-content {
+  position: fixed;
+  top: 25%;
+  left: 4%;
+  width: 100%;
+  margin: 0 auto;
+  background: #000;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.trailer-content iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 8px;
+}
+
+#closeTrailer {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: transparent;
+  border: none;
+  padding: 10px 14px;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#closeTrailer:hover {
+  background: linear-gradient(to bottom right,
+      rgba(255, 194, 38, 1) 0%,
+      /* Üst kısım karanlık */
+      rgba(248, 65, 25, 1));
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .trailer-content iframe {
+    height: 250px;
+  }
+}
+
+.trailer-error {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4e4e;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 30px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 30px);
+  }
+}
+
+#search {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 40px auto;
+}
+
+.search-input {
+  width: 360px;
+  font-size: 14px;
+  padding: 12px 20px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  background-color: transparent;
+  color: white;
+}
+
+.search-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffc226, #ff6b00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.catalog-page-body {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+.library-list {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 40px 0;
+  justify-content: center;
+}
+
+.movie-card {
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.movie-title {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 10px 10px 5px 10px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie-info {
+  font-size: 0.9em;
+  color: #b0b0b0;
+  margin: 0 10px 10px 10px;
+  text-align: center;
+}
+
+
+.no-results-message,
+.error-message {
+  text-align: center;
+  font-size: 1.5em;
+  color: #ff6b6b;
+  padding: 50px 20px;
+  grid-column: 1 / -1;
+}
+
+
+/* --- Arama Çubuğu (Selin'in Görevi için Yer Tutucu Stil) --- */
+.search-section {
+  padding: 20px 0;
+  border-bottom: 1px solid #3a3a3a;
+  margin-bottom: 30px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 15px;
+  border-radius: 25px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-input:focus {
+  border-color: #007bff;
+}
+
+.search-button,
+.clear-search-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 25px;
+  background-color: #e50914;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover,
+.clear-search-button:hover {
+  background-color: #c00c14;
+}
+
+/* --- Sayfalama (Fatih'in Görevi için Yer Tutucu Stil) --- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px 0;
+}
+
+.pagination-button {
+  background-color: #3a3a3a;
+  color: #fff;
+  border: 1px solid #555;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.pagination-button:hover {
+  background-color: #5a5a5a;
+  border-color: #777;
+}
+
+.pagination-button.active {
+  background-color: #e50914;
+  border-color: #e50914;
+  font-weight: bold;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* --- Responsive Ayarlamalar --- */
+@media (max-width: 768px) {
+  .library-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .movie-title {
+    font-size: 1em;
+  }
+
+  .search-form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .search-input {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .library-list {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .movie-title {
+    font-size: 0.9em;
+    margin: 8px 5px 3px 5px;
+  }
+
+  .movie-info {
+    font-size: 0.8em;
+    margin: 0 5px 8px 5px;
+  }
+
+  .search-button,
+  .clear-search-button {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .pagination-button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+}

@@ -1,0 +1,355 @@
+.hero-wrap {
+  position: relative;
+  overflow: hidden;
+  font-family: 'Roboto Regular';
+  height: 380px;
+  padding: 0px;
+}
+
+/* Arka plan görseli */
+.background-image {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.background-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.9) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  z-index: 2;
+}
+
+.backend {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* İçerik */
+.hero-wrap__content {
+  position: relative;
+  z-index: 3;
+  color: white;
+  padding: 20px 20px;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.title-fallback {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  max-width: 199px;
+  margin-top: 0;
+}
+
+.start-rate__hero {
+  display: flex;
+  margin-bottom: 12px;
+  font-size: 20px;
+  width: 96px;
+  height: 16px;
+}
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 20px;
+  max-width: 177px;
+}
+
+.description-fallback {
+  display: none;
+}
+
+.description-fallback-mobile {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+  margin-bottom: 20px;
+  max-width: 170px;
+  letter-spacing: 0;
+}
+
+.watch-trailer__btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
+  color: #111111;
+  font-weight: 500;
+  font-size: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Roboto Regular';
+  width: 117px;
+  height: 36px;
+}
+
+.getstarted-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
+  color: #111111;
+  font-weight: 500;
+  font-size: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Roboto Regular';
+  width: 117px;
+  height: 36px;
+}
+
+.more-details__btn {
+  padding: 10px 24px;
+  border: 1px solid white;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0);
+
+  color: white;
+  font-weight: 500;
+  font-size: 12px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 117px;
+  height: 36px;
+}
+
+.watch-trailer__btn:hover {
+  background: white;
+  color: #f87719;
+  border: #f5921b;
+}
+.more-details__btn:hover {
+  color: #f87719;
+  border-color: #f5921b;
+}
+
+.notification-trailer-fail {
+  max-width: 280px;
+  max-height: 289px;
+  background-color: black;
+}
+
+@media (min-width: 481px) {
+  .background-image {
+    position: absolute;
+    height: 100%;
+    width: 62%;
+    right: 0;
+    left: auto;
+    background: none;
+    z-index: 0;
+  }
+
+  .hero-wrap {
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    height: 372px;
+    width: 100%;
+    background-color: rgba(1, 1, 1, 1);
+  }
+
+  .background-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: none;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.5) 50%,
+      rgba(0, 0, 0, 0) 80%
+    );
+
+    z-index: 0;
+  }
+
+  .backend {
+    z-index: 0;
+  }
+
+  .title {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    max-width: 445px;
+  }
+
+  .title-fallback {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    margin-top: 0;
+    max-width: 400px;
+  }
+
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 20px;
+    width: 500px;
+  }
+
+  .description-fallback {
+    display: block;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 20px;
+    width: 400px;
+  }
+
+  .description-fallback-mobile {
+    display: none;
+  }
+
+  .hero-wrap__content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    padding: 40px 20px;
+    max-width: 500px;
+  }
+
+  .start-rate__hero {
+    display: flex;
+    margin-bottom: 12px;
+    font-size: 20px;
+    width: 116px;
+    height: 20px;
+  }
+  .watch-trailer__btn {    
+    width: 128px;
+    height: 40px;
+    
+    font-size: 14px;
+  }
+
+  .getstarted-btn {
+    width: 128px;
+    height: 40px;    
+    font-size: 14px;
+  }
+
+  .more-details__btn {    
+    width: 128px;
+    height: 40px;    
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 769px) {
+  .background-image {
+    position: absolute;
+    height: 100%;
+    width: 62%;
+    right: 0;
+    left: auto;
+    background: none;
+    z-index: 0;
+  }
+
+  .hero-wrap {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1280px;
+    height: 660px;
+    max-height: 660px;
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+    background-color: rgba(1, 1, 1, 1);
+  }
+
+  .title {
+    font-size: 64px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    max-width: 800px;
+    width: 1020px;
+  }
+
+  .description {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 36px;
+
+    max-width: 367px;
+  }
+
+  .hero-wrap__content {
+    margin-top: 118px;
+    margin-left: 135px;
+    position: relative;
+    z-index: 3;
+    color: white;
+    padding: 40px 20px;
+    width: 1020px;
+  }
+
+  .start-rate__hero {
+    display: flex;
+    margin-bottom: 12px;
+    font-size: 20px;
+    width: 116px;
+    height: 20px;
+  }
+    .watch-trailer__btn {    
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .getstarted-btn {
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .more-details__btn {    
+    width: 139px;
+    height: 48px;
+    font-size: 16px;
+  }
+}

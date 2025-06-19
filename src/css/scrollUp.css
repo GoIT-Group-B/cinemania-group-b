@@ -1,0 +1,64 @@
+.detail-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.detail-modal.active {
+  display: flex;
+}
+
+.detail-modal-content {
+  background: #1c1c1c;
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 900px;
+  width: 95%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+}
+
+.detail-close-btn {
+  position: absolute;
+  top: 15px; right: 15px;
+  background: transparent;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.detail-modal-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.detail-image img {
+  width: 300px;
+  border-radius: 10px;
+}
+
+.detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.add-library-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff4747;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
