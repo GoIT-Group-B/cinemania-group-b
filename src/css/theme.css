@@ -16,12 +16,12 @@ html.light-theme {
   --text-color: #000;
 }
 
-html.light-theme header, 
+html.light-theme header,
 html.light-theme .logo-text,
 html.light-theme .nav-link {
-    background-color: #ffffff;
-    color: #000000;
-    /* border, box-shadow gibi fark yaratacak detaylar da eklenebilir */
+  background-color: #ffffff;
+  color: #000000;
+  /* border, box-shadow gibi fark yaratacak detaylar da eklenebilir */
 }
 
 html.light-theme #icon-sun {
