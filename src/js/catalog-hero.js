@@ -1,5 +1,5 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
-import { generateStars } from './generate-stars';
+import { createStarRating } from './stars';
 import { openMovieDetailModal }from './pop-up.js'
 
 async function fetchTrendingMovie() {
@@ -36,7 +36,7 @@ function updateHero(movie) {
   const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
     heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
 
-const starsHTML = generateStars(movie.vote_average);
+const starsHTML = createStarRating(movie.vote_average);
 
 heroContainer.innerHTML = `
 <div class="hero-content">
