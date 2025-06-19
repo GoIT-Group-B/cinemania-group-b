@@ -1,4 +1,4 @@
-import"./assets/theme-DWE85zj-.js";import{f as c,B as p,E as l,c as u,a as m,I as b}from"./assets/stars-ZdAbMgea.js";import"./assets/vendor-DDD7fsZd.js";const g=document.querySelector(".home-hero");async function v(){try{const{results:e}=await c(p,l.TRENDING_DAY,{page:1}),t=e[Math.floor(Math.random()*e.length)];k(t),document.getElementById("trailer-btn").addEventListener("click",()=>{alert("Sorry! We couldn’t find the trailer.")}),document.getElementById("details-btn").addEventListener("click",()=>{alert("Movie details will be shown here.")})}catch(e){console.error("Trend film alınamadı:",e),f()}}function f(){const e=`
+import"./assets/theme-Df9oKh5u.js";import{f as d,B as p,E as i,c as y,a as x,I as k}from"./assets/stars-ZdAbMgea.js";import"./assets/vendor-DDD7fsZd.js";const w=document.querySelector(".home-hero");async function B(){try{const{results:e}=await d(p,i.TRENDING_DAY,{page:1}),t=e[Math.floor(Math.random()*e.length)];S(t),document.getElementById("trailer-btn").addEventListener("click",()=>{alert("Sorry! We couldn’t find the trailer.")}),document.getElementById("details-btn").addEventListener("click",()=>{alert("Movie details will be shown here.")})}catch(e){console.error("Trend film alınamadı:",e),T()}}function T(){const e=`
     <div class="hero-wrap">
       <div class="thumb">
         <picture class="background-image">
@@ -17,7 +17,7 @@ import"./assets/theme-DWE85zj-.js";import{f as c,B as p,E as l,c as u,a as m,I a
         </div>
       </div>
     </div>
-  `;g.innerHTML=e;const t=document.querySelector(".getstarted-btn");t&&t.addEventListener("click",()=>{location.href="catalog.html"})}function k(e){let t=u(e.vote_average);const a=`
+  `;w.innerHTML=e;const t=document.querySelector(".getstarted-btn");t&&t.addEventListener("click",()=>{location.href="catalog.html"})}function S(e){let t=y(e.vote_average);const s=`
     <div class="hero-wrap">
       <div class="thumb">
         <div class="background-image">
@@ -32,14 +32,33 @@ import"./assets/theme-DWE85zj-.js";import{f as c,B as p,E as l,c as u,a as m,I a
         </div>
       </div>
     </div>
-  `;g.innerHTML=a}v();let d=!1,r=[],h={};async function w(){const e=document.getElementById("trends-container"),t=document.getElementById("see-all-trends");h=await m(),r=(await c(p,l.TRENDING_WEEK)).results;const s=window.innerWidth<768?1:3;i(e,r.slice(0,s)),t.addEventListener("click",()=>{if(!e.classList.contains("is-expanded"))i(e,r),e.classList.add("is-expanded"),t.textContent="Show Less",d=!0;else{const o=window.innerWidth<768?1:3;i(e,r.slice(0,o)),e.classList.remove("is-expanded"),t.textContent="See All",d=!1}}),window.addEventListener("resize",()=>{if(!d){const n=window.innerWidth<768?1:3;i(e,r.slice(0,n))}})}function i(e,t){e.innerHTML=t.map((a,s)=>{const n=s>=3?(s-2)*100:0;return x(a,n)}).join("")}function x(e,t=0){var n;const a=e.genre_ids.map(o=>h[o]).join(", "),s=u(e.vote_average);return`
+  `;w.innerHTML=s}B();let f=!1,o=[],M={};async function A(){const e=document.getElementById("trends-container"),t=document.getElementById("see-all-trends");M=await x(),o=(await d(p,i.TRENDING_WEEK)).results;const a=window.innerWidth<768?1:3;c(e,o.slice(0,a)),t.addEventListener("click",()=>{if(!e.classList.contains("is-expanded"))c(e,o),e.classList.add("is-expanded"),t.textContent="Show Less",f=!0;else{const r=window.innerWidth<768?1:3;c(e,o.slice(0,r)),e.classList.remove("is-expanded"),t.textContent="See All",f=!1}}),window.addEventListener("resize",()=>{if(!f){const n=window.innerWidth<768?1:3;c(e,o.slice(0,n))}})}function c(e,t){e.innerHTML=t.map((s,a)=>{const n=a>=3?(a-2)*100:0;return C(s,n)}).join("")}function C(e,t=0){var n;const s=e.genre_ids.map(r=>M[r]).join(", "),a=y(e.vote_average);return`
     <div class="trend-card" data-id="${e.id}" style="animation-delay: ${t}ms;">
-      <img src="${b}${l.IMG_W500}${e.poster_path}" alt="${e.title}">
+      <img src="${k}${i.IMG_W500}${e.poster_path}" alt="${e.title}">
       <div class="trend-info">
         <h3>${e.title}</h3>
-        <p>${a} | ${((n=e.release_date)==null?void 0:n.split("-")[0])||"N/A"}</p>
-        <div class="trend-stars">${s}</div>
+        <p>${s} | ${((n=e.release_date)==null?void 0:n.split("-")[0])||"N/A"}</p>
+        <div class="trend-stars">${a}</div>
       </div>
     </div>
-  `}w();
+  `}A();async function D(){const e=document.getElementById("upcoming-films");e.innerHTML="Yükleniyor...";try{const t=await x(),a=(await d(p,i.POPULAR_MOVIES)).results,n=Math.floor(Math.random()*a.length),r=a[n],m=await d(p,i.MOVIE_DETAILS(r.id));e.innerHTML="",j(m,t)}catch(t){e.innerHTML=`<p>Hata: ${t.message}</p>`,console.error(t)}}function j({id:e,poster_path:t,backdrop_path:s,title:a,overview:n,popularity:r,vote_average:m,vote_count:E,release_date:$,genre_ids:g,genres:u},L){const b=document.getElementById("upcoming-films");b.innerHTML="";let h="Bilinmeyen";Array.isArray(g)&&g.length>0?h=g.map(v=>L[v]).filter(Boolean).join(", "):Array.isArray(u)&&u.length>0&&(h=u.map(v=>v.name).join(", "));const _=t?`${k}/w1280${s}`:"https://via.placeholder.com/300x450?text=No+Image",I=n||"No overview available.",l=document.createElement("div");l.classList.add("film-card"),l.innerHTML=`
+    <img class="upcom-img" src="${_}" alt="${a}"">
+    <div class="upcom">
+      <h2>${a}</h2>
+      <p class="release-info"><strong>Release date:</strong> ${$||"Unknown"}</p>
+      <p class="vote-info">
+      <strong>Vote/Votes:</strong> 
+      <span class="vote-box vote-box-left">${m.toFixed(1)}</span>
+      <span class="slash">/</span>
+      <span class="vote-box vote-box-right">${E}</span>
+      </p>
+      <p class="popularity-info"><strong>Popularity:</strong> ${r}</p>
+      <p class="genre-info">
+      <strong>Genres:</strong> 
+      <span>${h}</span>
+      </p>
+      <p class="upcom-about"><strong class="strong-about">ABOUT</strong> ${I}</p>
+      <button class="add-library-btn">Add to my library</button>
+    </div>
+  `,l.querySelector(".add-library-btn").addEventListener("click",()=>{console.log(`"${a}" kütüphaneye eklendi!`)}),b.appendChild(l)}document.addEventListener("DOMContentLoaded",D);
 //# sourceMappingURL=index.js.map
