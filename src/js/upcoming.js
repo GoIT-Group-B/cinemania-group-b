@@ -6,11 +6,19 @@ import {
   IMG_BASE_URL,
 } from './fetchMovies.js';
 
+// Genres dizisini id => name objesine çeviren yardımcı fonksiyon
+function convertGenresToMap(genresArray) {
+  return genresArray.reduce((acc, genre) => {
+    acc[genre.id] = genre.name;
+    return acc;
+  }, {});
+}
+
 async function main() {
   const filmContainer = document.getElementById('upcoming-films');
   filmContainer.innerHTML = 'Yükleniyor...';
   try {
-    const genres = await fetchGenres();
+    const genres = await fetchGenres(); // Zaten map olarak geliyor
     const popularData = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
     const movies = popularData.results;
     const randomIndex = Math.floor(Math.random() * movies.length);
@@ -26,6 +34,7 @@ async function main() {
     console.error(error);
   }
 }
+
 function renderMovie(
   {
     id,
@@ -38,45 +47,62 @@ function renderMovie(
     vote_count,
     release_date,
     genre_ids,
+    genres: genreObjects,
   },
-  genres
+  genresMap
 ) {
   const filmContainer = document.getElementById('upcoming-films');
   filmContainer.innerHTML = '';
-  const filmGenres =
-    genre_ids && genre_ids.length > 0
-      ? genre_ids
-          .map(id => genres[id])
-          .filter(Boolean)
-          .join(', ')
-      : 'Bilinmeyen';
+
+  let filmGenres = 'Bilinmeyen';
+
+  if (Array.isArray(genre_ids) && genre_ids.length > 0) {
+    filmGenres = genre_ids
+      .map(id => genresMap[id])
+      .filter(Boolean)
+      .join(', ');
+  } else if (Array.isArray(genreObjects) && genreObjects.length > 0) {
+    filmGenres = genreObjects.map(g => g.name).join(', ');
+  }
+
   const poster = poster_path
     ? `${IMG_BASE_URL}/w500${poster_path}`
     : 'https://via.placeholder.com/300x450?text=No+Image';
+
   const overviewText = overview || 'No overview available.';
+
   const filmElement = document.createElement('div');
   filmElement.classList.add('film-card');
   filmElement.innerHTML = `
     <img class="upcom-img" src="${poster}" alt="${title}" width="805" height="458">
     <div class="upcom">
-    <h2>${title}</h2>
-    <p class="upcom-date"><strong>Release date:</strong> ${
-      release_date || 'Unknown'
-    }</p>
-    <p><strong>Vote/Votes:</strong> ${vote_average.toFixed(
-      1
-    )} / ${vote_count}</p>
-    <p><strong>Popularity:</strong> ${popularity}</p>
-    <p><strong>Genre:</strong> ${filmGenres}</p>
-    <p class="upcom-about"><strong class="strong-about">ABOUT:</strong> ${overviewText}</p>
-    <button class="add-library-btn">Add to my library</button>
+      <h2>${title}</h2>
+      <p class="release-info"><strong>Release date:</strong> ${
+        release_date || 'Unknown'
+      }</p>
+      <p class="vote-info">
+      <strong>Vote/Votes:</strong> 
+      <span class="vote-box vote-box-left">${vote_average.toFixed(1)}</span>
+      <span class="slash">/</span>
+      <span class="vote-box vote-box-right">${vote_count}</span>
+      </p>
+      <p class="popularity-info"><strong>Popularity:</strong> ${popularity}</p>
+      <p class="genre-info">
+      <strong>Genres:</strong> 
+      <span>${filmGenres}</span>
+      </p>
+      <p class="upcom-about"><strong class="strong-about">ABOUT</strong> ${overviewText}</p>
+      <button class="add-library-btn">Add to my library</button>
     </div>
   `;
+
   filmElement
     .querySelector('.add-library-btn')
     .addEventListener('click', () => {
       console.log(`"${title}" kütüphaneye eklendi!`);
     });
+
   filmContainer.appendChild(filmElement);
 }
+
 document.addEventListener('DOMContentLoaded', main);

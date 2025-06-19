@@ -1,88 +1,168 @@
-.upcoming-section {
-  margin-left: 32px;
-  margin-right: 37px;
-  margin-top: 60px;
-}
+@media (max-width: 1280px) and (min-width: 720px) {
+  .upcoming-section {
+    margin-left: 32px;
+    margin-right: 37px;
+    margin-top: 60px;
+  }
 
-.upcoming-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+  .upcoming-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
 
-.upcoming-container-header {
-  text-transform: uppercase;
-  color: white;
-  font-size: 24px;
-  margin-bottom: 16px;
-}
+  .upcoming-container-header {
+    text-transform: uppercase;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
 
-.film-card {
-  display: flex;
-  border-radius: 8px;
-  overflow: hidden;
-  color: white;
-  gap: 20px;
-  max-width: 1068px;
-}
+  .film-card {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    color: white;
+    gap: 20px;
+    max-width: 1068px;
+    min-height: 458px;
+  }
 
-.upcom-img {
-  width: 805px;
-  height: 458px;
-  object-fit: cover;
-  border-radius: 8px;
-}
+  .upcom-img {
+    width: 805px;
+    height: 458px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
 
-.upcom {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-right: 20px;
-  max-width: 400px;
-}
+  .upcom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-right: 20px;
+    max-width: 400px;
+    height: 100%;
+  }
 
-.upcom h2 {
-  font-size: 24px;
-  font-weight: bold;
-  text-transform: uppercase;
-  margin: 0 0 12px 0;
-}
+  .upcom h2 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+  }
 
-.upcom p {
-  margin: 6px 0;
-}
+  /* Yeni eklenen ve özelleştirilen stiller */
+  .vote-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: grey;
+    position: relative;
+  }
 
-.upcom p strong {
-  font-weight: bold;
-}
+  .vote-info strong {
+    margin-right: 5px;
+    color: #111111;
+  }
 
-.upcom-about {
-  max-width: 390px;
-  height: 160px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-top: 10px;
-}
+  .vote-box {
+    background-color: white;
+    color: #111;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    left: 62px;
+  }
+  .vote-box-whole {
+    position: absolute;
+    padding-left: 62px;
+  }
+  .vote-info .slash {
+    position: relative;
+    left: 62px;
+  }
 
-.strong-about {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
+  .release-info {
+    color: #f87719;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+  }
 
-.add-library-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 100px;
-  color: white;
-  font-weight: bold;
-  font-size: 16px;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  border: 2px solid orange;
-  color: #111;
-  background-color: linear;
+  .release-info strong {
+    margin-right: 58px; /* Aradaki boşluk */
+    min-width: max-content; /* Yazının genişliği kadar yer kaplaması için */
+  }
+
+  .popularity-info {
+    margin-left: 70px;
+  }
+  .popularity-info strong {
+    position: relative;
+    right: 70px;
+  }
+
+  .genre-info {
+    display: flex;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 6px;
+    gap: 8px;
+  }
+  .genre-info span {
+    margin-left: 50px;
+  }
+
+  .genre-info strong {
+    flex-shrink: 0;
+    width: 100px;
+  }
+
+  .upcom p strong {
+    font-weight: bold;
+    color: white;
+  }
+
+  .upcom-about {
+    max-width: 390px;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: white;
+  }
+
+  .strong-about {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: grey;
+    font-size: 16px;
+  }
+
+  /* Buton düzeni - figma'daki gibi */
+  .add-library-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 100px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid orange;
+    background-color: orange;
+    color: #111;
+  }
+
+  .upcom p strong {
+    color: grey;
+    font-weight: bold;
+  }
 }
