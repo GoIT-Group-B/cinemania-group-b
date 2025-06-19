@@ -4,7 +4,12 @@ body {
   background-color: #0f0f0f;
   color: #fff;
 }
-
+:root {
+    --font-family: 'Roboto', sans-serif;
+    --white: #FFFFFF;
+    --secondary-text: #AAAAAA;
+    --background: #000000;
+}
 .hero-container {
     position: relative;
     max-width: 1280px;
@@ -38,7 +43,9 @@ body {
   color: #fff;
 }
 .hero-title {
-  font-size: 2.8em;
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 64px;
   margin-bottom: 10px;
 }
 
@@ -49,10 +56,13 @@ body {
 }
 
 .hero-description {
-  font-size: 1.1em;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 16px;
   line-height: 1.5;
   margin: 15px 0 25px;
   width: 367px;
+  color: var(--secondary-text);
 }
 
 .hero-buttons {
@@ -195,6 +205,91 @@ body {
   color: #ff6b00;
   text-decoration: underline;
 } */
+#trailerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#trailerModal.active {
+  display: flex;
+}
+
+.trailer-content {
+  position: relative;
+  background: #000;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.trailer-content iframe {
+  width: 100%;
+  height: 450px;
+  border-radius: 8px;
+}
+
+#closeTrailer {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #ff4747;
+  border: none;
+  padding: 10px 14px;
+  color: white;
+  font-size: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#closeTrailer:hover {
+  background: #cc3a3a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .trailer-content iframe {
+    height: 250px;
+  }
+}
+.trailer-error {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ff4e4e;
+  color: #fff;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  z-index: 9999;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  animation: fadeInOut 3s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 30px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; }
+  100% { opacity: 0; transform: translate(-50%, 30px); }
+}
 
 #search {
   margin: 40px auto;
