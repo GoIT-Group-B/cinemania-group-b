@@ -12,16 +12,18 @@
   }
 
   .upcoming-container-header {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 100%;
+    letter-spacing: 0%;
     text-transform: uppercase;
-    color: white;
-    font-size: 24px;
-    margin-bottom: 16px;
+    font-family: var(--font-family);
   }
 
   .film-card {
     display: flex;
     border-radius: 8px;
-    overflow: hidden;
+    overflow: visible;
     color: white;
     gap: 20px;
     max-width: 1068px;
@@ -29,9 +31,6 @@
   }
 
   .upcom-img {
-    width: 805px;
-    height: 458px;
-    object-fit: cover;
     border-radius: 8px;
   }
 
@@ -42,13 +41,16 @@
     padding-right: 20px;
     max-width: 400px;
     height: 100%;
+    margin-top: -25px;
   }
 
   .upcom h2 {
+    font-weight: 500;
     font-size: 32px;
-    font-weight: bold;
+    line-height: 100%;
+    letter-spacing: 0%;
     text-transform: uppercase;
-    margin: 0 0 12px 0;
+    font-family: var(--font-family);
   }
 
   /* Yeni eklenen ve özelleştirilen stiller */
@@ -58,13 +60,13 @@
     gap: 4px;
     margin-bottom: 8px;
     font-weight: bold;
-    color: grey;
+    color: #f8f8f8;
     position: relative;
+    font-family: var(--font-family);
   }
 
   .vote-info strong {
     margin-right: 5px;
-    color: #111111;
   }
 
   .vote-box {
@@ -88,15 +90,22 @@
 
   .release-info {
     color: #f87719;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 12px;
     display: flex;
     align-items: center;
+    font-family: var(--font-family);
+    white-space: nowrap;
   }
 
   .release-info strong {
-    margin-right: 58px; /* Aradaki boşluk */
-    min-width: max-content; /* Yazının genişliği kadar yer kaplaması için */
+    margin-right: 54px;
+    min-width: max-content;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    font-family: var(--font-family);
   }
 
   .popularity-info {
@@ -105,6 +114,7 @@
   .popularity-info strong {
     position: relative;
     right: 70px;
+    font-family: var(--font-family);
   }
 
   .genre-info {
@@ -113,6 +123,7 @@
     font-size: 16px;
     margin-bottom: 6px;
     gap: 8px;
+    font-family: var(--font-family);
   }
   .genre-info span {
     margin-left: 50px;
@@ -121,29 +132,27 @@
   .genre-info strong {
     flex-shrink: 0;
     width: 100px;
-  }
-
-  .upcom p strong {
-    font-weight: bold;
-    color: white;
+    font-family: var(--font-family);
   }
 
   .upcom-about {
-    max-width: 390px;
-    text-overflow: ellipsis;
+    width: 390px; /* Kesin genişlik */
+    max-width: 390px; /* En fazla bu kadar */
     font-size: 14px;
     line-height: 1.5;
-    margin-top: 20px;
     margin-bottom: 20px;
     color: white;
+    font-family: var(--font-family);
   }
 
   .strong-about {
     display: block;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 16px;
     color: grey;
+
     font-size: 16px;
+    font-family: var(--font-family);
   }
 
   /* Buton düzeni - figma'daki gibi */
@@ -159,10 +168,12 @@
     border: 2px solid orange;
     background-color: orange;
     color: #111;
+    font-family: var(--font-family);
   }
 
   .upcom p strong {
     color: grey;
     font-weight: bold;
+    font-family: var(--font-family);
   }
 }

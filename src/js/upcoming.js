@@ -66,7 +66,7 @@ function renderMovie(
   }
 
   const poster = poster_path
-    ? `${IMG_BASE_URL}/w500${poster_path}`
+    ? `${IMG_BASE_URL}/w1280${backdrop_path}`
     : 'https://via.placeholder.com/300x450?text=No+Image';
 
   const overviewText = overview || 'No overview available.';
