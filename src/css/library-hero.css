@@ -7,7 +7,7 @@
 
 .library-hero {
     position: relative;
-    width: 1280px;
+    width: 100%;
     height: 660px;
     background-image: url('../images/library-hero-image.jpg');
     background-size: cover;
@@ -62,3 +62,52 @@
     margin-top: 0px;
     margin-bottom: 90px;
 }
+
+/* Tablet: 768px ve altı */
+@media (max-width: 768px) {
+    .library-hero {
+      width: 100%;
+      height: 380px;
+      background-position: center;
+    }
+  
+    .library-hero-overlay {
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+  
+    .library-hero-overlay h1 {
+      font-size: 42px;
+      width: auto;
+      height: auto;
+      margin-left: 0;
+    }
+  
+    .library-hero-overlay p {
+      font-size: 14px;
+      width: auto;
+      height: auto;
+      margin-left: 0;
+      margin-bottom: 60px;
+    }
+  }
+  
+  /* Mobil: 480px ve altı */
+  @media (max-width: 480px) { 
+    .library-hero-overlay {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+    .library-hero-overlay h1 {
+      font-size: 32px;
+      line-height: 1.2;
+    }
+  
+    .library-hero-overlay p {
+      font-size: 13px;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+  }
+  
