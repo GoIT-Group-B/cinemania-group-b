@@ -64,3 +64,16 @@
 .catalog-film-list{
     max-width: 1280px;
 }
+
+@media (max-width: 480px) {
+  .library-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .movie-card{
+    width: 280px;
+    height: 406px;
+  }
+}
