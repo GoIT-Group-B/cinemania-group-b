@@ -87,3 +87,210 @@ span img {
     color: grey;
   }
 }
+/*                               modal kısmı                                     */
+.footerModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 40px 20px;
+
+  background: rgba(17, 17, 17, 0.6);
+  opacity: 1;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.footerModal.show-modal {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.footerModal.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.footerModal.closing .footer-modal-content {
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+}
+
+/* === MODAL KUTUSU === */
+.footer-modal-content {
+  padding: 40px 50px;
+  max-width: 700px;
+  width: 90%;
+  min-width: 480px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 1);
+  background-color: rgb(48, 44, 44);
+
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.footerModal.show-modal .footer-modal-content {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* === KAPAMA BUTONU === */
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+  transition: transform 0.2s ease;
+}
+
+.close-modal:hover {
+  transform: scale(1.2);
+  color: crimson;
+}
+
+/* === TEAMCARD (ilk iki kart) === */
+.teamcard {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.teamcard .card {
+  flex: 0 0 48%; /* İki kart için yaklaşık %50 */
+  max-width: 320px;
+  box-sizing: border-box;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.teamcard .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* === ALTTAKI TEAM-CARDS (2 sütun) === */
+.team-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 32px;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.team-cards .card {
+  flex: 0 0 48%;
+  max-width: 320px;
+  box-sizing: border-box;
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 32px;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-cards .card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Kart içindeki resim */
+.card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 3px solid #bbb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ddd;
+  transition: transform 0.2s ease;
+}
+
+/* Kart başlık ve metin */
+.card-info h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-info p {
+  margin: 6px 0 0 0;
+  font-size: 15px;
+  color: #555;
+}
+
+/* Sosyal linkler */
+.social-links {
+  margin-top: 8px;
+}
+
+.social-links a {
+  margin: 0 6px;
+  font-size: 18px;
+  color: #333;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0077b5;
+  transform: scale(1.2);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  .footer-modal-content {
+    min-width: auto;
+    width: 90vw;
+    padding: 25px 20px;
+  }
+
+  .teamcard,
+  .team-cards {
+    flex-direction: column;
+  }
+
+  .teamcard .card,
+  .team-cards .card {
+    flex: 0 0 100%;
+    max-width: none;
+    margin-bottom: 24px;
+  }
+
+  .card img {
+    width: 120px;
+    height: 120px;
+  }
+}
