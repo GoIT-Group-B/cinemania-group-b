@@ -1,86 +1,100 @@
-import { fetchMovies, BASE_URL, ENDPOINTS } from './fetchMovies';
-import { createStarRating } from './stars';
+// js/hero.js
+import axios from 'axios';
+import { fetchMovies, BASE_URL, ENDPOINTS, API_KEY } from './fetchMovies.js';
+import { createStarRating } from './stars.js';
+import { showTrailerModal, showDetailsModal, showErrorModal } from './modal.js';
 
 const hero = document.querySelector('.home-hero');
+let movieOfDay = null;
+let genreMap = null;
+
+displayTrendingMovie();
 
 async function displayTrendingMovie() {
   try {
-    const { results } = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_DAY, {
-      page: 1,
-    });
-    const movieOfDay = results[Math.floor(Math.random() * results.length)];
+    const { results } = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_DAY, { page: 1 });
+    if (!results?.length) return createFallbackHero();
 
+    movieOfDay = results[Math.floor(Math.random() * results.length)];
     createTrendingMarkup(movieOfDay);
+    preloadGenres();
 
-    const trailerBtn = document.getElementById('trailer-btn');
-    trailerBtn.addEventListener('click', () => {
-      alert('Sorry! We couldn’t find the trailer.');
-    });
-
-    const detailsBtn = document.getElementById('details-btn');
-    detailsBtn.addEventListener('click', () => {
-      alert('Movie details will be shown here.');
-    });
-  } catch (error) {
-    console.error('Trend film alınamadı:', error);
+    document.getElementById('trailer-btn').addEventListener('click', onTrailer);
+    document.getElementById('details-btn').addEventListener('click', onDetails);
+  } catch (err) {
+    console.error('Trend film alınamadı:', err);
     createFallbackHero();
   }
 }
 
-function createFallbackHero() {
-  const fallbackMarkup = `
-    <div class="hero-wrap">
-      <div class="thumb">
-        <picture class="background-image">
-          <source srcset="./images/hero-mobile.jpg 1x, ./images/hero-mobile-2x.jpg 2x" media="(max-width: 480px)" />
-          <source srcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet-2x.jpg 2x" media="(max-width: 768px)" />
-          <source srcset="./images/hero-desktop.jpg 1x, ./images/hero-desktop-2x.jpg 2x" media="(min-width: 769px)" />
-          <img src="./images/hero-desktop.jpg" alt="Default hero" class="backend" loading="lazy" />
-        </picture>
-
-        <div class="hero-wrap__content">
-          <h1 class="title-fallback">Let’s Make Your Own Cinema</h1>
-          <p class="description-fallback-mobile">Is a guide to creating a personalized movie theater experience. You'll need a projector, screen, and speakers.</p>
-          <p class="description-fallback">Is a guide to creating a personalized movie theater experience. You'll need a projector, screen, and speakers. Decorate your space, choose your films, and stock up on snacks for the full experience.</p>
-
-          <button class="getstarted-btn">Get Started</button>
-        </div>
-      </div>
-    </div>
-  `;
-
-  hero.innerHTML = fallbackMarkup;
-
-  const getStartedBtn = document.querySelector('.getstarted-btn');
-  if (getStartedBtn) {
-    getStartedBtn.addEventListener('click', () => {
-      location.href = 'catalog.html';
+async function onTrailer() {
+  try {
+    const { data } = await axios.get(`${BASE_URL}/movie/${movieOfDay.id}/videos`, {
+      params: {
+        api_key: API_KEY,
+        language: 'en-US',
+      },
     });
+
+    const trailer = data.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
+
+    if (!trailer) {
+      showErrorModal('OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.');
+    } else {
+      showTrailerModal(trailer.key);
+    }
+  } catch (err) {
+    console.error('Trailer API hatası:', err);
+    showErrorModal('Trailer yüklenirken bir hata oluştu.');
   }
 }
 
-function createTrendingMarkup(movie) {
-  let ratingStars = createStarRating(movie.vote_average)
+function onDetails() {
+  const genres = movieOfDay.genre_ids?.map(id => genreMap?.[id]).filter(Boolean) || [];
+  showDetailsModal(movieOfDay, genres);
+}
 
-  const markup = `
+function createTrendingMarkup(movie) {
+  const ratingStars = createStarRating(movie.vote_average);
+  hero.innerHTML = `
     <div class="hero-wrap">
       <div class="thumb">
         <div class="background-image">
-          <img src="https://image.tmdb.org/t/p/original${movie.backdrop_path
-    }" alt="Hero image" class="backend" loading="lazy" />
+          <img src="https://image.tmdb.org/t/p/original${movie.backdrop_path}"
+               alt="${movie.title} backdrop" class="backend" loading="lazy"/>
         </div>
         <div class="hero-wrap__content">
           <h1 class="title">${movie.title || movie.name}</h1>
-          <div class='start-rate__hero'>${ratingStars}</div> 
+          <div class="star-rate__hero">${ratingStars}</div>
           <p class="description">${movie.overview}</p>
           <button class="watch-trailer__btn" id="trailer-btn">Watch trailer</button>
           <button class="more-details__btn" id="details-btn">More details</button>
         </div>
       </div>
-    </div>
-  `;
-
-  hero.innerHTML = markup;
+    </div>`;
 }
 
-displayTrendingMovie();
+function createFallbackHero() {
+  hero.innerHTML = `
+    <div class="hero-wrap">
+      <div class="thumb">
+        <picture class="background-image">
+          <img src="./images/hero-desktop.jpg" alt="Default hero" class="backend" loading="lazy" />
+        </picture>
+        <div class="hero-wrap__content">
+          <h1 class="title-fallback">Let’s Make Your Own Cinema</h1>
+          <p class="description-fallback">Is a guide to creating a personalized movie theater experience.</p>
+          <button class="getstarted-btn">Get Started</button>
+        </div>
+      </div>
+    </div>`;
+  document.querySelector('.getstarted-btn')
+          .addEventListener('click', () => location.href = 'catalog.html');
+}
+
+async function preloadGenres() {
+  if (genreMap) return;
+  const res = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+  const { genres } = await res.json();
+  genreMap = Object.fromEntries(genres.map(g => [g.id, g.name]));
+}

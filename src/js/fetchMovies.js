@@ -4,7 +4,7 @@ const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p';
 
-export { BASE_URL, IMG_BASE_URL };
+export { BASE_URL, IMG_BASE_URL, API_KEY };
 
     
 export const ENDPOINTS = {
