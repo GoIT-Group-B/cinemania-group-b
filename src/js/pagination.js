@@ -1,3 +1,5 @@
+import { fetchFirstPageMovies } from './catalog-film-list.js';
+
 let totalPages = 24;
 let currentPage = 1;
 
@@ -18,6 +20,7 @@ function createPageButton(label, isActive = false, isDisabled = false, isDots = 
     if (!isDisabled) {
     button.addEventListener("click", () => {
         currentPage = Number(label);
+        fetchFirstPageMovies(currentPage);
         renderPagination(currentPage,totalPages);
     });
     } else {
@@ -28,7 +31,7 @@ function createPageButton(label, isActive = false, isDisabled = false, isDots = 
 
 export function renderPagination(crntPage = 1, ttlPages = 24) {
     currentPage = crntPage;
-    totalPages = ttlPages;
+    totalPages = ttlPages > 500 ? 500:ttlPages;
     paginationEl.innerHTML = "";
 
     // Previous
@@ -39,6 +42,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24) {
     prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
+        fetchFirstPageMovies(currentPage);
         renderPagination(currentPage,totalPages);
     }
     });
@@ -54,7 +58,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24) {
     } else {
     if (currentPage <= 2) {
         pageNumbers.push(1, 2, 3, "...", totalPages);
-    } else if (currentPage >= totalPages - 2) {
+    } else if (currentPage >= totalPages - 1) {
         pageNumbers.push(1, "...", totalPages - 2, totalPages - 1, totalPages);
     } else {
         pageNumbers.push(1, "...", currentPage - 1, currentPage, currentPage + 1, "...", totalPages);
@@ -77,10 +81,11 @@ export function renderPagination(crntPage = 1, ttlPages = 24) {
     nextBtn.addEventListener("click", () => {
     if (currentPage < totalPages) {
         currentPage++;
+        fetchFirstPageMovies(currentPage);
         renderPagination(currentPage,totalPages);
     }
     });
     paginationEl.appendChild(nextBtn);
 }
 
-renderPagination();
+//renderPagination();
