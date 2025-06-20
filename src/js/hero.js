@@ -1,6 +1,6 @@
 // js/hero.js
-import axios from 'axios';
-import { fetchMovies, BASE_URL, ENDPOINTS, API_KEY } from './fetchMovies.js';
+
+import { fetchMovies, BASE_URL, ENDPOINTS } from './fetchMovies.js';
 import { createStarRating } from './stars.js';
 import { showTrailerModal, showDetailsModal, showErrorModal } from './modal.js';
 
@@ -19,24 +19,22 @@ async function displayTrendingMovie() {
     createTrendingMarkup(movieOfDay);
     preloadGenres();
 
-    document.getElementById('trailer-btn').addEventListener('click', onTrailer);
+    document.getElementById('trailer-btn').addEventListener('click', () => onTrailer(movieOfDay));
     document.getElementById('details-btn').addEventListener('click', onDetails);
+
   } catch (err) {
     console.error('Trend film alınamadı:', err);
     createFallbackHero();
   }
 }
 
-async function onTrailer() {
+async function onTrailer(movie) {
   try {
-    const { data } = await axios.get(`${BASE_URL}/movie/${movieOfDay.id}/videos`, {
-      params: {
-        api_key: API_KEY,
-        language: 'en-US',
-      },
-    });
+    const data = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_VIDEOS(movie.id));
 
-    const trailer = data.results.find(v => v.site === 'YouTube' && v.type === 'Trailer');
+    const trailer = data.results.find(
+      v => v.site === 'YouTube' && v.type === 'Trailer'
+    );
 
     if (!trailer) {
       showErrorModal('OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.');
@@ -48,6 +46,7 @@ async function onTrailer() {
     showErrorModal('Trailer yüklenirken bir hata oluştu.');
   }
 }
+
 
 function onDetails() {
   const genres = movieOfDay.genre_ids?.map(id => genreMap?.[id]).filter(Boolean) || [];
@@ -94,7 +93,14 @@ function createFallbackHero() {
 
 async function preloadGenres() {
   if (genreMap) return;
-  const res = await fetch(`${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
-  const { genres } = await res.json();
-  genreMap = Object.fromEntries(genres.map(g => [g.id, g.name]));
+
+  try {
+    const data = await fetchMovies(BASE_URL, ENDPOINTS.GENRE_LIST);
+    const genres = data.genres || [];
+    genreMap = Object.fromEntries(genres.map(g => [g.id, g.name]));
+  } catch (error) {
+    console.error('Türler yüklenemedi:', error);
+    genreMap = {};
+  }
 }
+

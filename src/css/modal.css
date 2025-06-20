@@ -78,7 +78,6 @@
   width: 50%;
   border-radius: 12px;
   margin-bottom: 16px;
-
 }
 
 .movie-info {
@@ -131,6 +130,7 @@
   background: orange;
   color: black;
 }
+
 .library-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

@@ -1,9 +1,23 @@
-
 const genreMap = {
-  28: "Action", 12: "Adventure", 16: "Animation", 35: "Comedy", 80: "Crime",
-  99: "Documentary", 18: "Drama", 10751: "Family", 14: "Fantasy", 36: "History",
-  27: "Horror", 10402: "Music", 9648: "Mystery", 10749: "Romance", 878: "Science Fiction",
-  10770: "TV Movie", 53: "Thriller", 10752: "War", 37: "Western"
+  28: 'Action',
+  12: 'Adventure',
+  16: 'Animation',
+  35: 'Comedy',
+  80: 'Crime',
+  99: 'Documentary',
+  18: 'Drama',
+  10751: 'Family',
+  14: 'Fantasy',
+  36: 'History',
+  27: 'Horror',
+  10402: 'Music',
+  9648: 'Mystery',
+  10749: 'Romance',
+  878: 'Science Fiction',
+  10770: 'TV Movie',
+  53: 'Thriller',
+  10752: 'War',
+  37: 'Western',
 };
 
 function removeExistingModal() {
@@ -27,9 +41,12 @@ function baseMarkup(innerHTML) {
   document.body.appendChild(modal);
   document.body.style.overflow = 'hidden';
 
-  modal.querySelector('.close-btn').addEventListener('click', removeExistingModal);
+  modal
+    .querySelector('.close-btn')
+    .addEventListener('click', removeExistingModal);
   document.addEventListener('keydown', handleKey); // ESC tuşu
-  modal.addEventListener('click', e => { // Dış tıklama
+  modal.addEventListener('click', e => {
+    // Dış tıklama
     if (e.target === modal) {
       removeExistingModal();
       document.removeEventListener('keydown', handleKey);
@@ -68,24 +85,35 @@ export function showDetailsModal(movie, genreNames = []) {
   const isSaved = saved.some(item => item.id === movie.id);
   const buttonLabel = isSaved ? 'Remove from Library' : 'Add to My Library';
 
-
-  const displayGenreNames = genreNames.length > 0
-    ? genreNames.join(' ')
-    : (movie.genre_ids?.map(id => genreMap[id]).filter(Boolean).join(' ') || '');
+  const displayGenreNames =
+    genreNames.length > 0
+      ? genreNames.join(' ')
+      : movie.genre_ids
+          ?.map(id => genreMap[id])
+          .filter(Boolean)
+          .join(' ') || '';
 
   const html = `
     <div class="movie-modal">
-      <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" class="movie-poster" alt="${movie.title}" />
+      <img src="https://image.tmdb.org/t/p/w500${
+        movie.poster_path
+      }" class="movie-poster" alt="${movie.title}" />
       <div class="movie-info">
         <h2 class="movie-title">${movie.title || movie.name}</h2>
 
         <ul class="movie-stats">
-          <li><strong>Vote / Votes</strong><span><b>${movie.vote_average}</b> / ${movie.vote_count}</span></li>
-          <li><strong>Popularity</strong><span>${Math.round(movie.popularity)}</span></li>
+          <li><strong>Vote / Votes</strong><span><b>${
+            movie.vote_average
+          }</b> / ${movie.vote_count}</span></li>
+          <li><strong>Popularity</strong><span>${Math.round(
+            movie.popularity
+          )}</span></li>
           <li><strong>Genre</strong><span>${displayGenreNames}</span></li> </ul>
 
         <h3 class="about-heading">ABOUT</h3>
-        <p class="about-text">${movie.overview || 'No description available.'}</p>
+        <p class="about-text">${
+          movie.overview || 'No description available.'
+        }</p>
 
         <button class="library-btn">${buttonLabel}</button>
       </div>
@@ -94,29 +122,29 @@ export function showDetailsModal(movie, genreNames = []) {
 
   baseMarkup(html);
 
-  document.querySelector('.library-btn')?.addEventListener('click', async () => {
-    let saved = JSON.parse(localStorage.getItem('myLibrary')) || [];
+  document
+    .querySelector('.library-btn')
+    ?.addEventListener('click', async () => {
+      let saved = JSON.parse(localStorage.getItem('myLibrary')) || [];
 
-    if (isSaved) {
-      saved = saved.filter(item => item.id !== movie.id);
-      alert('Film kütüphaneden kaldırıldı.'); // Küçük bir uyarı
-    } else {
-
-      saved.push(movie);
-      alert('Film kütüphaneye eklendi.'); // Küçük bir uyarı
-    }
-
-    localStorage.setItem('myLibrary', JSON.stringify(saved));
-    removeExistingModal();
-
-    
-    try {
-      const { loadLibrary } = await import('./library.js');
-      if (loadLibrary) {
-        loadLibrary();
+      if (isSaved) {
+        saved = saved.filter(item => item.id !== movie.id);
+        alert('Film kütüphaneden kaldırıldı.'); // Küçük bir uyarı
+      } else {
+        saved.push(movie);
+        alert('Film kütüphaneye eklendi.'); // Küçük bir uyarı
       }
-    } catch (error) {
-      console.error("loadLibrary yüklenirken hata oluştu:", error);
-    }
-  });
+
+      localStorage.setItem('myLibrary', JSON.stringify(saved));
+      removeExistingModal();
+
+      try {
+        const { loadLibrary } = await import('./library.js');
+        if (loadLibrary) {
+          loadLibrary();
+        }
+      } catch (error) {
+        console.error('loadLibrary yüklenirken hata oluştu:', error);
+      }
+    });
 }
