@@ -1,5 +1,7 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies';
 import { createStarRating } from './stars';
+import { openMovieDetailModal } from './pop-up.js'
+
 
 const movieList = document.getElementById('movieList');
 
@@ -13,13 +15,13 @@ async function fetchFirstPageMovies() {
 function renderMovieCards(movies) {
   movieList.innerHTML = movies
     .map(movie => {
-      const { title, poster_path, release_date, vote_average, genre_ids } = movie;
+      const { title, poster_path, release_date, vote_average, genre_ids, id } = movie;
       const year = release_date ? release_date.split('-')[0] : 'N/A';
-      const genres = genre_ids.slice(0, 2).map(id => genreMap[id]).join(', '); // Genre mapping gerekir
-      const starRating = createStarRating(vote_average)
+      const genres = genre_ids.slice(0, 2).map(id => genreMap[id]).join(', ');
+      const starRating = createStarRating(vote_average);
 
       return `
-        <div class="movie-card">
+        <div class="movie-card" data-id="${id}">
           <div class="poster-wrapper">
             <img src="${IMG_BASE_URL}/w500${poster_path}" alt="${title}" class="movie-poster" />
             <div class="movie-info-overlay">
@@ -34,6 +36,16 @@ function renderMovieCards(movies) {
       `;
     })
     .join('');
+
+  // ⭐️ TIKLAMA EVENTLERİNİ EKLE
+  const cards = document.querySelectorAll('.movie-card');
+  cards.forEach(card => {
+    const id = card.dataset.id;
+    const movie = movies.find(m => m.id == id);
+    if (movie) {
+      card.addEventListener('click', () => openMovieDetailModal(movie));
+    }
+  });
 }
 
 // Genre ID to Name eşleşmesi
@@ -60,3 +72,5 @@ const genreMap = {
 };
 
 fetchFirstPageMovies();
+
+
