@@ -12,8 +12,9 @@
 @import url('./font.css');
 @import url('./theme.css');
 @import url('./upcoming.css');
+@import url('./catalog-film-list.css');
 @import url('./pagination.css');
 @import url('./weekly.css');
 @import url('./hero.css');
-@import url('./weekly.css');
 @import url('./pop-up.css');
+@import url('./modal.css');

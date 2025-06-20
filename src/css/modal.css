@@ -1,0 +1,158 @@
+/* modal.css */
+.custom-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #1c1c1c;
+  color: white;
+  padding: 24px;
+  border-radius: 16px;
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+.close-btn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 32px;
+  height: 32px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* TRAILER MODAL */
+.trailer-iframe {
+  width: 100%;
+  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+}
+
+/* ERROR MODAL */
+.error-modal-content {
+  text-align: center;
+}
+
+.error-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.error-text {
+  font-size: 16px;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.error-image {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* MOVIE DETAILS MODAL */
+.movie-modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.movie-poster {
+  width: 50%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.movie-info {
+  width: 100%;
+}
+
+.movie-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.movie-stats {
+  list-style: none;
+  padding: 0;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.movie-stats li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.about-heading {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0 4px;
+}
+
+.about-text {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.add-to-library {
+  margin-top: 16px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid orange;
+  border-radius: 20px;
+  color: orange;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.add-to-library:hover {
+  background: orange;
+  color: black;
+}
+
+.library-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  padding: 20px;
+}
+
+.movie-card {
+  background: #1e1e1e;
+  
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
