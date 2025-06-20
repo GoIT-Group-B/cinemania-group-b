@@ -28,4 +28,4 @@
 </linearGradient>
 </defs>
 </svg>`;function d(a){let e="";if(!a)return e=`${s.repeat(5)}`,`<div>${e}</div>`;switch(Math.round(a)){case 0:e=`${s.repeat(5)}`;break;case 1:e=`${i}${s.repeat(4)}`;break;case 2:e=`${o}${s.repeat(4)}`;break;case 3:e=`${o}${i}${s.repeat(3)}`;break;case 4:e=`${o.repeat(2)}${s.repeat(3)}`;break;case 5:e=`${o.repeat(2)}${i}${s.repeat(2)}`;break;case 6:e=`${o.repeat(3)}${s.repeat(2)}`;break;case 7:e=`${o.repeat(3)}${i}${s}`;break;case 8:e=`${o.repeat(4)}${s}`;break;case 9:e=`${o.repeat(4)}${i}`;break;case 10:e=`${o.repeat(5)}`;break;default:throw new Error("Invalid rating")}return`<div>${e}</div>`}window.addEventListener("DOMContentLoaded",()=>{const a=document.getElementById("theme-switcher"),e=document.documentElement;localStorage.getItem("theme")==="light"?e.classList.add("light-theme"):e.classList.remove("light-theme"),a.addEventListener("click",()=>{const n=e.classList.toggle("light-theme");localStorage.setItem("theme",n?"light":"dark")})});export{d as c};
-//# sourceMappingURL=theme-DfIx6h2x.js.map
+//# sourceMappingURL=theme-CBm8orJP.js.map
