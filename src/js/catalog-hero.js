@@ -30,10 +30,26 @@ async function fetchTrendingMovie() {
 
 function updateHero(movie) {
   const heroContainer = document.querySelector('.hero-container');
+  let imagePath;
 
-  const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
-  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  // Eğer ekran genişliği 480px'den küçükse poster_path kullan
+  if (window.innerWidth < 480) {
+    
+    imagePath= `${ENDPOINTS.IMG_W500}${movie.poster_path}`
+    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;  
+   heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+   heroContainer.style.backgroundSize = 'cover';          // Görseli kapsayacak şekilde büyüt
+   heroContainer.style.backgroundPosition = 'center';     // Ortala
+  heroContainer.style.backgroundRepeat = 'no-repeat';
+  } else {
+    imagePath= `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`
+    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;  
+   heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  }
+  
 
+
+  
   const starsHTML = createStarRating(movie.vote_average);
 
   heroContainer.innerHTML = `
