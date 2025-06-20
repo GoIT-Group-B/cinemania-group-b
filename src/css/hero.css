@@ -90,7 +90,7 @@
 }
 
 .watch-trailer__btn {
-  padding: 10px 24px;
+  padding: auto;
   border: none;
   border-radius: 30px;
   background: linear-gradient(to right, #f5921b, #ff2e00);
@@ -106,7 +106,7 @@
 }
 
 .getstarted-btn {
-  padding: 10px 24px;
+  padding: auto;
   border: none;
   border-radius: 30px;
   background: linear-gradient(to right, #f5921b, #ff2e00);
@@ -122,7 +122,7 @@
 }
 
 .more-details__btn {
-  padding: 10px 24px;
+  padding: auto;
   border: 1px solid white;
   border-radius: 30px;
   background-color: rgba(0, 0, 0, 0);
