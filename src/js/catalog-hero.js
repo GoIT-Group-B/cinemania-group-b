@@ -1,6 +1,6 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
 import { createStarRating } from './stars';
-import { openMovieDetailModal } from './pop-up.js'
+import { showDetailsModal, showTrailerModal, showErrorModal } from './modal.js';
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
@@ -9,21 +9,17 @@ async function fetchTrendingMovie() {
   let index = 0;
   const heroContainer = document.querySelector('.hero-container');
 
-  // İlk film
   updateHero(data[index]);
 
   setInterval(() => {
-    // Opaklığı sıfırla (kaybolsun)
     heroContainer.style.opacity = '0';
 
-    // Bekle ve sonra değiştir
     setTimeout(() => {
       index = (index + 1) % data.length;
       updateHero(data[index]);
 
-      // Yeni film geldiğinde tekrar görünür yap
       heroContainer.style.opacity = '1';
-    }, 500); // Geçiş efekti süresi
+    }, 500);
   }, 5000);
 }
 
@@ -49,18 +45,14 @@ function updateHero(movie) {
   `;
 
   const watchBtn = document.querySelector('.watch-trailer-btn');
-  watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
+  watchBtn.addEventListener('click', () => handleTrailerClick(movie.id));
 
   const moreBtn = document.querySelector('.more-details-btn');
-  moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
-
+  moreBtn.addEventListener('click', () => showDetailsModal(movie));
 }
 
 async function fetchCategories() {
-  const response = await fetch(
-    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`
-  );
-  const data = await response.json();
+  const data = await fetchMovies(BASE_URL, ENDPOINTS.GENRE_LIST);
   renderCategories(data.genres);
 }
 
@@ -82,29 +74,28 @@ fetchCategories();
 
 export { fetchTrendingMovie, updateHero, fetchCategories, renderCategories };
 
-async function openTrailerModal(movieId) {
-  const response = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=52238d7fab5c2c01b99e751619dd16ec&language=en-US`);
-  const data = await response.json();
+async function handleTrailerClick(movieId) {
+  try {
+    const res = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_VIDEOS(movieId));
+    const trailer = res.results.find(
+      video => video.type === 'Trailer' && video.site === 'YouTube'
+    );
 
-  // YouTube videoları içinde trailer olanı bul
-  const trailer = data.results.find(video => video.type === 'Trailer' && video.site === 'YouTube');
-
-  const iframe = document.getElementById('trailerIframe');
-  const modal = document.getElementById('trailerModal');
-
-  if (trailer) {
-    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
-    modal.style.display = 'block';
-  } else {
-    alert("Trailer bulunamadı.");
+    if (trailer) {
+      showTrailerModal(trailer.key);
+    } else {
+      showErrorModal();
+    }
+  } catch (error) {
+    console.error('Trailer fetch error:', error);
+    showErrorModal();
   }
 }
 
-// Modal kapatma
 document.getElementById('closeTrailer').addEventListener('click', () => {
   const modal = document.getElementById('trailerModal');
   const iframe = document.getElementById('trailerIframe');
 
   modal.style.display = 'none';
-  iframe.src = ''; // Temizle
+  iframe.src = '';
 });

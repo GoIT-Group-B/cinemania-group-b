@@ -19,15 +19,17 @@ function renderMovieCards(movies) {
       const starRating = createStarRating(vote_average)
 
       return `
-        <div class="movie-card">
+        <div class="trend-card">
           <div class="poster-wrapper">
             <img src="${IMG_BASE_URL}/w500${poster_path}" alt="${title}" class="movie-poster" />
-            <div class="movie-info-overlay">
+            <div class="trend-info">
               <div class="movie-meta">
-                <h3 class="movie-title">${title}</h3>
+                <h3 class="trend-title">${title}</h3>
                 <p class="movie-details">${genres} | ${year}</p>
               </div>
-              <div class="movie-rating">${starRating}</div>
+              <div class="trend-stars">
+                <div class="movie-rating">${starRating}</div>
+              </div>
             </div>
           </div>
         </div>

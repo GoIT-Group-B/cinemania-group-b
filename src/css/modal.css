@@ -11,29 +11,26 @@
 }
 
 .modal-content {
-  background: #1c1c1c;
+  background: #111111;
   color: white;
-  padding: 24px;
+  padding: 60px;
   border-radius: 16px;
   position: relative;
-  max-width: 480px;
-  width: 100%;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  max-width: 786px;
+  box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
 }
 
 .close-btn {
   position: absolute;
-  top: -12px;
-  right: -12px;
+  top: 40px;
+  right: 40px;
   width: 32px;
   height: 32px;
-  background: white;
-  color: black;
+  background: transparent;
+  color: white;
   border: none;
-  border-radius: 50%;
-  font-size: 22px;
+  font-size: 32px;
   cursor: pointer;
-  font-weight: bold;
 }
 
 /* TRAILER MODAL */
@@ -69,38 +66,82 @@
 /* MOVIE DETAILS MODAL */
 .movie-modal {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   color: white;
+  width: 100%;
 }
 
 .movie-poster {
-  width: 50%;
-  border-radius: 12px;
-  margin-bottom: 16px;
+  width: 375px;
+  height: 478px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 1px 1px 24px 2px rgba(1, 1, 1, 0.45);
 }
 
 .movie-info {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
 }
 
 .movie-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 12px;
+  font-family: 'Roboto Medium';
+  font-size: 24px;
+  margin-bottom: 28px;
 }
 
 .movie-stats {
   list-style: none;
   padding: 0;
+  margin: 0;
   font-size: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .movie-stats li {
+  display: grid;
+  grid-template-columns: 140px 1fr; /* Sol sabit, sağ esnek */
+  align-items: center;
+  gap: 10px;
+}
+
+.movie-stats li strong {
+  font-weight: 500;
+  color: #B7B7B7;
+  text-align: left;
+}
+
+.movie-stats li .movie-stats-value {
+  font-weight: 400;
+  color: var(--white);
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Vote sayıları için kutucuk efekti */
+.vote-average,
+.vote-count {
+  background-color: var(--white);
+  color: #111111;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.vote-divider {
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 400;
 }
 
 .about-heading {
@@ -112,47 +153,191 @@
 .about-text {
   font-size: 14px;
   line-height: 1.5;
+  text-align: start;
+  margin-bottom: 24px;
 }
 
-.add-to-library {
-  margin-top: 16px;
-  padding: 10px 16px;
-  background: transparent;
-  border: 1px solid orange;
+.add-to-library-gradient-border {
+  border: none;
+  padding: 1px;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
   border-radius: 20px;
-  color: orange;
-  font-weight: bold;
+}
+
+.add-to-library-btn {
+  padding: 10px 16px;
+  background: #111111;
+  border: none;
+  border-radius: 20px;
+  color: var(--white);
+  font-family: 'Roboto Medium';
+  font-size: 12px;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-.add-to-library:hover {
-  background: orange;
-  color: black;
+.add-to-library-btn:hover,
+.add-to-library-gradient-border:hover {
+  background: white;
+  color: #F87719;
 }
 
-.library-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  padding: 20px;
+/* light tema için modal css */
+html.light-theme .modal-content {
+  background: white;
+  color: #111111;
 }
 
-.movie-card {
-  background: #1e1e1e;
-  padding: 12px;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  transition: transform 0.2s;
+html.light-theme .movie-info,
+html.light-theme .movie-title,
+html.light-theme .close-btn,
+html.light-theme .movie-stats li strong,
+html.light-theme .movie-stats li span {
+  color: #111111;
 }
 
-.movie-card:hover {
-  transform: scale(1.03);
+html.light-theme .movie-stats li .vote-average,
+html.light-theme .movie-stats li .vote-count {
+  background-color: #F8F8F8;
+  color: #111111;
+  font-weight: 500;
 }
 
-.movie-card img {
-  width: 100%;
-  border-radius: 6px;
-  margin-bottom: 8px;
+html.light-theme .movie-stats li .vote-divider {
+  color: #F8F8F8;
+}
+
+html.light-theme .add-to-library-btn {
+  background: white;
+  color: #111111;
+}
+
+html.light-theme .add-to-library-btn:hover {
+  background: #111111;
+  color: #F87719;
+}
+
+/* Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  .movie-modal {
+    flex-direction: row;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .movie-poster {
+    width: 240px;
+    max-height: 380px;
+  }
+
+  .movie-info {
+    flex: 1;
+    padding-left: 16px;
+    padding-top: 0;
+  }
+
+  .movie-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .movie-stats li {
+    grid-template-columns: 120px 1fr;
+  }
+
+  .about-heading {
+    font-size: 15px;
+  }
+
+  .about-text {
+    font-size: 13px;
+  }
+
+  .add-to-library-btn {
+    padding: 10px 16px;
+    font-size: 12px;
+    width: auto;
+  }
+
+  .close-btn {
+    top: 16px;
+    right: 16px;
+    font-size: 22px;
+  }
+
+  .trend-info .trend-title {
+    max-width: 200px; /* Tablet görünümünde daha dar alan */
+    font-size: 13px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+
+  .movie-meta .movie-details {
+    max-width: 146px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
+  
+  .trend-stars {
+    right: 30px;
+    bottom: 18px;
+  }
+}
+
+/* Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .modal-content {
+    max-width: 264px;
+    margin: 0 auto;
+    padding: 40px 16px;
+  }
+
+  .movie-modal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .close-btn {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
+
+  .movie-info {
+    margin: 0 -5px;
+  }
+
+  .movie-poster {
+    max-height: 300px;
+    margin-bottom: 22px;
+  }
+
+  .movie-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .movie-stats {
+    font-size: 13px;
+  }
+
+  .movie-stats li {
+    grid-template-columns: 110px 1fr;
+  }
+
+  .about-heading {
+    font-size: 14px;
+  }
+
+  .about-text {
+    font-size: 12.5px;
+    margin-bottom: 20px;
+  }
+
+  .add-to-library-btn {
+    font-size: 11.5px;
+    padding: 8px 12px;
+  }
 }
