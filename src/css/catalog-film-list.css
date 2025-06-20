@@ -71,4 +71,8 @@
     align-items: center;
     flex-direction: column;
   }
+  .movie-card{
+    width: 280px;
+    height: 406px;
+  }
 }
