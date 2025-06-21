@@ -269,6 +269,15 @@ span img {
   transform: scale(1.2);
 }
 
+.html.light-theme,
+.footer-modal-content .modal-h2 {
+  color: #fff;
+}
+.html.light-theme,
+.footer-modal-content p {
+  color: #fff;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 600px) {
   .footer-modal-content {
