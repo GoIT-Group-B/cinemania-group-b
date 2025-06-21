@@ -36,23 +36,16 @@ async function fetchTrendingMovie() {
 function updateHero(movie) {
   const heroContainer = document.querySelector('.hero-container');
 
-  // Eğer ekran genişliği 480px'den küçükse poster_path kullan
-  function setHeroBackground(movie) {
-    const isMobile = window.innerWidth < 480;
-    const imagePath = isMobile
-      ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
-      : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+  const isMobile = window.innerWidth < 480;
+  const imagePath = isMobile
+    ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
+    : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
 
-    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
-    heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
-    heroContainer.style.backgroundSize = 'cover';
-    heroContainer.style.backgroundPosition = 'center';
-    heroContainer.style.backgroundRepeat = 'no-repeat';
-  }
-
-  // Sayfa yüklendiğinde ve yeniden boyutlandırıldığında çalıştır
-  window.addEventListener('load', () => setHeroBackground(movie));
-  window.addEventListener('resize', () => setHeroBackground(movie));
+  const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
+  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  heroContainer.style.backgroundSize = 'cover';
+  heroContainer.style.backgroundPosition = 'center';
+  heroContainer.style.backgroundRepeat = 'no-repeat';
 
   const starsHTML = createStarRating(movie.vote_average);
 
@@ -68,10 +61,11 @@ function updateHero(movie) {
     </div>
   `;
 
-  const watchBtn = document.querySelector('.watch-trailer-btn');
+  // innerHTML sonrası, tekrar heroContainer içinden seçiyoruz
+  const watchBtn = heroContainer.querySelector('.watch-trailer-btn');
   watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
 
-  const moreBtn = document.querySelector('.more-details-btn');
+  const moreBtn = heroContainer.querySelector('.more-details-btn');
   moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
 }
 
