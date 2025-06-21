@@ -1,6 +1,7 @@
-import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies';
+import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies.js';
 import { createStarRating } from './stars';
 import { renderPagination } from './pagination.js';
+import { attachMovieClickListener } from './library.js';
 
 const movieList = document.getElementById('movieList');
 let currentPage=1;
@@ -27,7 +28,7 @@ function renderMovieCards(movies) {
       const starRating = createStarRating(vote_average)
 
       return `
-        <div class="trend-card">
+        <div class="trend-card" data-id=${movie.id}>
           <div class="poster-wrapper">
             <img src="${IMG_BASE_URL}/w500${poster_path}" alt="${title}" class="movie-poster" />
             <div class="trend-info">
@@ -68,5 +69,12 @@ const genreMap = {
   10752: "War",
   37: "Western"
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  // catalog sayfası için pop-up
+  const catalogContainer = document.getElementById('movieList');
+  if (catalogContainer) attachMovieClickListener(catalogContainer);
+});
+
 
 fetchFirstPageMovies();

@@ -1,5 +1,6 @@
 import { BASE_URL, IMG_BASE_URL, ENDPOINTS, fetchMovies, fetchGenres } from './fetchMovies.js';
 import { createStarRating } from './stars';
+import { attachMovieClickListener } from './library.js';
 
 let isExpanded = false;
 let allMovies = [];
@@ -71,3 +72,9 @@ function renderMovieCard(movie, delay = 0) {
     </div>
   `;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Weekly trends için pop-up
+  const weeklyTrendsContainer = document.getElementById('trends-container');
+  if (weeklyTrendsContainer) attachMovieClickListener(weeklyTrendsContainer);
+});

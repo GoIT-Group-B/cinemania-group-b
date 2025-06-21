@@ -1,5 +1,5 @@
 import { createStarRating } from './stars';
-const IMG_BASE_URL = 'https://image.tmdb.org/t/p';
+import { BASE_URL, IMG_BASE_URL, ENDPOINTS, fetchMovies } from './fetchMovies';
 
 const genreMap = {
   28: 'Action',
@@ -52,7 +52,9 @@ export function loadLibrary(filterGenre = null) {
   const listContainer = mainContainer?.querySelector('.library-gallery-list');
 
   if (!mainContainer || !listContainer) {
-    console.warn('library-gallery veya library-gallery-list bulunamadı.');
+    if (window.location.pathname.endsWith('library.html')) {
+      console.warn('library-gallery veya library-gallery-list bulunamadı.');
+    }
     return;
   }
 
@@ -140,23 +142,43 @@ export function loadLibrary(filterGenre = null) {
 
   listContainer.insertAdjacentHTML('beforeend', markup);
 
-  listContainer.querySelectorAll('.trend-card').forEach(card => {
-    card.addEventListener('click', async () => {
-      const id = Number(card.dataset.id);
-      const data = JSON.parse(localStorage.getItem('myLibrary')) || [];
-      const movie = data.find(m => m.id === id);
-
-      if (movie) {
-        const { showDetailsModal } = await import('./modal.js');
-        const genreNames = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean) || [];
-        showDetailsModal(movie, genreNames);
-      }
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+    // library sayfası için
+    const libraryContainer = document.querySelector('.library-gallery-list');
+    if (libraryContainer) attachMovieClickListener(libraryContainer);
   });
 
   genreDropdownElement?.addEventListener('change', event => {
     const selectedGenre = event.target.value;
     loadLibrary(selectedGenre);
+  });
+}
+
+export function attachMovieClickListener(container) {
+  if (!container) return;
+
+  container.addEventListener('click', async event => {
+    const target = event.target.closest('.trend-card');
+    if (!target) return;
+
+    const movieId = target.dataset.id;
+    let allMovies = JSON.parse(localStorage.getItem('myLibrary')) || [];
+    let movie = allMovies.find(m => m.id === Number(movieId));
+
+    if (!movie) {
+      // Eğer localStorage'da yoksa API'den çek
+      try {
+        movie = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_DETAILS(movieId));
+        movie.genre_ids = movie.genres?.map(g => g.id) || [];
+      } catch (err) {
+        console.error('API fetch error:', err);
+        return;
+      }
+    }
+
+    const { showDetailsModal } = await import('./modal.js');
+    const genreNames = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean) || [];
+    showDetailsModal(movie, genreNames);
   });
 }
 
