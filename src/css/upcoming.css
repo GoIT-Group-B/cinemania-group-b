@@ -29,33 +29,35 @@
 .upcom-img {
   border-radius: 8px;
   width: 805px;
-  height: 458px;
+  height: 470px;
 }
 
 .upcom {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 20px;
   max-width: 400px;
   height: 100%;
-  margin-top: -25px;
+  margin-top: -40px;
 }
 
 .upcom h2 {
   font-weight: 500;
   font-size: 32px;
-  line-height: 100%;
+  line-height: auto;
   letter-spacing: 0%;
   text-transform: uppercase;
   font-family: var(--font-family);
+  position: relative;
+  top: 10px;
+  right: 4px;
 }
 
 .vote-info {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-weight: bold;
   position: relative;
   font-family: var(--font-family);
@@ -89,7 +91,8 @@
 .release-info {
   color: #f87719;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   font-family: var(--font-family);
@@ -108,6 +111,7 @@
 
 .popularity-info {
   margin-left: 70px;
+  margin-bottom: -4px;
 }
 
 .popularity-info strong {
@@ -119,7 +123,7 @@
 .genre-info {
   display: flex;
   font-size: 16px;
-  margin-bottom: 16px;
+  margin-top: 22px;
   gap: 8px;
   font-family: var(--font-family);
 }
@@ -137,19 +141,23 @@
 .upcom-about {
   width: 390px;
   max-width: 390px;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 0px;
   font-family: var(--font-family);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;
+  font-weight: 400;
 }
 
 .strong-about {
   display: block;
-  font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 16px; /* 16 → 10 yaptık */
+  font-size: 15px; /* 16 → 15 yaptık */
   color: grey;
-
-  font-size: 16px;
   font-family: var(--font-family);
 }
 
@@ -400,7 +408,7 @@
     color: grey;
     font-weight: 500;
     position: relative;
-    left: 118px;
+    left: 119px;
   }
 
   .genre-info span {
@@ -408,7 +416,7 @@
     text-align: left;
     max-width: 100%;
     position: relative;
-    left: 118px;
+    left: 119px;
   }
 
   .upcom-about {
@@ -417,7 +425,7 @@
     line-height: 1.5;
     color: white;
     width: 100%;
-    max-width: 625px;
+    max-width: 704px;
     font-family: var(--font-family);
   }
 
@@ -446,5 +454,8 @@
   .add-library-btn:hover {
     background-color: #e76f00;
     border-color: #e76f00;
+  }
+  .popularity-info strong {
+    margin-right: 8px;
   }
 }
