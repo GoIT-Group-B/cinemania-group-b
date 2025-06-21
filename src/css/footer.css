@@ -278,16 +278,34 @@ span img {
   color: #111;
 }
 
-.html.light-theme,
-.footer-modal-content .modal-h2 {
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #333; /* varsayılan renk */
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.social-links a:hover .icon {
+  transform: scale(1.3);
+}
+
+/* Sadece LinkedIn için özel renk */
+.social-links a[href*='linkedin']:hover .icon {
+  fill: #0a66c2; /* LinkedIn mavisi */
+}
+
+/* GitHub hover'da siyah kalsın */
+.social-links a[href*='github']:hover .icon {
+  fill: #111;
+}
+
+.html.light-theme .footer-modal-content .modal-h2 {
   color: #fff;
 }
-.html.light-theme,
-.footer-modal-content p {
+.html.light-theme .footer-modal-content p {
   color: #fff;
 }
-.html.light-theme,
-.footer-modal-content .footer-p {
+.html.light-theme .footer-modal-content .footer-p {
   color: #111;
 }
 

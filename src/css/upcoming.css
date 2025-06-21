@@ -171,9 +171,6 @@
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.3s;
-  border: 2px solid #f87719;
-  background-color: #fff;
-  color: #111;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
@@ -181,10 +178,13 @@
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
+  color: #111;
+  border: 2px solid #f87719;
 }
 
 .add-library-btn:hover {
-  background-color: #e76f00;
+  background-color: #fff;
   border-color: #e76f00;
   color: #111;
 }
@@ -222,12 +222,14 @@
   color: #111;
 }
 .html.light-theme .add-library-btn {
+  background: linear-gradient(to right, #f5921b, #ff2e00);
   color: #282828;
+  border: 2px solid #f87719;
 }
 
 .html.light-theme .add-library-btn:hover {
-  background-color: #111;
-  color: #f87719;
+  background: #111;
+  color: #f5921b;
 }
 
 .html.light-theme .popularity-info span {
@@ -292,9 +294,7 @@
   }
 
   .add-library-btn:hover {
-    background-color: #e76f00;
-    border-color: #e76f00;
-    color: #111;
+    background: linear-gradient(to right, #f5921b, #ff2e00);
   }
 
   .upcom-about {
@@ -442,7 +442,7 @@
     padding: 10px 20px;
     font-size: 14px;
     border: 2px solid orange;
-    background-color: orange;
+    background: linear-gradient(to right, #f5921b, #ff2e00);
     color: #111;
     border-radius: 74px;
     cursor: pointer;
@@ -451,7 +451,7 @@
   }
 
   .add-library-btn:hover {
-    background-color: #e76f00;
+    background: linear-gradient(to right, #f5921b, #ff2e00);
     border-color: #e76f00;
   }
   .popularity-info strong {
