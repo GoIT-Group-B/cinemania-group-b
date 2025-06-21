@@ -113,7 +113,6 @@ select option.hidden-option {
 }
 
 /*light theme css*/
-
 html.light-theme .dropdown select {
   background: white;
   color: #111;

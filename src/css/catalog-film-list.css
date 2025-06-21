@@ -8,7 +8,6 @@
   box-sizing: border-box;
 }
 
-
 .movie-card {
   position: relative;
   width: 395px;
@@ -64,6 +63,7 @@
 .catalog-film-list{
     max-width: 1280px;
 }
+
 @media (max-width: 480px) {
   .library-list {
     display: flex;

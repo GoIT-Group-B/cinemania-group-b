@@ -8,6 +8,26 @@ import {
 import { createStarRating } from './stars';
 import { showDetailsModal, showTrailerModal, showErrorModal } from './modal.js';
 
+const heroClassList = {
+  container: '.hero-container',
+  content: 'hero-content',
+  title: 'hero-title',
+  rating: 'hero-rating',
+  description: 'hero-description',
+  buttons: 'hero-buttons',
+  trailerBtn: 'watch-trailer-btn',
+  detailsBtn: 'more-details-btn',
+  trailerBtnClass: '.watch-trailer-btn',
+  detailsBtnClass: '.more-details-btn',
+  categoryCard : 'category-card',
+};
+
+const heroIdList = {
+  trailerModal: 'trailerModal',
+  trailerIframe: 'trailerIframe',
+  trailerCloseBtn: 'closeTrailer',
+}
+
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
   const data = await response.results;
@@ -30,7 +50,9 @@ async function fetchTrendingMovie() {
 }
 
 function updateHero(movie) {
-  const heroContainer = document.querySelector('.hero-container');
+  
+const { container, content, title, rating, description, buttons, trailerBtn, detailsBtn, trailerBtnClass, detailsBtnClass, trailerCloseBtn } = heroClassList;
+  const heroContainer = document.querySelector(container);
 
   // Eğer ekran genişliği 480px'den küçükse poster_path kullan
   function setHeroBackground(movie) {
@@ -53,21 +75,21 @@ function updateHero(movie) {
   const starsHTML = createStarRating(movie.vote_average);
 
   heroContainer.innerHTML = `
-    <div class="hero-content">
-      <h1 class="hero-title">${movie.title}</h1>
-      <div class="hero-rating">${starsHTML}</div>
-      <p class="hero-description">${movie.overview}</p>
-      <div class="hero-buttons">
-        <button class="watch-trailer-btn">Watch trailer</button>
-        <button class="more-details-btn">More details</button>
+    <div class="${content}">
+      <h1 class="${title}">${movie.title}</h1>
+      <div class="${rating}">${starsHTML}</div>
+      <p class="${description}">${movie.overview}</p>
+      <div class="${buttons}">
+        <button class="${trailerBtn}">Watch trailer</button>
+        <button class="${detailsBtn}">More details</button>
       </div>
     </div>
   `;
 
-  const watchBtn = document.querySelector('.watch-trailer-btn');
+  const watchBtn = document.querySelector(trailerBtnClass);
   watchBtn.addEventListener('click', () => handleTrailerClick(movie.id));
 
-  const moreBtn = document.querySelector('.more-details-btn');
+  const moreBtn = document.querySelector(detailsBtnClass);
   moreBtn.addEventListener('click', () => showDetailsModal(movie));
 }
 
@@ -83,7 +105,7 @@ function renderCategories(genres) {
   categorySection.innerHTML = genres
     .map(
       genre => `
-        <div class="category-card">${genre.name}</div>
+        <div class="${categoryCard}">${genre.name}</div>
       `
     )
     .join('');
@@ -112,9 +134,10 @@ async function handleTrailerClick(movieId) {
   }
 }
 
-document.getElementById('closeTrailer').addEventListener('click', () => {
-  const modal = document.getElementById('trailerModal');
-  const iframe = document.getElementById('trailerIframe');
+document.getElementById(heroIdList.trailerCloseBtn).addEventListener('click', () => {
+  const { trailerModal, trailerIframe } = heroIdList;
+  const modal = document.getElementById(trailerModal);
+  const iframe = document.getElementById(trailerIframe);
 
   modal.style.display = 'none';
   iframe.src = '';
