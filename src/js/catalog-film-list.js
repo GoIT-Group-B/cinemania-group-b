@@ -1,13 +1,21 @@
 import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies';
 import { createStarRating } from './stars';
+import { renderPagination } from './pagination.js';
 
 const movieList = document.getElementById('movieList');
+let currentPage=1;
+let totalPages=20;
 
-async function fetchFirstPageMovies() {
-  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
+export async function fetchFirstPageMovies(crntPage=1) {
+  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES, {page:crntPage});
   const data = await response.results;
-  console.log(data)
+  currentPage = crntPage
+  totalPages = response.total_pages;
+  console.log(response)
+  console.log(currentPage)
+  console.log(totalPages)
   renderMovieCards(data);
+  renderPagination(currentPage,totalPages)
 }
 
 function renderMovieCards(movies) {
