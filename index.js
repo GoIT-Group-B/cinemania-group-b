@@ -1,4 +1,4 @@
-import{c as $}from"./assets/theme-CJ1CTEry.js";import{f as l,B as c,E as o,a as L,I as T}from"./assets/fetchMovies-BSsJlcs_.js";import{s as w,a as D,b as C}from"./assets/modal-DtneLgWJ.js";import"./assets/vendor-DDD7fsZd.js";const _=document.querySelector(".home-hero");let p=null,i=null;O();async function O(){try{const{results:e}=await l(c,o.TRENDING_DAY,{page:1});if(!(e!=null&&e.length))return M();p=e[Math.floor(Math.random()*e.length)],N(p),R(),document.getElementById("trailer-btn").addEventListener("click",()=>G(p)),document.getElementById("details-btn").addEventListener("click",H)}catch(e){console.error("Trend film alınamadı:",e),M()}}async function G(e){try{const a=(await l(c,o.MOVIE_VIDEOS(e.id))).results.find(n=>n.site==="YouTube"&&n.type==="Trailer");a?D(a.key):w("OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.")}catch(t){console.error("Trailer API hatası:",t),w()}}function H(){var t;const e=((t=p.genre_ids)==null?void 0:t.map(a=>i==null?void 0:i[a]).filter(Boolean))||[];C(p,e)}function N(e){const t=$(e.vote_average);_.innerHTML=`
+import{c as $}from"./assets/theme-DYtuddYW.js";import{f as d,B as c,E as i,a as T,I as _}from"./assets/fetchMovies-BSsJlcs_.js";import{s as M,a as O,b as G}from"./assets/modal-C9px45C8.js";import"./assets/vendor-DDD7fsZd.js";const I=document.querySelector(".home-hero");let p=null,l=null;H();async function H(){try{const{results:e}=await d(c,i.TRENDING_DAY,{page:1});if(!(e!=null&&e.length))return k();p=e[Math.floor(Math.random()*e.length)],q(p),W(),document.getElementById("trailer-btn").addEventListener("click",()=>N(p)),document.getElementById("details-btn").addEventListener("click",R)}catch(e){console.error("Trend film alınamadı:",e),k()}}async function N(e){try{const a=(await d(c,i.MOVIE_VIDEOS(e.id))).results.find(n=>n.site==="YouTube"&&n.type==="Trailer");a?O(a.key):M("OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.")}catch(t){console.error("Trailer API hatası:",t),M()}}function R(){var t;const e=((t=p.genre_ids)==null?void 0:t.map(a=>l==null?void 0:l[a]).filter(Boolean))||[];G(p,e)}function q(e){const t=$(e.vote_average);I.innerHTML=`
     <div class="hero-wrap">
       <div class="thumb">
         <div class="background-image">
@@ -13,7 +13,7 @@ import{c as $}from"./assets/theme-CJ1CTEry.js";import{f as l,B as c,E as o,a as 
           <button class="more-details__btn" id="details-btn">More details</button>
         </div>
       </div>
-    </div>`}function M(){_.innerHTML=`
+    </div>`}function k(){I.innerHTML=`
     <div class="hero-wrap">
       <div class="thumb">
         <picture class="background-image">
@@ -25,33 +25,33 @@ import{c as $}from"./assets/theme-CJ1CTEry.js";import{f as l,B as c,E as o,a as 
           <button class="getstarted-btn">Get Started</button>
         </div>
       </div>
-    </div>`,document.querySelector(".getstarted-btn").addEventListener("click",()=>location.href="catalog.html")}async function R(){if(!i)try{const t=(await l(c,o.GENRE_LIST)).genres||[];i=Object.fromEntries(t.map(a=>[a.id,a.name]))}catch(e){console.error("Türler yüklenemedi:",e),i={}}}let b=!1,d=[],k={};async function W(){const e=document.getElementById("trends-container"),t=document.getElementById("see-all-trends");k=await L(),d=(await l(c,o.TRENDING_WEEK)).results;const n=window.innerWidth<768?1:3;u(e,d.slice(0,n)),t.addEventListener("click",()=>{if(!e.classList.contains("is-expanded"))u(e,d),e.classList.add("is-expanded"),t.textContent="Show Less",b=!0;else{const r=window.innerWidth<768?1:3;u(e,d.slice(0,r)),e.classList.remove("is-expanded"),t.textContent="See All",b=!1}}),window.addEventListener("resize",()=>{if(!b){const s=window.innerWidth<768?1:3;u(e,d.slice(0,s))}})}function u(e,t){e.innerHTML=t.map((a,n)=>{const s=n>=3?(n-2)*100:0;return P(a,s)}).join("")}function P(e,t=0){var s;const a=e.genre_ids.map(r=>k[r]).join(", "),n=$(e.vote_average);return`
+    </div>`,document.querySelector(".getstarted-btn").addEventListener("click",()=>location.href="catalog.html")}async function W(){if(!l)try{const t=(await d(c,i.GENRE_LIST)).genres||[];l=Object.fromEntries(t.map(a=>[a.id,a.name]))}catch(e){console.error("Türler yüklenemedi:",e),l={}}}let E=!1,m=[],S={};async function P(){const e=document.getElementById("trends-container"),t=document.getElementById("see-all-trends");S=await T(),m=(await d(c,i.TRENDING_WEEK)).results;const n=window.innerWidth<768?1:3;f(e,m.slice(0,n)),t.addEventListener("click",()=>{if(!e.classList.contains("is-expanded"))f(e,m),e.classList.add("is-expanded"),t.textContent="Show Less",E=!0;else{const r=window.innerWidth<768?1:3;f(e,m.slice(0,r)),e.classList.remove("is-expanded"),t.textContent="See All",E=!1}}),window.addEventListener("resize",()=>{if(!E){const s=window.innerWidth<768?1:3;f(e,m.slice(0,s))}})}function f(e,t){e.innerHTML=t.map((a,n)=>{const s=n>=3?(n-2)*100:0;return V(a,s)}).join("")}function V(e,t=0){var s;const a=e.genre_ids.map(r=>S[r]).join(", "),n=$(e.vote_average);return`
     <div class="trend-card" data-id="${e.id}" style="animation-delay: ${t}ms;">
-      <img src="${T}${o.IMG_W500}${e.poster_path}" alt="${e.title}">
+      <img src="${_}${i.IMG_W500}${e.poster_path}" alt="${e.title}">
       <div class="trend-info">
         <h3>${e.title}</h3>
         <p>${a} | ${((s=e.release_date)==null?void 0:s.split("-")[0])||"N/A"}</p>
         <div class="trend-stars">${n}</div>
       </div>
     </div>
-  `}W();async function V(){const e=document.getElementById("upcoming-films");e.innerHTML="Yükleniyor...";try{const t=await L(),n=(await l(c,o.POPULAR_MOVIES)).results,s=Math.floor(Math.random()*n.length),r=n[s],g=await l(c,o.MOVIE_DETAILS(r.id));e.innerHTML="",U(g,t)}catch(t){e.innerHTML=`<p>Hata: ${t.message}</p>`,console.error(t)}}function U({id:e,poster_path:t,backdrop_path:a,title:n,overview:s,popularity:r,vote_average:g,vote_count:I,release_date:x,genre_ids:h,genres:f},S){const E=document.getElementById("upcoming-films");E.innerHTML="";let v="Bilinmeyen";Array.isArray(h)&&h.length>0?v=h.map(y=>S[y]).filter(Boolean).join(", "):Array.isArray(f)&&f.length>0&&(v=f.map(y=>y.name).join(", "));const A=t?`${T}/w1280${a}`:"https://via.placeholder.com/300x450?text=No+Image",B=s||"No overview available.",m=document.createElement("div");m.classList.add("film-card"),m.innerHTML=`
-    <img class="upcom-img" src="${A}" alt="${n}"">
+  `}P();async function U(){const e=document.getElementById("upcoming-films");e.innerHTML="Yükleniyor...";try{const t=await T(),n=(await d(c,i.POPULAR_MOVIES)).results,s=Math.floor(Math.random()*n.length),r=n[s],g=await d(c,i.MOVIE_DETAILS(r.id));e.innerHTML="",j(g,t)}catch(t){e.innerHTML=`<p>Hata: ${t.message}</p>`,console.error(t)}}function j({id:e,poster_path:t,backdrop_path:a,title:n,overview:s,popularity:r,vote_average:g,vote_count:x,release_date:B,genre_ids:h,genres:v},A){const w=document.getElementById("upcoming-films");w.innerHTML="";let y="Bilinmeyen";Array.isArray(h)&&h.length>0?y=h.map(b=>A[b]).filter(Boolean).join(", "):Array.isArray(v)&&v.length>0&&(y=v.map(b=>b.name).join(", "));const D=t?`${_}/w1280${a}`:"https://via.placeholder.com/300x450?text=No+Image",C=s||"No overview available.",u=document.createElement("div");u.classList.add("film-card"),u.innerHTML=`
+    <img class="upcom-img" src="${D}" alt="${n}"">
     <div class="upcom">
       <h2>${n}</h2>
-      <p class="release-info"><strong>Release date:</strong> ${x||"Unknown"}</p>
+      <p class="release-info"><strong>Release date:</strong> ${B||"Unknown"}</p>
       <p class="vote-info">
       <strong>Vote/Votes:</strong> 
       <span class="vote-box vote-box-left">${g.toFixed(1)}</span>
       <span class="slash">/</span>
-      <span class="vote-box vote-box-right">${I}</span>
+      <span class="vote-box vote-box-right">${x}</span>
       </p>
-      <p class="popularity-info"><strong>Popularity:</strong> ${r}</p>
+      <p class="popularity-info"><strong>Popularity:</strong> <span>${r}</span></p>
       <p class="genre-info">
       <strong>Genres:</strong> 
-      <span>${v}</span>
+      <span>${y}</span>
       </p>
-      <p class="upcom-about"><strong class="strong-about">ABOUT</strong> ${B}</p>
+      <p class="upcom-about"><strong class="strong-about">ABOUT</strong> ${C}</p>
       <button class="add-library-btn">Add to my library</button>
     </div>
-  `,m.querySelector(".add-library-btn").addEventListener("click",()=>{console.log(`"${n}" kütüphaneye eklendi!`)}),E.appendChild(m)}document.addEventListener("DOMContentLoaded",V);
+  `,u.querySelector(".add-library-btn").addEventListener("click",()=>{console.log(`"${n}" kütüphaneye eklendi!`)}),w.appendChild(u)}document.addEventListener("DOMContentLoaded",U);const z=document.querySelector('[data-modal-open="footer"]'),Y=document.querySelector('[data-modal-close="footer"]'),o=document.querySelector('[data-modal="footer"]'),F=o.querySelector(".footer-modal-content");z.addEventListener("click",function(e){e.preventDefault(),o.classList.remove("is-hidden"),requestAnimationFrame(()=>{o.classList.add("show-modal")}),document.body.style.overflow="hidden"});Y.addEventListener("click",L);document.addEventListener("keydown",function(e){e.key==="Escape"&&!o.classList.contains("is-hidden")&&L()});function L(){o.classList.add("closing"),o.classList.remove("show-modal"),F.addEventListener("transitionend",()=>{o.classList.remove("closing"),o.classList.add("is-hidden")},{once:!0}),document.body.style.overflow="auto"}o.addEventListener("click",function(e){e.target===o&&L()});
 //# sourceMappingURL=index.js.map
