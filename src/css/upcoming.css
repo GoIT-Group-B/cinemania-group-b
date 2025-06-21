@@ -148,7 +148,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;
   font-weight: 400;
 }
@@ -404,7 +403,7 @@
 
   .genre-info strong {
     flex-shrink: 0;
-    min-width: 80px; /* Sabit genişlik */
+    min-width: 80px;
     color: grey;
     font-weight: 500;
     position: relative;
