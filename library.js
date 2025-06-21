@@ -1,2 +1,0 @@
-import"./assets/theme-DYtuddYW.js";import"./assets/library-D0sMqSv5.js";import"./assets/modal-C9px45C8.js";const n=document.querySelector(".menu-toggle"),e=document.getElementById("mobileMenu"),o=document.getElementById("mobileOverlay");n.addEventListener("click",()=>{e.classList.toggle("open"),o.classList.toggle("active")});document.addEventListener("click",t=>{const i=e.contains(t.target),c=n.contains(t.target);!i&&!c&&(e.classList.remove("open"),o.classList.remove("active"))});
-//# sourceMappingURL=library.js.map
