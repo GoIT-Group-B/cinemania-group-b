@@ -54,23 +54,16 @@ function updateHero(movie) {
 const { container, content, title, rating, description, buttons, trailerBtn, detailsBtn, trailerBtnClass, detailsBtnClass, trailerCloseBtn } = heroClassList;
   const heroContainer = document.querySelector(container);
 
-  // Eğer ekran genişliği 480px'den küçükse poster_path kullan
-  function setHeroBackground(movie) {
-    const isMobile = window.innerWidth < 480;
-    const imagePath = isMobile
-      ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
-      : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+  const isMobile = window.innerWidth < 480;
+  const imagePath = isMobile
+    ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
+    : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
 
-    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
-    heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
-    heroContainer.style.backgroundSize = 'cover';
-    heroContainer.style.backgroundPosition = 'center';
-    heroContainer.style.backgroundRepeat = 'no-repeat';
-  }
-
-  // Sayfa yüklendiğinde ve yeniden boyutlandırıldığında çalıştır
-  window.addEventListener('load', () => setHeroBackground(movie));
-  window.addEventListener('resize', () => setHeroBackground(movie));
+  const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
+  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  heroContainer.style.backgroundSize = 'cover';
+  heroContainer.style.backgroundPosition = 'center';
+  heroContainer.style.backgroundRepeat = 'no-repeat';
 
   const starsHTML = createStarRating(movie.vote_average);
 

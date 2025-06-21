@@ -87,7 +87,7 @@ function renderMovie(
       <span class="slash">/</span>
       <span class="vote-box vote-box-right">${vote_count}</span>
       </p>
-      <p class="popularity-info"><strong>Popularity:</strong> ${popularity}</p>
+      <p class="popularity-info"><strong>Popularity:</strong> <span>${popularity}</span></p>
       <p class="genre-info">
       <strong>Genres:</strong> 
       <span>${filmGenres}</span>
