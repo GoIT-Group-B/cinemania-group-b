@@ -52,6 +52,10 @@ span img {
   color: Grey;
 }
 
+.footer-modal-content a {
+  text-decoration: none;
+}
+
 @media (max-width: 767px) {
   .container-footer {
     display: flex;
@@ -87,6 +91,7 @@ span img {
     color: grey;
   }
 }
+
 /*                               modal kısmı                                     */
 .footerModal {
   position: fixed;
@@ -269,6 +274,10 @@ span img {
   transform: scale(1.2);
 }
 
+.footer-modal-content p {
+  color: #111;
+}
+
 .html.light-theme,
 .footer-modal-content .modal-h2 {
   color: #fff;
@@ -276,6 +285,10 @@ span img {
 .html.light-theme,
 .footer-modal-content p {
   color: #fff;
+}
+.html.light-theme,
+.footer-modal-content .footer-p {
+  color: #111;
 }
 
 /* === RESPONSIVE === */
