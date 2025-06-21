@@ -1,11 +1,17 @@
+
 const input = document.getElementById("search");
 const warningMessage = document.getElementById("warning");
 const moviesContainer = document.getElementById("movies");
 const clearButton = document.querySelector(".clear-button");
+const searchButton = document.querySelector(".search-button");
+
+
+
+
 
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
-const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
+ const IMG_URL = "https://image.tmdb.org/t/p/w500";
+ const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
 
 
 
@@ -31,6 +37,10 @@ function search() {
             else {
                 warningMessage.style.display = "none";
             }
+            document.querySelectorAll('.movie-card').forEach(card => {
+                card.style.display = "none";
+              });
+            
             
       // Sadece filmleri ekle
       data.results.forEach(movie => {
@@ -41,6 +51,7 @@ function search() {
           <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'https://via.placeholder.com/200x300'}" alt="${movie.title}">
           <h3>${movie.title}</h3>
           <p>Rating: ${movie.vote_average}</p>
+    
         `;
 
         moviesContainer.appendChild(movieEl);
@@ -67,4 +78,13 @@ function clearSearch() {
     input.focus();
 
 }
-export { search, clearSearch };
+searchButton.addEventListener("click", () => {
+    search();
+    
+})
+clearButton.addEventListener("click", () => {
+    clearSearch();
+    
+})
+
+

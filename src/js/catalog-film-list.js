@@ -9,7 +9,7 @@ async function fetchFirstPageMovies() {
   renderMovieCards(data.results);
 }
 
-function renderMovieCards(movies) {
+export function renderMovieCards(movies) {
   movieList.innerHTML = movies
     .map(movie => {
       const { title, poster_path, release_date, vote_average, genre_ids } = movie;
