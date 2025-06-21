@@ -1,4 +1,10 @@
-import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL, fetchGenres } from './fetchMovies';
+import {
+  fetchMovies,
+  BASE_URL,
+  ENDPOINTS,
+  IMG_BASE_URL,
+  fetchGenres,
+} from './fetchMovies';
 import { createStarRating } from './stars';
 import { showDetailsModal, showTrailerModal, showErrorModal } from './modal.js';
 
@@ -23,12 +29,26 @@ async function fetchTrendingMovie() {
   }, 5000);
 }
 
-
 function updateHero(movie) {
   const heroContainer = document.querySelector('.hero-container');
 
-  const backgroundUrl = `${IMG_BASE_URL}${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
-  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  // Eğer ekran genişliği 480px'den küçükse poster_path kullan
+  function setHeroBackground(movie) {
+    const isMobile = window.innerWidth < 480;
+    const imagePath = isMobile
+      ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
+      : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+
+    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
+    heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+    heroContainer.style.backgroundSize = 'cover';
+    heroContainer.style.backgroundPosition = 'center';
+    heroContainer.style.backgroundRepeat = 'no-repeat';
+  }
+
+  // Sayfa yüklendiğinde ve yeniden boyutlandırıldığında çalıştır
+  window.addEventListener('load', () => setHeroBackground(movie));
+  window.addEventListener('resize', () => setHeroBackground(movie));
 
   const starsHTML = createStarRating(movie.vote_average);
 
