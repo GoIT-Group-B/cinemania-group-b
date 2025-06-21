@@ -16,6 +16,7 @@
     border-radius: 20px;
     outline: none;
     flex: 1;
+    padding-right: 30px;
 
 }
 
@@ -77,6 +78,10 @@
         top: 968px;
         left: 297px;
         
+}
+
+#year { 
+    display: none;
 }
 
 .library-list {

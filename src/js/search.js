@@ -4,16 +4,22 @@ const warningMessage = document.getElementById("warning");
 const moviesContainer = document.getElementById("movies");
 const clearButton = document.querySelector(".clear-button");
 const searchButton = document.querySelector(".search-button");
-
-
+const yearInput = document.getElementById("year");
 
 
 
 const BASE_URL = "https://api.themoviedb.org/3/search/movie";
  const IMG_URL = "https://image.tmdb.org/t/p/w500";
  const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
+//yılları select içine yukleme
+ const currentYear = new Date().getFullYear();//bugünki yılı almaya yarar kod
 
-
+for (let y = currentYear; y >= 1900; y--){
+    const option = document.createElement("option");
+    option.value = y;
+    option.textContent = y;
+    yearInput.appendChild(option);
+}
 
 function search() {
     
@@ -65,19 +71,41 @@ function search() {
     });
     
 }
+// Search alanına yazı yazıldığında yıl kutusu göster/gizle
+input.addEventListener("input", () => {
+    yearInput.style.display = input.value.trim() !== "" ? "block" : "none";
 
+    // Çarpı butonu sadece input dolu **ve** yıl seçiliyse görünsün
+    if (input.value.trim() !== "" && yearInput.value !== "") {
+        clearButton.style.display = "block";
+    } else {
+        clearButton.style.display = "none";
+    }
 
-input.addEventListener("input", () => { /*çarpıyı input değeri varsa gösterir style.display görünürlük demek*/
-     clearButton.style.display = input.value ? "block" : "none";
+    if (input.value.trim() === "") {
+        clearSearch();
+    }
 });
+// Yıl seçilirse çarpı butonu sadece input doluysa görünsün
+yearInput.addEventListener("change", () => {
+    if (input.value.trim() !== "" && yearInput.value !== "") {
+        clearButton.style.display = "block";
+    } else {
+        clearButton.style.display = "none";
+    }
+});
+
 function clearSearch() {
     
     input.value = "";
+    yearInput.value = "";
     clearButton.style.display = "none";
+    yearInput.style.display = "none";
     moviesContainer.innerHTML = "";
+    warningMessage.style.display = "none";
     input.focus();
-
 }
+    
 searchButton.addEventListener("click", () => {
     search();
     
