@@ -122,7 +122,7 @@ function createFallbackHero() {
       </div>
     </div>`;
 
-    getStartedButtonElement.addEventListener('click', () => location.href = 'catalog.html');
+    getStartedButtonElement.addEventListener('click', () => location.href = '/catalog.html');
 }
 
 async function preloadGenres() {
