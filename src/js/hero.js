@@ -1,6 +1,9 @@
-// js/hero.js
-
-import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies.js';
+import {
+  fetchMovies,
+  BASE_URL,
+  ENDPOINTS,
+  IMG_BASE_URL,
+} from './fetchMovies.js';
 import { createStarRating } from './stars.js';
 import { showTrailerModal, showDetailsModal, showErrorModal } from './modal.js';
 
@@ -22,12 +25,14 @@ const homeHeroClassList = {
   descriptionFallback: 'description-fallback',
   getStartedButtonClass: '.getstarted-btn',
   getStartedButton: 'getstarted-btn',
-}
+};
 
 const homeHeroIdList = {
   trailerButtonId: 'trailer-btn',
   detailsButtonId: 'details-btn',
-}
+};
+
+const HERO_UPDATE_INTERVAL = 7000; // ms – otomatik güncelleme aralığı
 
 const hero = document.querySelector(homeHeroClassList.homeHeroClass);
 let movieOfDay = null;
@@ -36,23 +41,67 @@ let genreMap = null;
 displayTrendingMovie();
 
 async function displayTrendingMovie() {
-  const { trailerButtonId, detailsButtonId } = homeHeroIdList;
-
+  
   try {
-    const { results } = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_DAY, { page: 1 });
+    const { results } = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_DAY, {
+      page: 1,
+    });
     if (!results?.length) return createFallbackHero();
 
-    movieOfDay = results[Math.floor(Math.random() * results.length)];
+    movieOfDay = getRandomMovie(results);
     createTrendingMarkup(movieOfDay);
+    addHeroEventListeners(movieOfDay);
     preloadGenres();
 
-    document.getElementById(trailerButtonId).addEventListener('click', () => onTrailer(movieOfDay));
-    document.getElementById(detailsButtonId).addEventListener('click', onDetails);
-
+    // sonsuz otomatik güncelleme başlat
+    startHeroAutoUpdate(HERO_UPDATE_INTERVAL);
   } catch (err) {
     console.error('Trend film alınamadı:', err);
     createFallbackHero();
   }
+}
+
+function startHeroAutoUpdate(interval = HERO_UPDATE_INTERVAL) {
+  async function update() {
+    try {
+      const { results } = await fetchMovies(BASE_URL, ENDPOINTS.TRENDING_DAY, {
+        page: 1,
+      });
+
+      if (!results?.length) {
+        console.warn('Trend listesi boş. Fallback hero gösteriliyor.');
+        createFallbackHero();
+      } else {
+        const newMovie = getRandomMovie(results);
+        if (!newMovie) {
+          console.warn('Film seçilemedi. Fallback hero gösteriliyor.');
+          createFallbackHero();
+        } else {
+          movieOfDay = newMovie;
+          createTrendingMarkup(newMovie);
+          addHeroEventListeners(newMovie);
+        }
+      }
+    } catch (err) {
+      console.error('Hero güncellenemedi:', err);
+      createFallbackHero();
+    } finally {
+      // döngüyü sürdür
+      setTimeout(update, interval);
+    }
+  }
+
+  setTimeout(update, interval);
+}
+
+function addHeroEventListeners(movie) {
+  document
+    .getElementById(homeHeroIdList.trailerButtonId)
+    ?.addEventListener('click', () => onTrailer(movie));
+
+  document
+    .getElementById(homeHeroIdList.detailsButtonId)
+    ?.addEventListener('click', onDetails);
 }
 
 async function onTrailer(movie) {
@@ -64,7 +113,9 @@ async function onTrailer(movie) {
     );
 
     if (!trailer) {
-      showErrorModal('OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.');
+      showErrorModal(
+        'OOPS...<br>We are very sorry!<br>But we couldn’t find the trailer.'
+      );
     } else {
       showTrailerModal(trailer.key);
     }
@@ -76,21 +127,40 @@ async function onTrailer(movie) {
 
 
 function onDetails() {
-  const genres = movieOfDay.genre_ids?.map(id => genreMap?.[id]).filter(Boolean) || [];
+  const genres =
+    movieOfDay.genre_ids?.map(id => genreMap?.[id]).filter(Boolean) || [];
   showDetailsModal(movieOfDay, genres);
 }
 
 function createTrendingMarkup(movie) {
-  const { heroWrap, thumb, backgroundImage, backend, heroWrapContent, movieTitle, starRating, movieDescription, trailerButton, moreDetailsButton } = homeHeroClassList;
+  const {
+    heroWrap,
+    thumb,
+    backgroundImage,
+    backend,
+    heroWrapContent,
+    movieTitle,
+    starRating,
+    movieDescription,
+    trailerButton,
+    moreDetailsButton,
+  } = homeHeroClassList;
+
   const { trailerButtonId, detailsButtonId } = homeHeroIdList;
 
   const ratingStars = createStarRating(movie.vote_average);
+  const imageUrl = `${IMG_BASE_URL}/original${movie.backdrop_path}`;
+
   hero.innerHTML = `
     <div class="${heroWrap}">
       <div class="${thumb}">
-        <div class="${backgroundImage}">
-          <img src="${IMG_BASE_URL}/original${movie.backdrop_path}"
-               alt="${movie.title} backdrop" class="${backend}" loading="lazy"/>
+        <div class="${backgroundImage} hero-img-wrapper">
+          <img 
+            src="${imageUrl}" 
+            alt="${movie.title} backdrop"
+            class="${backend} hero-img"
+            decoding="async"
+          />
         </div>
         <div class="${heroWrapContent}">
           <h1 class="${movieTitle}">${movie.title || movie.name}</h1>
@@ -104,16 +174,44 @@ function createTrendingMarkup(movie) {
 }
 
 function createFallbackHero() {
-  const { getStartedButtonClass, heroWrap, thumb, backgroundImage, backend, heroWrapContent, titleFallback, descriptionFallback, getStartedButton } = homeHeroClassList;
+  const {
+    getStartedButtonClass,
+    heroWrap,
+    thumb,
+    backgroundImage,
+    backend,
+    heroWrapContent,
+    titleFallback,
+    descriptionFallback,
+    getStartedButton,
+  } = homeHeroClassList;
 
   const getStartedButtonElement = document.querySelector(getStartedButtonClass);
 
   hero.innerHTML = `
     <div class="${heroWrap}">
       <div class="${thumb}">
-        <picture class="${backgroundImage}">
-          <img src="./images/hero-desktop.jpg" alt="Default hero" class="${backend}" loading="lazy" />
-        </picture>
+        <div class="${backgroundImage} hero-img-wrapper">
+          <picture class="background-image">
+            <source
+              media="(min-width: 1280px)"
+              srcset="./images/hero-desktop.jpg 1x, ./images/hero-desktop-2x.jpg 2x"
+            />
+            <source
+              media="(min-width: 768px)"
+              srcset="./images/hero-tablet.jpg 1x, ./images/hero-tablet-2x.jpg 2x"
+            />
+            <img
+              src="./images/hero-mobile.jpg"
+              srcset="./images/hero-mobile-2x.jpg 2x"
+              alt="Fallback Hero"
+              class="backend"
+              width="1280"
+              height="720"
+            />
+          </picture>    
+        </div>
+
         <div class="${heroWrapContent}">
           <h1 class="${titleFallback}">Let’s Make Your Own Cinema</h1>
           <p class="${descriptionFallback}">Is a guide to creating a personalized movie theater experience.</p>
@@ -122,7 +220,13 @@ function createFallbackHero() {
       </div>
     </div>`;
 
-    getStartedButtonElement.addEventListener('click', () => location.href = '/catalog.html');
+  getStartedButtonElement?.addEventListener('click', () => {
+    location.href = '/catalog.html';
+  });
+}
+
+function getRandomMovie(results) {
+  return results[Math.floor(Math.random() * results.length)];
 }
 
 async function preloadGenres() {
