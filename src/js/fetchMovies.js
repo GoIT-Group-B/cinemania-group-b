@@ -25,7 +25,6 @@ export const ENDPOINTS = {
   IMG_W1280: '/w1280',
 };
 
-
 export async function fetchMovies(baseUrl, endpoint, params = {}) {
   try {
     const response = await axios.get(`${baseUrl}${endpoint}`, {

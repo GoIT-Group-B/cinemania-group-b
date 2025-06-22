@@ -1,31 +1,57 @@
-import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies';
+import { fetchMovies, BASE_URL, ENDPOINTS, IMG_BASE_URL } from './fetchMovies.js';
+import { createStarRating } from './stars';
+import { renderPagination } from './pagination.js';
+import { attachMovieClickListener } from './library.js';
 
+const classList = {
+  trendCard: 'trend-card',
+  posterWrapper: 'poster-wrapper',
+  moviePoster: 'movie-poster',
+  movieMeta: 'movie-meta',
+  trendInfo: 'trend-info',
+  trendTitle: 'trend-title',
+  movieDetails: 'movie-details',
+  trendStars: 'trend-stars',
+  movieRating: 'movie-rating',
+};
 const movieList = document.getElementById('movieList');
-const API_KEY = '52238d7fab5c2c01b99e751619dd16ec';
+let currentPage=1;
+let totalPages=20;
 
-async function fetchFirstPageMovies() {
-  const response = await fetch(`${BASE_URL}${ENDPOINTS.POPULAR_MOVIES}?api_key=${API_KEY}&language=en-US&page=1`);
-  const data = await response.json();
-  renderMovieCards(data.results);
+export async function fetchFirstPageMovies(crntPage=1) {
+  const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES, {page:crntPage});
+  const data = await response.results;
+  currentPage = crntPage
+  totalPages = response.total_pages;
+  console.log(response)
+  console.log(currentPage)
+  console.log(totalPages)
+  renderMovieCards(data);
+  renderPagination(currentPage,totalPages)
 }
 
-export function renderMovieCards(movies) {
+function renderMovieCards(movies) {
+  const { trendCard, posterWrapper, moviePoster, movieMeta, trendInfo, trendTitle, movieDetails, trendStars, movieRating } = classList;
+
   movieList.innerHTML = movies
     .map(movie => {
       const { title, poster_path, release_date, vote_average, genre_ids } = movie;
       const year = release_date ? release_date.split('-')[0] : 'N/A';
       const genres = genre_ids.slice(0, 2).map(id => genreMap[id]).join(', '); // Genre mapping gerekir
+      const starRating = createStarRating(vote_average)
 
       return `
-        <div class="movie-card">
-          <div class="poster-wrapper">
-            <img src="${IMG_BASE_URL}/w500${poster_path}" alt="${title}" class="movie-poster" />
-            <div class="movie-info-overlay">
-              <div class="movie-meta">
-                <h3 class="movie-title">${title}</h3>
-                <p class="movie-details">${genres} | ${year}</p>
+        <div class="${ trendCard }" data-id=${movie.id}>
+          <div class="${ posterWrapper }">
+            <img src="${IMG_BASE_URL}/w500${poster_path}" alt="${title}" class="${ moviePoster }" />
+            <div class="${ trendInfo }">
+              <div class="${ movieMeta }">
+                <h3 class="${ trendTitle }">${title}</h3>
+                <p class="${ movieDetails }">${genres} | ${year}</p>
               </div>
-              <div class="movie-rating">⭐ ${vote_average.toFixed(1)}</div>
+              <div class="${ trendStars }">
+                <div class="${ movieRating }">${starRating}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -56,5 +82,11 @@ const genreMap = {
   10752: "War",
   37: "Western"
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  // catalog sayfası için pop-up
+  if (movieList) attachMovieClickListener(movieList);
+});
+
 
 fetchFirstPageMovies();

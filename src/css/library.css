@@ -1,46 +1,203 @@
 .dropdown {
-      position: relative;
-      width: 200px;
-    }
+  position: relative;
+  width: 200px;
+  padding: 60px 0;
+}
 
-    .dropdown select {
-      width: 100%;
-      padding: 12px;
-      background-color: #1e1e1e;
-      color: white;
-      border: 1px solid #444;
-      border-radius: 6px;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      cursor: pointer;
-    }
+.dropdown select {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e1e1e;
+  color: white;
+  border: 1px solid #595959;
+  border-radius: 6px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
 
-    .dropdown::after {
-      content: "▾";
-      position: absolute;
-      top: 50%;
-      right: 15px;
-      transform: translateY(-50%);
-      color: white;
-      pointer-events: none;
-    }
+.dropdown::after {
+  content: '▾';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: white;
+  pointer-events: none;
+}
 
-    .dropdown select:focus {
-      outline: none;
-      border-color: #ff6600;
-    }
+.dropdown select:focus {
+  outline: none;
+  border-color: #ff6600;
+}
 
-    .dropdown option {
-      background-color: #1e1e1e;
-      color: white;
-      padding: 10px;
-    }
+.dropdown option {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 10px;
+}
 
-    .dropdown option:checked {
-      color: #ff6600;
-    }
-    select option.hidden-option {
-    display: none;
-    
-    }
+.dropdown option:checked {
+  color: #ff6600;
+}
+
+select option.hidden-option {
+  display: none;
+}
+
+.library-gallery {
+  display: flex;
+  
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+.load-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+.load-more button{
+  color: #111;
+}
+.movie-card {
+  background: #1e1e1e;
+  padding: 12px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.library-gallery-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.my-library-no-movies {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.my-library-no-movies .my-library-oops-message {
+  font-family: 'Roboto Medium';
+  font-size: 32px;
+}
+
+.my-library-no-movies button, .load-more-btn {
+  padding: auto;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
+  color: #fff;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: 'Roboto Regular';
+  width: 158px;
+  height: 52px;
+}
+
+.my-library-no-movies button a {
+  text-decoration: none;
+  color: #111111;
+}
+
+/*light theme css*/
+html.light-theme .dropdown select {
+  background: white;
+  color: #111;
+}
+
+html.light-theme .dropdown::after {
+  background: white;
+  color: #111;
+}
+
+/* === Tablet (max-width: 768px) === */
+@media (max-width: 768px) {
+  .library-gallery-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .trend-title {
+    max-width: 180px;
+  }
+
+  .trend-card {
+    width: 224px;
+    height: auto;
+  }
+
+  .trend-info {
+    padding: 12px;
+  }
+
+  .trend-stars {
+    bottom: 24px;
+    right: 12px;
+    transform: scale(0.9);
+  }
+
+  .my-library-no-movies .my-library-oops-message {
+    font-size: 24px;
+  }
+
+  .my-library-no-movies button {
+    font-size: 14px;
+    width: 133px;
+    height: 40px;
+  }
+}
+
+/* === Mobile (max-width: 480px) === */
+@media (max-width: 480px) {
+  .library-gallery-list {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .trend-card {
+    width: 280px;
+    height: auto;
+  }
+
+  .trend-info {
+    padding: 10px;
+  }
+
+  .trend-stars {
+    bottom: 20px;
+    right: 10px;
+    transform: scale(0.85);
+  }
+
+  .my-library-no-movies .my-library-oops-message {
+    font-size: 20px;
+  }
+
+  .my-library-no-movies button {
+    font-size: 12px;
+    width: 121px;
+    height: 38px;
+  }
+}

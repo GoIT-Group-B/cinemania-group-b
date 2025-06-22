@@ -29,6 +29,7 @@ body {
 .hero-container:before {
   content: "";
   position: absolute;
+  left: 0;
   width: 100%;
   height: 100%;
   background: linear-gradient(to right,
@@ -152,30 +153,6 @@ body {
   position: relative;
 }
 
-/* Adjustments for responsiveness if needed */
-@media (max-width: 768px) {
-  #heroContainer {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .hero-content {
-    max-width: 100%;
-    padding-right: 0;
-    margin-bottom: 20px;
-    text-align: center;
-
-  }
-
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .hero-image-container {
-    justify-content: center;
-  }
-}
-
 .catalog-hero-overlay {
   width: 100%;
   height: 100%;
@@ -259,21 +236,6 @@ body {
       rgba(255, 194, 38, 1) 0%,
       /* Üst kısım karanlık */
       rgba(248, 65, 25, 1));
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-  }
-
-  .trailer-content iframe {
-    height: 250px;
-  }
 }
 
 .trailer-error {
@@ -518,7 +480,6 @@ body {
   cursor: not-allowed;
 }
 
-
 /* --- Responsive Ayarlamalar --- */
 @media (max-width: 768px) {
   .library-list {
@@ -537,6 +498,51 @@ body {
 
   .search-input {
     max-width: 90%;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .trailer-content iframe {
+    height: 250px;
+  }
+
+  .hero-content {
+    padding: 0 20px;
+    text-align: left;
+  }
+
+  .hero-title {
+    font-size: 32px; /* Daha okunabilir boyut */
+  }
+
+  .hero-description {
+    font-size: 14px;
+    width: 100%; /* Genişliği sınırsız yap */
+    margin: 10px 0 20px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .hero-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .watch-trailer-btn,
+  .more-details-btn {
+    width: 100%; /* Butonlar ekran genişliğini kaplasın */
+    padding: 14px;
+    font-size: 16px;
   }
 }
 

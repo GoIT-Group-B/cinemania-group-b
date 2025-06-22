@@ -73,12 +73,15 @@
         line-height: 36px;
         letter-spacing: 0%;
         text-align: center;
-    width: 684px;
-        height: 124;
+        width: 684px;
+        height: 124px;
+        /* birim eklendi */
         top: 968px;
         left: 297px;
-        
-}
+    
+        padding-left: 300px;
+        /* Yazıyı biraz sağa kaydırır */
+    }
 
 #year { 
     display: none;
@@ -129,3 +132,4 @@
     font-size: 0.9rem;
     color: #ccc;
 }
+
