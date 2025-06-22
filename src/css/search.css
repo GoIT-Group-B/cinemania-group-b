@@ -160,22 +160,22 @@
   @media (max-width: 768px) {
     /* Büyük telefon + küçük tablet */
     .search-form {
-      flex-direction: column;
-      align-items: stretch;
-      max-width: 30%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 20px;
     }
   
     #search,
     #year {
-      width: 100%;
-      margin-bottom: 10px;
+      width: 95px;
+      
       left: 0; /* year input düzeltmesi */
     }
   
     .search-button {
-      width: 100%;
-      border-radius: 8px;
+      
+      border-radius: 50%;
       margin-left: 0;
     }
   

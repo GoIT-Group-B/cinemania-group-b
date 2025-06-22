@@ -64,24 +64,29 @@
 }
 @media (max-width: 1279px) {
   .library-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 224px); /* 👈 Sabit genişlik */
     display: grid;
-    gap: 30px;
+    justify-content: center;
+    
   }
   .movie-card {
     width: 224px;
     height: 325px;
   }
+  .hero-content{
+    max-width: 500px;
+  }
 }
 @media (max-width: 767px) {
   .library-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
   }
   .movie-card {
     width: 280px;
     height: 406px;
+  }
+  .hero-content{
+    max-width: 400px;
   }
 }
