@@ -12,11 +12,10 @@ export function setupLoadMore({
   if (!loadMoreBtn || !container) return;
 
   function showPage() {
-    const start = 0;
+    const start = (currentPage - 1) * moviesPerPage;
     const end = currentPage * moviesPerPage;
     const currentMovies = movies.slice(start, end);
 
-    container.innerHTML = ''; // önceki filmleri temizle
     renderCallback(currentMovies);
 
     if (end >= movies.length) {
@@ -26,7 +25,7 @@ export function setupLoadMore({
     }
   }
 
-  // İlk sayfayı göster
+  // İlk sayfa
   showPage();
 
   loadMoreBtn.addEventListener('click', () => {
