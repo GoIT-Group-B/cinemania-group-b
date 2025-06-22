@@ -369,7 +369,6 @@
 
   .popularity-info {
     grid-area: popularity;
-    text-align: right;
   }
 
   .vote-info {
@@ -409,7 +408,6 @@
     color: grey;
     font-weight: 500;
     position: relative;
-    left: 119px;
   }
 
   .genre-info span {
@@ -417,7 +415,6 @@
     text-align: left;
     max-width: 100%;
     position: relative;
-    left: 119px;
   }
 
   .upcom-about {
