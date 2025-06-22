@@ -29,7 +29,7 @@
 .upcom-img {
   border-radius: 8px;
   width: 805px;
-  height: 470px;
+  height: 490px;
 }
 
 .upcom {
@@ -160,7 +160,7 @@
   font-family: var(--font-family);
 }
 
-.add-library-btn {
+.add-library-btn- {
   box-sizing: border-box;
   display: inline-block;
   margin-top: 20px;
@@ -171,9 +171,6 @@
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.3s;
-  border: 2px solid #f87719;
-  background-color: #fff;
-  color: #111;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 14px;
@@ -181,10 +178,13 @@
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
+  background: linear-gradient(to right, #f5921b, #ff2e00);
+  color: #111;
+  border: 2px solid #f87719;
 }
 
-.add-library-btn:hover {
-  background-color: #e76f00;
+.add-library-btn-:hover {
+  background: #fff;
   border-color: #e76f00;
   color: #111;
 }
@@ -221,13 +221,14 @@
 .html.light-theme .strong-about {
   color: #111;
 }
-.html.light-theme .add-library-btn {
+.html.light-theme .add-library-btn- {
+  background: linear-gradient(to right, #f5921b, #ff2e00);
   color: #282828;
+  border: 2px solid #f87719;
 }
 
-.html.light-theme .add-library-btn:hover {
-  background-color: #111;
-  color: #f87719;
+.html.light-theme .add-library-btn-:hover {
+  background: #111;
 }
 
 .html.light-theme .popularity-info span {
@@ -281,7 +282,7 @@
     display: flex;
     flex-direction: column;
   }
-  .add-library-btn {
+  .add-library-btn- {
     width: 140px;
     height: 38px;
     font-size: 14px;
@@ -291,10 +292,8 @@
     width: 140px !important;
   }
 
-  .add-library-btn:hover {
-    background-color: #e76f00;
-    border-color: #e76f00;
-    color: #111;
+  .add-library-btn-:hover {
+    background: linear-gradient(to right, #f5921b, #ff2e00);
   }
 
   .upcom-about {
@@ -309,6 +308,7 @@
     flex-direction: column;
     align-items: center;
     max-width: 704px;
+    margin: 0 auto;
   }
 
   .upcoming-container-header {
@@ -316,6 +316,8 @@
     font-weight: 500;
     text-transform: uppercase;
     margin-bottom: 20px;
+    position: relative;
+    left: 295px;
   }
 
   .upcom-img {
@@ -367,7 +369,6 @@
 
   .popularity-info {
     grid-area: popularity;
-    text-align: right;
   }
 
   .vote-info {
@@ -407,7 +408,6 @@
     color: grey;
     font-weight: 500;
     position: relative;
-    left: 119px;
   }
 
   .genre-info span {
@@ -415,7 +415,6 @@
     text-align: left;
     max-width: 100%;
     position: relative;
-    left: 119px;
   }
 
   .upcom-about {
@@ -436,13 +435,13 @@
     font-weight: 500;
   }
 
-  .add-library-btn {
+  .add-library-btn- {
     grid-area: button;
     justify-self: start;
     padding: 10px 20px;
     font-size: 14px;
     border: 2px solid orange;
-    background-color: orange;
+    background: linear-gradient(to right, #f5921b, #ff2e00);
     color: #111;
     border-radius: 74px;
     cursor: pointer;
@@ -450,8 +449,8 @@
     width: 140px !important;
   }
 
-  .add-library-btn:hover {
-    background-color: #e76f00;
+  .add-library-btn-:hover {
+    background: linear-gradient(to right, #f5921b, #ff2e00);
     border-color: #e76f00;
   }
   .popularity-info strong {

@@ -52,6 +52,10 @@ span img {
   color: Grey;
 }
 
+.footer-modal-content a {
+  text-decoration: none;
+}
+
 @media (max-width: 767px) {
   .container-footer {
     display: flex;
@@ -87,6 +91,7 @@ span img {
     color: grey;
   }
 }
+
 /*                               modal kısmı                                     */
 .footerModal {
   position: fixed;
@@ -269,15 +274,47 @@ span img {
   transform: scale(1.2);
 }
 
-.html.light-theme,
-.footer-modal-content .modal-h2 {
-  color: #fff;
-}
-.html.light-theme,
 .footer-modal-content p {
-  color: #fff;
+  color: #111;
 }
 
+.icon {
+  width: 24px;
+  height: 24px;
+  fill: #333; /* varsayılan renk */
+  transition: transform 0.3s ease, fill 0.3s ease;
+}
+
+.social-links a:hover .icon {
+  transform: scale(1.3);
+}
+
+/* Sadece LinkedIn için özel renk */
+.social-links a[href*='linkedin']:hover .icon {
+  fill: #0a66c2; /* LinkedIn mavisi */
+}
+
+/* GitHub hover'da siyah kalsın */
+.social-links a[href*='github']:hover .icon {
+  fill: #111;
+}
+
+.html.light-theme .footer-modal-content .modal-h2 {
+  color: #fff;
+}
+.html.light-theme .footer-modal-content p {
+  color: #fff;
+}
+.html.light-theme .footer-modal-content .footer-p {
+  color: #111;
+}
+
+.footer-modal-content .modal-h2 {
+  color: white;
+}
+.footer-modal-content .modal-p {
+  color: white;
+}
 /* === RESPONSIVE === */
 @media (max-width: 600px) {
   .footer-modal-content {
