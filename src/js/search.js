@@ -1,7 +1,10 @@
 import { fetchMovies, ENDPOINTS, BASE_URL, IMG_BASE_URL } from './fetchMovies';
 import { createStarRating } from './stars';
 import { attachMovieClickListener } from './library.js';
+import { renderPagination } from './pagination.js';
 
+let currentPage=1;
+let totalPages=20;
 const input = document.getElementById("search");
 const warningMessage = document.getElementById("warning");
 const moviesContainer = document.getElementById("movies");
@@ -38,7 +41,7 @@ for (let y = currentYear; y >= 1900; y--) {
     yearInput.appendChild(option);
 }
 
-async function search() {
+export async function search(crntPage=1) {
   const {
     trendCard, posterWrapper, moviePoster, movieMeta,
     trendInfo, trendTitle, movieDetails, trendStars, movieRating
@@ -69,14 +72,18 @@ async function search() {
     endpoint = ENDPOINTS.DISCOVER_MOVIES;
     params['primary_release_year'] = selectedYear;
   }
-  
+  currentPage = crntPage
+  params['page'] = currentPage;
 
   try {
     const data = await fetchMovies(BASE_URL, endpoint, params);
+    
+    totalPages = data.total_pages;
+
     const movies = data.results.filter(movie => {
     const releaseYear = movie.release_date?.split('-')[0];
     return releaseYear === selectedYear;
-  });
+    });
 
     if (!Array.isArray(movies) || movies.length === 0) {
       warningMessage.style.display = "block";
@@ -117,7 +124,7 @@ async function search() {
         </div>
       `;
     }).join('');
-
+    renderPagination(currentPage, totalPages, "search");
     moviesContainer.innerHTML = markup;
     moviesContainer.scrollIntoView({ behavior: "smooth" });
 
