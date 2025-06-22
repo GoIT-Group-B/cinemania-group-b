@@ -1,5 +1,6 @@
 import { fetchMovies, ENDPOINTS, BASE_URL, IMG_BASE_URL } from './fetchMovies';
 import { createStarRating } from './stars';
+import { attachMovieClickListener } from './library.js';
 
 const input = document.getElementById("search");
 const warningMessage = document.getElementById("warning");
@@ -168,4 +169,9 @@ clearButton.addEventListener("click", clearSearch);
 
 searchButton.addEventListener("click", async () => {
   await search();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (moviesContainer) attachMovieClickListener(moviesContainer);
+
 });
