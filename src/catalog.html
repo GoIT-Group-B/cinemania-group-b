@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cinemania Catalog</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <!-- Font Awesome için gerekli bağlantı -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="./js/theme-loader.js"></script>
   </head>
   <body>
@@ -12,12 +14,14 @@
 
     <main>
       <load src="./partials/catalog-hero.html" />
+      <load src="./partials/catalog-search.html" />
       <load src="./partials/catalog-film-list.html" />
       <div class="pagination" id="pagination"></div>
     </main>
 
     <load src="./partials/footer.html" />
 
+    <script type="module" src="./js/search.js"></script>
     <script type="module" src="./js/theme.js"></script>
     <script type="module" src="./js/header.js"></script>
     <script type="module" src="./js/catalog-hero.js"></script>
