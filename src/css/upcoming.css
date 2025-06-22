@@ -160,7 +160,7 @@
   font-family: var(--font-family);
 }
 
-.add-library-btn {
+.add-library-btn- {
   box-sizing: border-box;
   display: inline-block;
   margin-top: 20px;
@@ -183,8 +183,8 @@
   border: 2px solid #f87719;
 }
 
-.add-library-btn:hover {
-  background-color: #fff;
+.add-library-btn-:hover {
+  background: #fff;
   border-color: #e76f00;
   color: #111;
 }
@@ -221,15 +221,14 @@
 .html.light-theme .strong-about {
   color: #111;
 }
-.html.light-theme .add-library-btn {
+.html.light-theme .add-library-btn- {
   background: linear-gradient(to right, #f5921b, #ff2e00);
   color: #282828;
   border: 2px solid #f87719;
 }
 
-.html.light-theme .add-library-btn:hover {
+.html.light-theme .add-library-btn-:hover {
   background: #111;
-  color: #f5921b;
 }
 
 .html.light-theme .popularity-info span {
@@ -283,7 +282,7 @@
     display: flex;
     flex-direction: column;
   }
-  .add-library-btn {
+  .add-library-btn- {
     width: 140px;
     height: 38px;
     font-size: 14px;
@@ -293,7 +292,7 @@
     width: 140px !important;
   }
 
-  .add-library-btn:hover {
+  .add-library-btn-:hover {
     background: linear-gradient(to right, #f5921b, #ff2e00);
   }
 
@@ -439,7 +438,7 @@
     font-weight: 500;
   }
 
-  .add-library-btn {
+  .add-library-btn- {
     grid-area: button;
     justify-self: start;
     padding: 10px 20px;
@@ -453,7 +452,7 @@
     width: 140px !important;
   }
 
-  .add-library-btn:hover {
+  .add-library-btn-:hover {
     background: linear-gradient(to right, #f5921b, #ff2e00);
     border-color: #e76f00;
   }

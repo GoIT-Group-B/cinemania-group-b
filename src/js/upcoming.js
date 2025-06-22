@@ -93,7 +93,7 @@ function renderMovie(
       <span>${filmGenres}</span>
       </p>
       <p class="upcom-about"><strong class="strong-about">ABOUT</strong> ${overviewText}</p>
-      <button class="add-library-btn">Add to my library</button>
+      <button class="add-library-btn-">Add to my library</button>
     </div>
   `;
 
@@ -105,29 +105,31 @@ function renderMovie(
 
   filmContainer.appendChild(filmElement);
 
-  filmElement.querySelector('.add-library-btn').addEventListener('click', () => {
-    const movieForModal = {
-      id,
-      title,
-      poster_path,
-      release_date,
-      vote_average,
-      vote_count,
-      popularity,
-      overview,
-      genre_ids,
-      genres: genreObjects,
-    };
+  filmElement
+    .querySelector('.add-library-btn-')
+    .addEventListener('click', () => {
+      const movieForModal = {
+        id,
+        title,
+        poster_path,
+        release_date,
+        vote_average,
+        vote_count,
+        popularity,
+        overview,
+        genre_ids,
+        genres: genreObjects,
+      };
 
-    let genreNames = [];
-    if (Array.isArray(genre_ids) && genre_ids.length > 0) {
-      genreNames = genre_ids.map(id => genresMap[id]).filter(Boolean);
-    } else if (Array.isArray(genreObjects) && genreObjects.length > 0) {
-      genreNames = genreObjects.map(g => g.name);
-    }
+      let genreNames = [];
+      if (Array.isArray(genre_ids) && genre_ids.length > 0) {
+        genreNames = genre_ids.map(id => genresMap[id]).filter(Boolean);
+      } else if (Array.isArray(genreObjects) && genreObjects.length > 0) {
+        genreNames = genreObjects.map(g => g.name);
+      }
 
-    showDetailsModal(movieForModal, genreNames);
-  });
+      showDetailsModal(movieForModal, genreNames);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', main);
