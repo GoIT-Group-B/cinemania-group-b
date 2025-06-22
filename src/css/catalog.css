@@ -277,6 +277,8 @@ body {
 #search {
   margin: 40px auto;
   text-align: center;
+  background-color: transparent;
+  color: rgba(183, 183, 183, 1)
 }
 
 .search-container {
@@ -298,6 +300,10 @@ body {
   color: white;
 }
 
+#year{
+  background-color: transparent;
+  color: rgba(183, 183, 183, 1)
+}
 .search-icon {
   width: 48px;
   height: 48px;
