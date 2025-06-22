@@ -48,7 +48,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
     // Previous
     const prevBtn = document.createElement("button");
     prevBtn.className = "nav-btn";
-    prevBtn.innerHTML = `<svg class="pg-icon"><use href="/assets/sprite-OSxcUjuV.svg#icon-left"></use></svg>`;
+    prevBtn.innerHTML = `<svg class="pg-icon"><use href="/cinemania-group-b/assets/sprite-OSxcUjuV.svg#icon-left"></use></svg>`;
     prevBtn.disabled = currentPage === 1;
     prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
@@ -91,7 +91,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
     // Next
     const nextBtn = document.createElement("button");
     nextBtn.className = "nav-btn";
-    nextBtn.innerHTML = `<svg class="pg-icon"><use href="/assets/sprite-OSxcUjuV.svg#icon-right"></use></svg>`;
+    nextBtn.innerHTML = `<svg class="pg-icon"><use href="/cinemania-group-b/assets/sprite-OSxcUjuV.svg#icon-right"></use></svg>`;
     nextBtn.disabled = currentPage === totalPages;
     nextBtn.addEventListener("click", () => {
     if (currentPage < totalPages) {
