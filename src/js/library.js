@@ -85,7 +85,7 @@ export function loadLibrary(filterGenre = null) {
           }
         </p>
         <button>
-          <a href="/catalog.html" class="my-library-search-link button">Search movie</a>
+          <a href="./catalog.html" class="my-library-search-link button">Search movie</a>
         </button>
       </div>
     `;
