@@ -1,5 +1,5 @@
 .pagination {
-    display: flex;
+    display: none;
     align-items: center;
     gap: 16px;
 }
@@ -48,6 +48,12 @@
     color: #B7B7B7;
     font-size: 14px;
     padding: 0 5px;
+}
+
+.pg-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
 }
 
 .light-theme .page-btn {
