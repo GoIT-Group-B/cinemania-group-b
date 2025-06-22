@@ -10,7 +10,7 @@
     border-radius: 50%;
     border: 1px solid #B7B7B7;
     background-color: transparent;
-    color: #ccc;
+    color: #B7B7B7;
     font-weight: 400;
     font-size: 14px;
     line-height: 14px;
@@ -23,7 +23,7 @@
     height: 40px;
     border: none;
     background-color: transparent;
-    color: #ccc;
+    color: #B7B7B7;
     font-weight: 400;
     font-size: 14px;
     line-height: 14px;
@@ -40,13 +40,13 @@
 .page-btn.active {
     background: linear-gradient(145deg, #FFC226, #F84119);
     border: none;
-    color: white;
+    color: #FFFFFF;
     font-weight: bold;
 }
 
 .dots {
-    color: #888;
-    font-size: 20px;
+    color: #B7B7B7;
+    font-size: 14px;
     padding: 0 5px;
 }
 
@@ -54,4 +54,44 @@
     width: 20px;
     height: 20px;
     stroke: currentColor;
+}
+
+.light-theme .page-btn {
+    border: 1px solid #595959;
+    background-color: transparent;
+    color: #595959;
+}
+
+.light-theme .page-btn.active {
+    border: none;
+    color: #282828;
+}
+
+.light-theme .nav-btn {
+    color: #B7B7B7;
+}
+
+.light-theme .page-btn:hover,
+.light-theme .nav-btn:hover {
+    border-color: #000000;
+    color: #000000;
+}
+
+@media (max-width: 480px) {
+    .pagination {
+        gap: 8px;
+    }
+
+    .page-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+        line-height: 10px;
+    }
+
+    .nav-btn {
+        width: 20px;
+        height: 20px;
+        border: none;
+    }
 }

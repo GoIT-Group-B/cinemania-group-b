@@ -1,0 +1,205 @@
+.search-form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    margin: 0 auto;
+        /* Yukarıdan boşluk ekle */
+        max-width: 60px;
+        /* ortalamaya yardımcı olur */
+    /* sayfanın en altından biraz yukarıda olsunmasını sağlar */
+}
+
+#search,
+#year {
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    flex: 1;
+}
+
+#year {
+    position: relative;
+    left: -16px;
+}
+
+
+.search-button {
+    width: 44px;
+    height: 44px;
+    background-color: orange;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-left: -10px;
+    /* input ile buton arası boşluk */
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: darkorange;
+}
+
+ .clear-button{
+    display: none;
+        position: relative;
+        right: 30px; /* Arama butonuna göre konum */
+         top: 13px;
+        transform: translateY(-50%);
+        color: #aaa;
+        font-size: 14px;
+        cursor: pointer;
+        background-color: #fff;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+        line-height: 24px;
+        z-index: 1;
+        transition: color 0.2s;
+}
+.clear-button:hover {
+    color: #555;
+}  
+
+
+
+.gude
+{
+    font-family: 'Roboto Medium';
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 36px;
+        letter-spacing: 0%;
+        text-align: center;
+        width: 684px;
+        height: 124px;
+        /* birim eklendi */
+        top: 968px;
+        left: 297px;
+    
+        padding-left: 300px;
+        /* Yazıyı biraz sağa kaydırır */
+    }
+
+#year { 
+    display: none;
+}
+
+#movies {
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    /* 3'lü düzen için */
+    gap: 20px;
+    padding: 20px;
+    /* fazla olursa scroll için yükseklik 
+    max-height: 70vh; 
+    overflow-y: auto;*/
+}
+
+/* Film kartı */
+.movie {
+    position: relative;
+        width: 395px;
+        height: 574px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.movie:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* Poster görseli */
+.movie img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+/* Başlık ve rating */
+.movie h3 {
+    margin: 10px 0 5px;
+    font-size: 1.1rem;
+}
+
+.movie p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+@media (max-width: 1024px) {
+    /* Tablet */
+    #movies {
+      grid-template-columns: repeat(2, 1fr); /* 2 sütun */
+    }
+  
+    .gude {
+      width: auto;
+      padding-left: 0;
+      font-size: 28px;
+      line-height: 32px;
+    }
+  
+    .movie {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Büyük telefon + küçük tablet */
+    .search-form {
+      flex-direction: column;
+      align-items: stretch;
+      max-width: 30%;
+      margin-bottom: 20px;
+    }
+  
+    #search,
+    #year {
+      width: 100%;
+      margin-bottom: 10px;
+      left: 0; /* year input düzeltmesi */
+    }
+  
+    .search-button {
+      width: 100%;
+      border-radius: 8px;
+      margin-left: 0;
+    }
+  
+    .clear-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  
+    #movies {
+      grid-template-columns: 1fr;
+      padding: 10px;
+    }
+  
+    .gude {
+      font-size: 24px;
+      text-align: center;
+      padding-left: 0;
+    }
+  
+    .movie {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }  

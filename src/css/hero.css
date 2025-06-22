@@ -1,3 +1,20 @@
+
+.hero-img-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #e0e0e0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero-wrap {
   position: relative;
   overflow: hidden;
@@ -65,7 +82,7 @@
 
 .description {
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,6 +170,35 @@
   max-height: 289px;
   background-color: black;
 }
+/* Mobil görünümde arka plan görselinin taşmasını önle */
+@media (max-width: 480px) {
+  .background-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: none;
+    z-index: 0;
+  }
+
+  .backend {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+    transition: opacity 0.8s ease-in-out;
+  }
+
+  .hero-img-wrapper {
+    overflow: hidden;
+  }
+
+  .hero-wrap {
+    height: 360px;
+  }
+}
+
+
 
 @media (min-width: 320px) {
   .background-image {
@@ -210,7 +256,7 @@
 
   .description {
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -300,13 +346,13 @@
     font-size: 64px;
     font-weight: 700;
     margin-bottom: 16px;
-    max-width: 800px;
+    max-width: 1020px;
     width: 1020px;
   }
 
   .description {
     display: -webkit-box;
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -352,3 +398,4 @@
     font-size: 16px;
   }
 }
+
