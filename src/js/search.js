@@ -1,3 +1,6 @@
+import { fetchMovies, ENDPOINTS, BASE_URL, IMG_BASE_URL } from './fetchMovies';
+import { createStarRating } from './stars';
+
 const input = document.getElementById("search");
 const warningMessage = document.getElementById("warning");
 const moviesContainer = document.getElementById("movies");
@@ -6,9 +9,25 @@ const searchButton = document.querySelector(".search-button");
 const yearInput = document.getElementById("year");
 const movieListSection = document.getElementById("movieList");
 
-const BASE_URL = "https://api.themoviedb.org/3/discover/movie";
-const IMG_URL = "https://image.tmdb.org/t/p/w500";
-const API_KEY = "52238d7fab5c2c01b99e751619dd16ec";
+const classList = {
+    trendCard: 'trend-card',
+    posterWrapper: 'poster-wrapper',
+    moviePoster: 'movie-poster',
+    movieMeta: 'movie-meta',
+    trendInfo: 'trend-info',
+    trendTitle: 'trend-title',
+    movieDetails: 'movie-details',
+    trendStars: 'trend-stars',
+    movieRating: 'movie-rating',
+  };
+
+  const genreMap = {
+    28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
+    80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family',
+    14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music',
+    9648: 'Mystery', 10749: 'Romance', 878: 'Science Fiction',
+    10770: 'TV Movie', 53: 'Thriller', 10752: 'War', 37: 'Western',
+  };
 
 const currentYear = new Date().getFullYear();
 for (let y = currentYear; y >= 1900; y--) {
@@ -18,75 +37,95 @@ for (let y = currentYear; y >= 1900; y--) {
     yearInput.appendChild(option);
 }
 
-function search() {
-    const query = input.value.trim();
-    const selectedYear = yearInput.value;
+async function search() {
+  const {
+    trendCard, posterWrapper, moviePoster, movieMeta,
+    trendInfo, trendTitle, movieDetails, trendStars, movieRating
+  } = classList;
 
-    moviesContainer.innerHTML = "";
+  const query = input.value.trim();
+  const selectedYear = yearInput.value;
 
-    if (movieListSection) {
-        movieListSection.style.display = "none";
+  moviesContainer.innerHTML = "";
+
+  if (movieListSection) {
+    movieListSection.style.display = "none";
+  }
+
+  if (query === "" && selectedYear === "") {
+    alert("Please enter a search term or select a year.");
+    return;
+  }
+
+  let endpoint = '';
+  const params = {};
+
+  if (query !== "") {
+    endpoint = ENDPOINTS.SEARCH_MOVIES;
+    params.query = query;
+    if (selectedYear !== "") params.year = selectedYear;
+  } else {
+    endpoint = ENDPOINTS.DISCOVER_MOVIES;
+    params['primary_release_year'] = selectedYear;
+  }
+  
+
+  try {
+    const data = await fetchMovies(BASE_URL, endpoint, params);
+    const movies = data.results.filter(movie => {
+    const releaseYear = movie.release_date?.split('-')[0];
+    return releaseYear === selectedYear;
+  });
+
+    if (!Array.isArray(movies) || movies.length === 0) {
+      warningMessage.style.display = "block";
+      return;
     }
 
-    if (query === "" && selectedYear === "") {
-        alert("Please enter a search term or select a year.");
-        return;
-    }
+    warningMessage.style.display = "none";
 
-    let url = "";
-    if (query !== "") {
-        url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${encodeURIComponent(query)}`;
-        if (selectedYear !== "") {
-            url += `&year=${selectedYear}`;
-        }
-    } else if (selectedYear !== "") {
-        url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&year=${selectedYear}`;
-    }
+    const markup = movies.map(movie => {
+      const {
+        title, poster_path, release_date,
+        vote_average, genre_ids, id
+      } = movie;
 
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            if (data.results.length === 0) {
-                warningMessage.style.display = "block";
-            } else {
-                warningMessage.style.display = "none";
-            }
+      const year = release_date ? release_date.split('-')[0] : 'N/A';
+      console.log(year)
+      const genres = genre_ids?.slice(0, 2).map(id => genreMap[id] || 'Unknown').join(', ');
+      const starRating = createStarRating(vote_average);
 
-            data.results.forEach(movie => {
-                const movieEl = document.createElement("div");
-                movieEl.classList.add("movie");
-
-                movieEl.innerHTML = `
-                   
-                    
-                    <p>Rating: ${movie.vote_average}</p>
-                   
-                
-                <div class="${ trendCard }" data-id=${movie.id}>
-          <div class="${ posterWrapper }">
-             <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'https://via.placeholder.com/200x300'}" alt="${movie.title}">
-            <div class="${ trendInfo }">
-              <div class="${ movieMeta }">
-                <h3>${movie.title}</h3>
-                <p class="${ movieDetails }">${genres} | ${movie.release_date}</p>
+      return `
+        <div class="${trendCard}" data-id="${id}">
+          <div class="${posterWrapper}">
+            <img 
+              src="${poster_path ? IMG_BASE_URL + ENDPOINTS.IMG_W500 + poster_path : 'https://placehold.co/300x450?text=No+Image'}" 
+              alt="${title}" 
+              class="${moviePoster}" 
+            />
+            <div class="${trendInfo}">
+              <div class="${movieMeta}">
+                <h3 class="${trendTitle}">${title}</h3>
+                <p class="${movieDetails}">${genres} | ${year}</p>
               </div>
-              <div class="${ trendStars }">
-                <div class="${ movieRating }">${starRating}</div>
+              <div class="${trendStars}">
+                <div class="${movieRating}">${starRating}</div>
               </div>
             </div>
           </div>
-                </div>
-                `;
+        </div>
+      `;
+    }).join('');
 
-                moviesContainer.appendChild(movieEl);
-            });
+    moviesContainer.innerHTML = markup;
+    moviesContainer.scrollIntoView({ behavior: "smooth" });
 
-            moviesContainer.scrollIntoView({ behavior: "smooth" });
-        })
-        .catch(error => {
-            console.log("Error:", error);
-        });
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    warningMessage.style.display = "block";
+  }
 }
+
 
 input.addEventListener("input", () => {
     yearInput.style.display = input.value.trim() !== "" ? "block" : "none";
@@ -126,4 +165,7 @@ function clearSearch() {
 }
 
 clearButton.addEventListener("click", clearSearch);
-searchButton.addEventListener("click", search);
+
+searchButton.addEventListener("click", async () => {
+  await search();
+});
