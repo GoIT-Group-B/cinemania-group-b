@@ -335,57 +335,16 @@ body {
 }
 
 
-.library-list {
-  display: grid;
 
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
-  padding: 40px 0;
-  justify-content: center;
-}
 
-.movie-card {
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
 
-.movie-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-}
 
-.movie-poster {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-  border-bottom: 1px solid #3a3a3a;
-}
 
-.movie-title {
-  font-size: 1.1em;
-  font-weight: 500;
-  color: #e0e0e0;
-  margin: 10px 10px 5px 10px;
-  text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-.movie-info {
-  font-size: 0.9em;
-  color: #b0b0b0;
-  margin: 0 10px 10px 10px;
-  text-align: center;
-}
+
+
+
+
 
 
 .no-results-message,
@@ -488,14 +447,9 @@ body {
 
 /* --- Responsive Ayarlamalar --- */
 @media (max-width: 768px) {
-  .library-list {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 15px;
-  }
+  
 
-  .movie-title {
-    font-size: 1em;
-  }
+  
 
   .search-form {
     flex-direction: column;
@@ -553,27 +507,7 @@ body {
 }
 
 @media (max-width: 480px) {
-  .library-list {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 10px;
-  }
-
-  .movie-title {
-    font-size: 0.9em;
-    margin: 8px 5px 3px 5px;
-  }
-
-  .movie-info {
-    font-size: 0.8em;
-    margin: 0 5px 8px 5px;
-  }
-
-  .search-button,
-  .clear-search-button {
-    width: 100%;
-    max-width: 250px;
-  }
-
+ 
   .pagination-button {
     padding: 8px 12px;
     font-size: 0.9em;
