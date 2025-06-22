@@ -1,7 +1,9 @@
 import { fetchFirstPageMovies } from './catalog-film-list.js';
+import { search } from './search.js';
 
 let totalPages = 24;
 let currentPage = 1;
+let ref = "search";
 
 const paginationEl = document.getElementById("pagination");
 
@@ -20,8 +22,13 @@ function createPageButton(label, isActive = false, isDisabled = false, isDots = 
     if (!isDisabled) {
     button.addEventListener("click", () => {
         currentPage = Number(label);
-        fetchFirstPageMovies(currentPage);
-        renderPagination(currentPage,totalPages);
+        console.log('REFF=' + ref);
+        if (ref == "first") {
+            fetchFirstPageMovies(currentPage);
+        } else {
+            search(currentPage);
+        }
+        //renderPagination(currentPage,totalPages);
     });
     } else {
     button.disabled = true;
@@ -29,21 +36,28 @@ function createPageButton(label, isActive = false, isDisabled = false, isDots = 
     return button;
 }
 
-export function renderPagination(crntPage = 1, ttlPages = 24) {
+export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
     currentPage = crntPage;
-    totalPages = ttlPages > 500 ? 500:ttlPages;
+    totalPages = ttlPages > 500 ? 500 : ttlPages;
+    ref = reff;
+    console.log('REF=' + ref+" "+currentPage);
     paginationEl.innerHTML = "";
+    paginationEl.style.display = (totalPages > 1) ? "flex" : "none";
 
     // Previous
     const prevBtn = document.createElement("button");
     prevBtn.className = "nav-btn";
-    prevBtn.textContent = "<";
+    prevBtn.innerHTML = `<svg class="pg-icon"><use href="./images/sprite.svg#icon-left"></use></svg>`;
     prevBtn.disabled = currentPage === 1;
     prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
-        fetchFirstPageMovies(currentPage);
-        renderPagination(currentPage,totalPages);
+        if (ref == "first") {
+            fetchFirstPageMovies(currentPage);
+        } else {
+            search(currentPage);
+        }
+        //renderPagination(currentPage,totalPages);
     }
     });
     paginationEl.appendChild(prevBtn);
@@ -69,20 +83,24 @@ export function renderPagination(crntPage = 1, ttlPages = 24) {
     if (item === "...") {
         paginationEl.appendChild(createPageButton("...", false, true, true));
     } else {
-        paginationEl.appendChild(createPageButton(item, item === currentPage));
+        paginationEl.appendChild(createPageButton(item, item === currentPage,item === currentPage));
     }
     });
 
     // Next
     const nextBtn = document.createElement("button");
     nextBtn.className = "nav-btn";
-    nextBtn.textContent = ">";
+    nextBtn.innerHTML = `<svg class="pg-icon"><use href="./images/sprite.svg#icon-right"></use></svg>`;
     nextBtn.disabled = currentPage === totalPages;
     nextBtn.addEventListener("click", () => {
     if (currentPage < totalPages) {
         currentPage++;
-        fetchFirstPageMovies(currentPage);
-        renderPagination(currentPage,totalPages);
+        if (ref == "first") {
+            fetchFirstPageMovies(currentPage);
+        } else {
+            search(currentPage);
+        }
+        //renderPagination(currentPage,totalPages);
     }
     });
     paginationEl.appendChild(nextBtn);

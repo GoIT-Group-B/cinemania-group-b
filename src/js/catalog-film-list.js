@@ -23,11 +23,9 @@ export async function fetchFirstPageMovies(crntPage=1) {
   const data = await response.results;
   currentPage = crntPage
   totalPages = response.total_pages;
-  console.log(response)
-  console.log(currentPage)
-  console.log(totalPages)
+  
   renderMovieCards(data);
-  renderPagination(currentPage,totalPages)
+  renderPagination(currentPage, totalPages, "first");
 }
 
 function renderMovieCards(movies) {
