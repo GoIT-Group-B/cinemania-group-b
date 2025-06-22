@@ -64,7 +64,7 @@
 }
 @media (max-width: 1279px) {
   .library-list {
-    grid-template-columns: repeat(3, 0fr);
+    grid-template-columns: repeat(3, 1fr);
     display: grid;
     gap: 30px;
   }
