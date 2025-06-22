@@ -309,6 +309,12 @@ span img {
   color: #111;
 }
 
+.footer-modal-content .modal-h2 {
+  color: white;
+}
+.footer-modal-content .modal-p {
+  color: white;
+}
 /* === RESPONSIVE === */
 @media (max-width: 600px) {
   .footer-modal-content {
