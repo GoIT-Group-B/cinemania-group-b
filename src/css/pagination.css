@@ -50,3 +50,8 @@
     padding: 0 5px;
 }
 
+.pg-icon {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
