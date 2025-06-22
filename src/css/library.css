@@ -48,11 +48,20 @@ select option.hidden-option {
 
 .library-gallery {
   display: flex;
+  
   flex-direction: column;
   gap: 16px;
   padding: 20px;
 }
-
+.load-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+}
+.load-more button{
+  color: #111;
+}
 .movie-card {
   background: #1e1e1e;
   padding: 12px;
@@ -90,7 +99,7 @@ select option.hidden-option {
   font-size: 32px;
 }
 
-.my-library-no-movies button {
+.my-library-no-movies button, .load-more-btn {
   padding: auto;
   border: none;
   border-radius: 30px;
