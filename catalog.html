@@ -6,11 +6,12 @@
     <title>Cinemania Catalog</title>
     <!-- Font Awesome için gerekli bağlantı -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="./js/theme-loader.js"></script>
+    <script src="./js/theme-loader.js" defer></script>
+    <script src="./js/scroll-up.js" defer></script>
     <script type="module" crossorigin src="/cinemania-group-b/catalog.js"></script>
     <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/vendor-DDD7fsZd.js">
-    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/footer-CQfPMLlz.js">
-    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/footer-BdR6DrH9.css">
+    <link rel="modulepreload" crossorigin href="/cinemania-group-b/assets/footer-KgHnxcCY.js">
+    <link rel="stylesheet" crossorigin href="/cinemania-group-b/assets/footer-BTPRsHRh.css">
   </head>
   <body>
     <header class="header">
@@ -100,7 +101,7 @@
   <p>🎥 Üzgünüz, bu film için fragman bulunamadı.</p>
 </div>
 
-      <section>
+      <section class="search-section">
   <div class="search-form">
     <input type="text" id="search" placeholder="Search" />
     <span class="clear-button" id="clearButton">
@@ -108,7 +109,7 @@
         </span>
 
     <select id="year" >
-        <option value="">Year</option>
+        <option class="default-tag" value="">Year</option>
     </select>
 
     <button class="search-button">
@@ -459,6 +460,9 @@
   </div>
 </footer>
 
+    <button class="scroll-up-button" title="Scroll to top">
+    ↑
+  </button>
 
   </body>
 </html>
