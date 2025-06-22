@@ -1,26 +1,13 @@
 import { createStarRating } from './stars';
 import { BASE_URL, IMG_BASE_URL, ENDPOINTS, fetchMovies } from './fetchMovies';
+import { setupLoadMore } from './loader';
 
 const genreMap = {
-  28: 'Action',
-  12: 'Adventure',
-  16: 'Animation',
-  35: 'Comedy',
-  80: 'Crime',
-  99: 'Documentary',
-  18: 'Drama',
-  10751: 'Family',
-  14: 'Fantasy',
-  36: 'History',
-  27: 'Horror',
-  10402: 'Music',
-  9648: 'Mystery',
-  10749: 'Romance',
-  878: 'Science Fiction',
-  10770: 'TV Movie',
-  53: 'Thriller',
-  10752: 'War',
-  37: 'Western',
+  28: 'Action', 12: 'Adventure', 16: 'Animation', 35: 'Comedy',
+  80: 'Crime', 99: 'Documentary', 18: 'Drama', 10751: 'Family',
+  14: 'Fantasy', 36: 'History', 27: 'Horror', 10402: 'Music',
+  9648: 'Mystery', 10749: 'Romance', 878: 'Science Fiction',
+  10770: 'TV Movie', 53: 'Thriller', 10752: 'War', 37: 'Western',
 };
 
 const invertedGenreMap = Object.entries(genreMap).reduce((acc, [id, name]) => {
@@ -33,8 +20,8 @@ function populateGenreDropdown() {
   if (!selectElement) return;
 
   selectElement.innerHTML = `
-  <option class="hidden-option" value="Genre" selected disabled>Genre</option>
-  <option value="all">All</option>
+    <option class="hidden-option" value="Genre" selected disabled>Genre</option>
+    <option value="all">All</option>
   `;
 
   Object.values(genreMap)
@@ -85,13 +72,12 @@ export function loadLibrary(filterGenre = null) {
           }
         </p>
         <button>
-          <a href="/catalog.html" class="my-library-search-link button">Search movie</a>
+          <a href="./catalog.html" class="my-library-search-link button">Search movie</a>
         </button>
       </div>
     `;
 
     mainContainer.innerHTML = noMoviesMarkup;
-
     return;
   }
 
@@ -116,7 +102,50 @@ export function loadLibrary(filterGenre = null) {
     genreDropdownElement.value = filterGenre;
   }
 
-  const markup = moviesToRender
+  // Load More için setup
+  setupLoadMore({
+    movies: moviesToRender,
+    renderCallback: renderMoviesBatch,
+    containerSelector: '.library-gallery-list',
+    btnSelector: '.load-more-btn',
+    moviesPerPage: 9,
+  });
+
+  genreDropdownElement?.addEventListener('change', event => {
+    const selectedGenre = event.target.value;
+    loadLibrary(selectedGenre);
+  });
+}
+
+export function attachMovieClickListener(container) {
+  if (!container) return;
+
+  container.addEventListener('click', async event => {
+    const target = event.target.closest('.trend-card');
+    if (!target) return;
+
+    const movieId = target.dataset.id;
+    let allMovies = JSON.parse(localStorage.getItem('myLibrary')) || [];
+    let movie = allMovies.find(m => m.id === Number(movieId));
+
+    if (!movie) {
+      try {
+        movie = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_DETAILS(movieId));
+        movie.genre_ids = movie.genres?.map(g => g.id) || [];
+      } catch (err) {
+        console.error('API fetch error:', err);
+        return;
+      }
+    }
+
+    const { showDetailsModal } = await import('./modal.js');
+    const genreNames = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean) || [];
+    showDetailsModal(movie, genreNames);
+  });
+}
+
+function renderMoviesBatch(moviesArray) {
+  const markup = moviesArray
     .map(movie => {
       const { id, title, poster_path, release_date, vote_average, genre_ids } = movie;
       const year = release_date ? release_date.split('-')[0] : 'N/A';
@@ -140,46 +169,10 @@ export function loadLibrary(filterGenre = null) {
     })
     .join('');
 
+  const listContainer = document.querySelector('.library-gallery-list');
   listContainer.insertAdjacentHTML('beforeend', markup);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // library sayfası için
-    const libraryContainer = document.querySelector('.library-gallery-list');
-    if (libraryContainer) attachMovieClickListener(libraryContainer);
-  });
-
-  genreDropdownElement?.addEventListener('change', event => {
-    const selectedGenre = event.target.value;
-    loadLibrary(selectedGenre);
-  });
-}
-
-export function attachMovieClickListener(container) {
-  if (!container) return;
-
-  container.addEventListener('click', async event => {
-    const target = event.target.closest('.trend-card');
-    if (!target) return;
-
-    const movieId = target.dataset.id;
-    let allMovies = JSON.parse(localStorage.getItem('myLibrary')) || [];
-    let movie = allMovies.find(m => m.id === Number(movieId));
-
-    if (!movie) {
-      // Eğer localStorage'da yoksa API'den çek
-      try {
-        movie = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_DETAILS(movieId));
-        movie.genre_ids = movie.genres?.map(g => g.id) || [];
-      } catch (err) {
-        console.error('API fetch error:', err);
-        return;
-      }
-    }
-
-    const { showDetailsModal } = await import('./modal.js');
-    const genreNames = movie.genre_ids?.map(id => genreMap[id]).filter(Boolean) || [];
-    showDetailsModal(movie, genreNames);
-  });
+  attachMovieClickListener(listContainer);
 }
 
 loadLibrary();
