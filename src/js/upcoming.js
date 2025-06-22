@@ -5,6 +5,7 @@ import {
   BASE_URL,
   IMG_BASE_URL,
 } from './fetchMovies.js';
+import { showDetailsModal } from './modal.js';
 
 // Genres dizisini id => name objesine çeviren yardımcı fonksiyon
 function convertGenresToMap(genresArray) {
@@ -86,7 +87,7 @@ function renderMovie(
       <span class="slash">/</span>
       <span class="vote-box vote-box-right">${vote_count}</span>
       </p>
-      <p class="popularity-info"><strong>Popularity:</strong> ${popularity}</p>
+      <p class="popularity-info"><strong>Popularity:</strong> <span>${popularity}</span></p>
       <p class="genre-info">
       <strong>Genres:</strong> 
       <span>${filmGenres}</span>
@@ -96,13 +97,37 @@ function renderMovie(
     </div>
   `;
 
-  filmElement
-    .querySelector('.add-library-btn')
-    .addEventListener('click', () => {
-      console.log(`"${title}" kütüphaneye eklendi!`);
-    });
+  // filmElement
+  //   .querySelector('.add-library-btn')
+  //   .addEventListener('click', () => {
+  //     console.log(`"${title}" kütüphaneye eklendi!`);
+  //   });
 
   filmContainer.appendChild(filmElement);
+
+  filmElement.querySelector('.add-library-btn').addEventListener('click', () => {
+    const movieForModal = {
+      id,
+      title,
+      poster_path,
+      release_date,
+      vote_average,
+      vote_count,
+      popularity,
+      overview,
+      genre_ids,
+      genres: genreObjects,
+    };
+
+    let genreNames = [];
+    if (Array.isArray(genre_ids) && genre_ids.length > 0) {
+      genreNames = genre_ids.map(id => genresMap[id]).filter(Boolean);
+    } else if (Array.isArray(genreObjects) && genreObjects.length > 0) {
+      genreNames = genreObjects.map(g => g.name);
+    }
+
+    showDetailsModal(movieForModal, genreNames);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', main);

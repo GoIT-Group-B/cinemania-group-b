@@ -6,7 +6,27 @@ import {
   fetchGenres,
 } from './fetchMovies';
 import { createStarRating } from './stars';
-import { openMovieDetailModal } from './pop-up.js';
+import { showDetailsModal, showTrailerModal, showErrorModal } from './modal.js';
+
+const heroClassList = {
+  container: '.hero-container',
+  content: 'hero-content',
+  title: 'hero-title',
+  rating: 'hero-rating',
+  description: 'hero-description',
+  buttons: 'hero-buttons',
+  trailerBtn: 'watch-trailer-btn',
+  detailsBtn: 'more-details-btn',
+  trailerBtnClass: '.watch-trailer-btn',
+  detailsBtnClass: '.more-details-btn',
+  categoryCard : 'category-card',
+};
+
+const heroIdList = {
+  trailerModal: 'trailerModal',
+  trailerIframe: 'trailerIframe',
+  trailerCloseBtn: 'closeTrailer',
+}
 
 async function fetchTrendingMovie() {
   const response = await fetchMovies(BASE_URL, ENDPOINTS.POPULAR_MOVIES);
@@ -15,71 +35,59 @@ async function fetchTrendingMovie() {
   let index = 0;
   const heroContainer = document.querySelector('.hero-container');
 
-  // İlk film
   updateHero(data[index]);
 
   setInterval(() => {
-    // Opaklığı sıfırla (kaybolsun)
     heroContainer.style.opacity = '0';
 
-    // Bekle ve sonra değiştir
     setTimeout(() => {
       index = (index + 1) % data.length;
       updateHero(data[index]);
 
-      // Yeni film geldiğinde tekrar görünür yap
       heroContainer.style.opacity = '1';
-    }, 500); // Geçiş efekti süresi
+    }, 500);
   }, 5000);
 }
 
 function updateHero(movie) {
-  const heroContainer = document.querySelector('.hero-container');
+  
+const { container, content, title, rating, description, buttons, trailerBtn, detailsBtn, trailerBtnClass, detailsBtnClass, trailerCloseBtn } = heroClassList;
+  const heroContainer = document.querySelector(container);
 
-  // Eğer ekran genişliği 480px'den küçükse poster_path kullan
-  function setHeroBackground(movie) {
-    const isMobile = window.innerWidth < 480;
-    const imagePath = isMobile
-      ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
-      : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
+  const isMobile = window.innerWidth < 480;
+  const imagePath = isMobile
+    ? `${ENDPOINTS.IMG_W500}${movie.poster_path}`
+    : `${ENDPOINTS.IMG_W1280}${movie.backdrop_path}`;
 
-    const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
-    heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
-    heroContainer.style.backgroundSize = 'cover';
-    heroContainer.style.backgroundPosition = 'center';
-    heroContainer.style.backgroundRepeat = 'no-repeat';
-  }
-
-  // Sayfa yüklendiğinde ve yeniden boyutlandırıldığında çalıştır
-  window.addEventListener('load', () => setHeroBackground(movie));
-  window.addEventListener('resize', () => setHeroBackground(movie));
+  const backgroundUrl = `${IMG_BASE_URL}${imagePath}`;
+  heroContainer.style.backgroundImage = `url('${backgroundUrl}')`;
+  heroContainer.style.backgroundSize = 'cover';
+  heroContainer.style.backgroundPosition = 'center';
+  heroContainer.style.backgroundRepeat = 'no-repeat';
 
   const starsHTML = createStarRating(movie.vote_average);
 
   heroContainer.innerHTML = `
-    <div class="hero-content">
-      <h1 class="hero-title">${movie.title}</h1>
-      <div class="hero-rating">${starsHTML}</div>
-      <p class="hero-description">${movie.overview}</p>
-      <div class="hero-buttons">
-        <button class="watch-trailer-btn">Watch trailer</button>
-        <button class="more-details-btn">More details</button>
+    <div class="${content}">
+      <h1 class="${title}">${movie.title}</h1>
+      <div class="${rating}">${starsHTML}</div>
+      <p class="${description}">${movie.overview}</p>
+      <div class="${buttons}">
+        <button class="${trailerBtn}">Watch trailer</button>
+        <button class="${detailsBtn}">More details</button>
       </div>
     </div>
   `;
 
-  const watchBtn = document.querySelector('.watch-trailer-btn');
-  watchBtn.addEventListener('click', () => openTrailerModal(movie.id));
+  const watchBtn = document.querySelector(trailerBtnClass);
+  watchBtn.addEventListener('click', () => handleTrailerClick(movie.id));
 
-  const moreBtn = document.querySelector('.more-details-btn');
-  moreBtn.addEventListener('click', () => openMovieDetailModal(movie));
+  const moreBtn = document.querySelector(detailsBtnClass);
+  moreBtn.addEventListener('click', () => showDetailsModal(movie));
 }
 
 async function fetchCategories() {
-  const response = await fetch(
-    `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`
-  );
-  const data = await response.json();
+  const data = await fetchMovies(BASE_URL, ENDPOINTS.GENRE_LIST);
   renderCategories(data.genres);
 }
 
@@ -90,7 +98,7 @@ function renderCategories(genres) {
   categorySection.innerHTML = genres
     .map(
       genre => `
-        <div class="category-card">${genre.name}</div>
+        <div class="${categoryCard}">${genre.name}</div>
       `
     )
     .join('');
@@ -101,33 +109,29 @@ fetchCategories();
 
 export { fetchTrendingMovie, updateHero, fetchCategories, renderCategories };
 
-async function openTrailerModal(movieId) {
-  const response = await fetch(
-    `${BASE_URL}/movie/${movieId}/videos?api_key=52238d7fab5c2c01b99e751619dd16ec&language=en-US`
-  );
-  const data = await response.json();
+async function handleTrailerClick(movieId) {
+  try {
+    const res = await fetchMovies(BASE_URL, ENDPOINTS.MOVIE_VIDEOS(movieId));
+    const trailer = res.results.find(
+      video => video.type === 'Trailer' && video.site === 'YouTube'
+    );
 
-  // YouTube videoları içinde trailer olanı bul
-  const trailer = data.results.find(
-    video => video.type === 'Trailer' && video.site === 'YouTube'
-  );
-
-  const iframe = document.getElementById('trailerIframe');
-  const modal = document.getElementById('trailerModal');
-
-  if (trailer) {
-    iframe.src = `https://www.youtube.com/embed/${trailer.key}`;
-    modal.style.display = 'block';
-  } else {
-    alert('Trailer bulunamadı.');
+    if (trailer) {
+      showTrailerModal(trailer.key);
+    } else {
+      showErrorModal();
+    }
+  } catch (error) {
+    console.error('Trailer fetch error:', error);
+    showErrorModal();
   }
 }
 
-// Modal kapatma
-document.getElementById('closeTrailer').addEventListener('click', () => {
-  const modal = document.getElementById('trailerModal');
-  const iframe = document.getElementById('trailerIframe');
+document.getElementById(heroIdList.trailerCloseBtn).addEventListener('click', () => {
+  const { trailerModal, trailerIframe } = heroIdList;
+  const modal = document.getElementById(trailerModal);
+  const iframe = document.getElementById(trailerIframe);
 
   modal.style.display = 'none';
-  iframe.src = ''; // Temizle
+  iframe.src = '';
 });

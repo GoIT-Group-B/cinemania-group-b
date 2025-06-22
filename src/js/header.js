@@ -1,6 +1,14 @@
-const menuToggle = document.querySelector('.menu-toggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileOverlay = document.getElementById('mobileOverlay');
+const headerClassAndIdList = {
+    menuToggleClass: '.menu-toggle',
+    mobileMenuId: 'mobileMenu',
+    mobileOverlayId: 'mobileOverlay',
+}
+
+const { menuToggleClass, mobileMenuId, mobileOverlayId } = headerClassAndIdList;
+
+const menuToggle = document.querySelector(menuToggleClass);
+const mobileMenu = document.getElementById(mobileMenuId);
+const mobileOverlay = document.getElementById(mobileOverlayId);
 
 menuToggle.addEventListener('click', () => {
     mobileMenu.classList.toggle('open');

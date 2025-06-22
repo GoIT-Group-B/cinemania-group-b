@@ -1,5 +1,6 @@
 import { BASE_URL, IMG_BASE_URL, ENDPOINTS, fetchMovies, fetchGenres } from './fetchMovies.js';
 import { createStarRating } from './stars';
+import { attachMovieClickListener } from './library.js';
 
 let isExpanded = false;
 let allMovies = [];
@@ -59,13 +60,21 @@ function renderMovieCard(movie, delay = 0) {
   const starRating = createStarRating(movie.vote_average);
 
   return `
-    <div class="trend-card" data-id="${movie.id}" style="animation-delay: ${delay}ms;">
+    <div class="trend-card" data-id="${movie.id}">
       <img src="${IMG_BASE_URL}${ENDPOINTS.IMG_W500}${movie.poster_path}" alt="${movie.title}">
       <div class="trend-info">
-        <h3>${movie.title}</h3>
-        <p>${genres} | ${movie.release_date?.split('-')[0] || 'N/A'}</p>
+        <div class="movie-meta trend-info-left">
+          <h3 class="trend-title">${movie.title}</h3>
+          <p class="movie-details">${genres} | ${movie.release_date?.split('-')[0] || 'N/A'}</p>
+        </div>
         <div class="trend-stars">${starRating}</div>
       </div>
     </div>
   `;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Weekly trends için pop-up
+  const weeklyTrendsContainer = document.getElementById('trends-container');
+  if (weeklyTrendsContainer) attachMovieClickListener(weeklyTrendsContainer);
+});

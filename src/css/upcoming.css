@@ -1,6 +1,4 @@
 .upcoming-section {
-  margin-left: 32px;
-  margin-right: 37px;
   margin-top: 60px;
 }
 
@@ -23,7 +21,6 @@
   display: flex;
   border-radius: 8px;
   overflow: visible;
-  color: white;
   gap: 20px;
   max-width: 1068px;
   min-height: 458px;
@@ -32,36 +29,36 @@
 .upcom-img {
   border-radius: 8px;
   width: 805px;
-  height: 458px;
+  height: 470px;
 }
 
 .upcom {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 20px;
   max-width: 400px;
   height: 100%;
-  margin-top: -25px;
+  margin-top: -40px;
 }
 
 .upcom h2 {
   font-weight: 500;
   font-size: 32px;
-  line-height: 100%;
+  line-height: auto;
   letter-spacing: 0%;
   text-transform: uppercase;
   font-family: var(--font-family);
+  position: relative;
+  top: 10px;
+  right: 4px;
 }
 
-/* Yeni eklenen ve özelleştirilen stiller */
 .vote-info {
   display: flex;
   align-items: center;
   gap: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   font-weight: bold;
-  color: #f8f8f8;
   position: relative;
   font-family: var(--font-family);
 }
@@ -76,10 +73,11 @@
   padding: 2px 8px;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 14px;
+  font-size: 16px;
   position: relative;
   left: 55px;
 }
+
 .vote-box-whole {
   position: absolute;
   padding-left: 62px;
@@ -87,12 +85,14 @@
 .vote-info .slash {
   position: relative;
   left: 55px;
+  font-size: 14px;
 }
 
 .release-info {
   color: #f87719;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   font-family: var(--font-family);
@@ -111,7 +111,9 @@
 
 .popularity-info {
   margin-left: 70px;
+  margin-bottom: -4px;
 }
+
 .popularity-info strong {
   position: relative;
   right: 70px;
@@ -120,12 +122,12 @@
 
 .genre-info {
   display: flex;
-  color: white;
   font-size: 16px;
-  margin-bottom: 6px;
+  margin-top: 22px;
   gap: 8px;
   font-family: var(--font-family);
 }
+
 .genre-info span {
   margin-left: 44px;
 }
@@ -137,38 +139,54 @@
 }
 
 .upcom-about {
-  width: 390px; /* Kesin genişlik */
-  max-width: 390px; /* En fazla bu kadar */
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  color: white;
+  width: 390px;
+  max-width: 390px;
+  font-size: 15px;
+  line-height: 18px;
+  margin-bottom: 0px;
   font-family: var(--font-family);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-weight: 400;
 }
 
 .strong-about {
   display: block;
-  font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 16px; /* 16 → 10 yaptık */
+  font-size: 15px; /* 16 → 15 yaptık */
   color: grey;
-
-  font-size: 16px;
   font-family: var(--font-family);
 }
 
 .add-library-btn {
+  box-sizing: border-box;
+  display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  border: none;
-  border-radius: 100px;
-  font-weight: bold;
-  font-size: 16px;
+  width: 155px !important;
+  height: 40px;
+  border-radius: 74px;
+  white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.3s;
-  border: 2px solid orange;
-  background-color: orange;
+  border: 2px solid #f87719;
+  background-color: #fff;
   color: #111;
   font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.add-library-btn:hover {
+  background-color: #e76f00;
+  border-color: #e76f00;
+  color: #111;
 }
 
 .upcom p strong {
@@ -176,8 +194,72 @@
   font-weight: bold;
   font-family: var(--font-family);
 }
+.html.light-theme .film-card {
+  color: #111;
+}
 
-/* @media (max-width: 1279px) and (min-width: 768px) {
+.html.light-theme .upcoming-container-header {
+  color: #111 !important;
+}
+.html.light-theme .upcom strong {
+  color: #111 !important;
+}
+
+.html.light-theme .slash {
+  color: #282828;
+  font-size: 14px;
+}
+
+.html.light-theme .genre-info {
+  color: #282828;
+}
+
+.html.light-theme .upcom-about {
+  color: #282828;
+}
+
+.html.light-theme .strong-about {
+  color: #111;
+}
+.html.light-theme .add-library-btn {
+  color: #282828;
+}
+
+.html.light-theme .add-library-btn:hover {
+  background-color: #111;
+  color: #f87719;
+}
+
+.html.light-theme .popularity-info span {
+  color: #282828;
+}
+.html.light-theme .vote-info .slash {
+  color: #111;
+  font-size: 14px;
+}
+
+/* telefon */
+@media (max-width: 767px) {
+  .upcoming-container-header {
+    text-align: center;
+    margin-right: 100px;
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+  }
+
+  .upcom h2 {
+    font-family: var(--font-family);
+
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+  }
+
   .film-card {
     display: flex;
     flex-direction: column;
@@ -186,11 +268,193 @@
     margin: 0 auto;
   }
 
+  .upcom-img {
+    width: 280px;
+    height: 402px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
   .upcom {
     padding: 20px;
-    max-width: 704px;
+    max-width: 280px;
     display: flex;
     flex-direction: column;
   }
+  .add-library-btn {
+    width: 140px;
+    height: 38px;
+    font-size: 14px;
+    border-radius: 40px;
+    margin-top: 15px;
+    align-self: flex-start;
+    width: 140px !important;
+  }
+
+  .add-library-btn:hover {
+    background-color: #e76f00;
+    border-color: #e76f00;
+    color: #111;
+  }
+
+  .upcom-about {
+    width: 280px;
+    max-width: 280px;
+  }
 }
- */
+/* tablet */
+@media (min-width: 768px) and (max-width: 1279px) {
+  .film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 704px;
+  }
+
+  .upcoming-container-header {
+    font-size: 24px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .upcom-img {
+    width: 100%;
+    max-width: 704px;
+    height: 400px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .upcom {
+    width: 100%;
+    max-width: 704px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'title title'
+      'release popularity'
+      'vote genre'
+      'about about'
+      'button button';
+    gap: 16px 20px;
+    box-sizing: border-box;
+  }
+
+  .grid-title {
+    grid-area: title;
+    font-size: 28px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: var(--font-family);
+  }
+
+  .release-info,
+  .popularity-info,
+  .vote-info,
+  .genre-info {
+    font-size: 16px;
+    font-weight: 500;
+    font-family: var(--font-family);
+    min-height: 22px;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .release-info {
+    grid-area: release;
+  }
+
+  .popularity-info {
+    grid-area: popularity;
+    text-align: right;
+  }
+
+  .vote-info {
+    grid-area: vote;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .vote-box {
+    background-color: white;
+    color: #111;
+    padding: 2px 8px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .slash {
+    margin: 0 2px;
+  }
+
+  .genre-info {
+    grid-area: genre;
+    display: flex;
+    align-items: start;
+    justify-content: flex-end;
+    gap: 8px;
+    font-size: 16px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .genre-info strong {
+    flex-shrink: 0;
+    min-width: 80px;
+    color: grey;
+    font-weight: 500;
+    position: relative;
+    left: 119px;
+  }
+
+  .genre-info span {
+    flex-grow: 1;
+    text-align: left;
+    max-width: 100%;
+    position: relative;
+    left: 119px;
+  }
+
+  .upcom-about {
+    grid-area: about;
+    font-size: 14px;
+    line-height: 1.5;
+    color: white;
+    width: 100%;
+    max-width: 704px;
+    font-family: var(--font-family);
+  }
+
+  .strong-about {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: grey;
+    font-weight: 500;
+  }
+
+  .add-library-btn {
+    grid-area: button;
+    justify-self: start;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 2px solid orange;
+    background-color: orange;
+    color: #111;
+    border-radius: 74px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 140px !important;
+  }
+
+  .add-library-btn:hover {
+    background-color: #e76f00;
+    border-color: #e76f00;
+  }
+  .popularity-info strong {
+    margin-right: 8px;
+  }
+}
