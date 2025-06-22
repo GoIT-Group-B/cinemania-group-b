@@ -6,6 +6,7 @@ let currentPage = 1;
 let ref = "search";
 
 const paginationEl = document.getElementById("pagination");
+const moviesContainer = document.getElementById("movies");
 
 function createPageButton(label, isActive = false, isDisabled = false, isDots = false) {
     if (isDots) {
@@ -22,13 +23,13 @@ function createPageButton(label, isActive = false, isDisabled = false, isDots = 
     if (!isDisabled) {
     button.addEventListener("click", () => {
         currentPage = Number(label);
-        console.log('REFF=' + ref);
+ 
         if (ref == "first") {
             fetchFirstPageMovies(currentPage);
         } else {
             search(currentPage);
         }
-        //renderPagination(currentPage,totalPages);
+        moviesContainer.scrollIntoView({ behavior: "smooth" });
     });
     } else {
     button.disabled = true;
@@ -40,14 +41,14 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
     currentPage = crntPage;
     totalPages = ttlPages > 500 ? 500 : ttlPages;
     ref = reff;
-    console.log('REF=' + ref+" "+currentPage);
+
     paginationEl.innerHTML = "";
     paginationEl.style.display = (totalPages > 1) ? "flex" : "none";
 
     // Previous
     const prevBtn = document.createElement("button");
     prevBtn.className = "nav-btn";
-    prevBtn.innerHTML = `<svg class="pg-icon"><use href="./images/sprite.svg#icon-left"></use></svg>`;
+    prevBtn.innerHTML = `<svg class="pg-icon"><use href="/images/sprite.svg#icon-left"></use></svg>`;
     prevBtn.disabled = currentPage === 1;
     prevBtn.addEventListener("click", () => {
     if (currentPage > 1) {
@@ -57,7 +58,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
         } else {
             search(currentPage);
         }
-        //renderPagination(currentPage,totalPages);
+        moviesContainer.scrollIntoView({ behavior: "smooth" });
     }
     });
     paginationEl.appendChild(prevBtn);
@@ -90,7 +91,7 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
     // Next
     const nextBtn = document.createElement("button");
     nextBtn.className = "nav-btn";
-    nextBtn.innerHTML = `<svg class="pg-icon"><use href="./images/sprite.svg#icon-right"></use></svg>`;
+    nextBtn.innerHTML = `<svg class="pg-icon"><use href="/images/sprite.svg#icon-right"></use></svg>`;
     nextBtn.disabled = currentPage === totalPages;
     nextBtn.addEventListener("click", () => {
     if (currentPage < totalPages) {
@@ -100,10 +101,8 @@ export function renderPagination(crntPage = 1, ttlPages = 24,reff="search") {
         } else {
             search(currentPage);
         }
-        //renderPagination(currentPage,totalPages);
+        moviesContainer.scrollIntoView({ behavior: "smooth" });
     }
     });
     paginationEl.appendChild(nextBtn);
 }
-
-//renderPagination();
