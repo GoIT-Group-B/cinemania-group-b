@@ -38,7 +38,7 @@ import{a as S}from"./vendor-DDD7fsZd.js";(function(){const t=document.createElem
           ${e&&e!=="Genre"?`No movies found for '${e}' genre.`:"You don't have any movies at your library."}
         </p>
         <button>
-          <a href="/catalog.html" class="my-library-search-link button">Search movie</a>
+          <a href="./catalog.html" class="my-library-search-link button">Search movie</a>
         </button>
       </div>
     `;t.innerHTML=a;return}let o=t.querySelector(".dropdown select");o?o.classList.remove("visually-hidden"):(t.insertAdjacentHTML("afterbegin",`
@@ -114,4 +114,4 @@ import{a as S}from"./vendor-DDD7fsZd.js";(function(){const t=document.createElem
       </div>
     </div>
   `;_(c),(d=document.querySelector(".add-to-library-btn"))==null||d.addEventListener("click",async()=>{let n=JSON.parse(localStorage.getItem("myLibrary"))||[];l?(n=n.filter(i=>i.id!==e.id),alert("Film kütüphaneden kaldırıldı.")):(n.push(e),alert("Film kütüphaneye eklendi.")),localStorage.setItem("myLibrary",JSON.stringify(n)),f();try{const{loadLibrary:i}=await I(async()=>{const{loadLibrary:u}=await Promise.resolve().then(()=>W);return{loadLibrary:u}},void 0);i&&i()}catch(i){console.error("loadLibrary yüklenirken hata oluştu:",i)}})}const Y=Object.freeze(Object.defineProperty({__proto__:null,showDetailsModal:z,showErrorModal:Z,showTrailerModal:K},Symbol.toStringTag,{value:"Module"}));window.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("theme-switcher"),t=document.documentElement;localStorage.getItem("theme")==="light"?t.classList.add("light-theme"):t.classList.remove("light-theme"),e.addEventListener("click",()=>{const l=t.classList.toggle("light-theme");localStorage.setItem("theme",l?"light":"dark")})});export{k as B,T as E,j as I,K as a,z as b,U as c,A as d,X as e,B as f,Z as s};
-//# sourceMappingURL=theme-Bhlnfky-.js.map
+//# sourceMappingURL=theme-D5oS3oRG.js.map
