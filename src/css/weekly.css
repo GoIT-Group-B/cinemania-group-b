@@ -144,9 +144,9 @@
   }
 
   .trends-container {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    
+    grid-template-columns: repeat(3, 224px);
+    justify-items: center;
+    gap: 16px;
   }
 
   .trend-card {
@@ -177,7 +177,9 @@
   }
 
   .trends-container {
-    display: flex;
+    grid-template-columns: repeat(3, 224px);
+    justify-items: center;
+    gap: 16px;
   }
 
   /* Başta sadece 1 kart */

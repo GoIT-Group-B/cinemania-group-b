@@ -80,10 +80,10 @@ export async function search(crntPage=1) {
     
     totalPages = data.total_pages;
 
-    const movies = data.results.filter(movie => {
-    const releaseYear = movie.release_date?.split('-')[0];
-    return releaseYear === selectedYear;
-    });
+    const movies = selectedYear ? data.results.filter(movie => {
+      const releaseYear = movie.release_date?.split('-')[0];
+      return releaseYear === selectedYear;
+    }) : data.results;
 
     if (!Array.isArray(movies) || movies.length === 0) {
       warningMessage.style.display = "block";
@@ -99,7 +99,6 @@ export async function search(crntPage=1) {
       } = movie;
 
       const year = release_date ? release_date.split('-')[0] : 'N/A';
-      console.log(year)
       const genres = genre_ids?.slice(0, 2).map(id => genreMap[id] || 'Unknown').join(', ');
       const starRating = createStarRating(vote_average);
 
@@ -124,6 +123,7 @@ export async function search(crntPage=1) {
         </div>
       `;
     }).join('');
+
     renderPagination(currentPage, totalPages, "search");
     moviesContainer.innerHTML = markup;
     moviesContainer.scrollIntoView({ behavior: "smooth" });
@@ -133,7 +133,6 @@ export async function search(crntPage=1) {
     warningMessage.style.display = "block";
   }
 }
-
 
 input.addEventListener("input", () => {
     yearInput.style.display = input.value.trim() !== "" ? "block" : "none";
