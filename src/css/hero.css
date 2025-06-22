@@ -33,6 +33,7 @@
 
 /* İçerik */
 .hero-wrap__content {
+  margin-left: 135px;
   position: relative;
   z-index: 3;
   color: white;
