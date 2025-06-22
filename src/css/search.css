@@ -89,7 +89,7 @@
 
 #movies {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns:repeat(3, 1fr);
     /* 3'lü düzen için */
     gap: 20px;
     padding: 20px;
@@ -100,18 +100,19 @@
 
 /* Film kartı */
 .movie {
-    background-color: #1c1c1c;
-    border-radius: 8px;
-    padding: 10px;
-    color: white;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
+    position: relative;
+        width: 395px;
+        height: 574px;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
 .movie:hover {
     transform: scale(1.05);
 }
+
+
 
 /* Poster görseli */
 .movie img {

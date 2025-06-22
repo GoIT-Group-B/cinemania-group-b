@@ -57,10 +57,25 @@ function search() {
                 movieEl.classList.add("movie");
 
                 movieEl.innerHTML = `
-                    <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'https://via.placeholder.com/200x300'}" alt="${movie.title}">
-                    <h3>${movie.title}</h3>
+                   
+                    
                     <p>Rating: ${movie.vote_average}</p>
-                    <p>Release Date: ${movie.release_date}</p>
+                   
+                
+                <div class="${ trendCard }" data-id=${movie.id}>
+          <div class="${ posterWrapper }">
+             <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'https://via.placeholder.com/200x300'}" alt="${movie.title}">
+            <div class="${ trendInfo }">
+              <div class="${ movieMeta }">
+                <h3>${movie.title}</h3>
+                <p class="${ movieDetails }">${genres} | ${movie.release_date}</p>
+              </div>
+              <div class="${ trendStars }">
+                <div class="${ movieRating }">${starRating}</div>
+              </div>
+            </div>
+          </div>
+                </div>
                 `;
 
                 moviesContainer.appendChild(movieEl);
@@ -105,9 +120,8 @@ function clearSearch() {
     moviesContainer.innerHTML = "";
 
     if (movieListSection) {
-        movieListSection.style.display = "block";
+        movieListSection.style.display = "grid";
     }
-
     input.focus();
 }
 
