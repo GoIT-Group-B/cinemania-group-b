@@ -334,19 +334,6 @@ body {
   box-sizing: border-box;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .no-results-message,
 .error-message {
   text-align: center;
@@ -354,14 +341,6 @@ body {
   color: #ff6b6b;
   padding: 50px 20px;
   grid-column: 1 / -1;
-}
-
-
-/* --- Arama Çubuğu (Selin'in Görevi için Yer Tutucu Stil) --- */
-.search-section {
-  padding: 20px 0;
-  border-bottom: 1px solid #3a3a3a;
-  margin-bottom: 30px;
 }
 
 .search-form {
@@ -447,10 +426,6 @@ body {
 
 /* --- Responsive Ayarlamalar --- */
 @media (max-width: 768px) {
-  
-
-  
-
   .search-form {
     flex-direction: column;
     gap: 15px;

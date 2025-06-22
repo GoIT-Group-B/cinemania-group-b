@@ -1,64 +1,33 @@
-.detail-modal {
+.scroll-up-button {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw; height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
+  bottom: 20px;
+  right: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: transparent;     /* Şeffaf arka plan */
+  border: 2px solid white;           /* Varsayılan: beyaz border */
+  color: white;                      /* Varsayılan: beyaz yazı */
+  font-size: 24px;
+  display: none;                     /* Başlangıçta gizli */
   align-items: center;
-  z-index: 10000;
-}
-
-.detail-modal.active {
-  display: flex;
-}
-
-.detail-modal-content {
-  background: #1c1c1c;
-  color: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 900px;
-  width: 95%;
-  max-height: 90%;
-  overflow-y: auto;
-  position: relative;
-}
-
-.detail-close-btn {
-  position: absolute;
-  top: 15px; right: 15px;
-  background: transparent;
-  color: white;
-  font-size: 1.5rem;
-  border: none;
+  justify-content: center;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
 }
 
-.detail-modal-body {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.scroll-up-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.detail-image img {
-  width: 300px;
-  border-radius: 10px;
+/* Light tema için: siyah border ve beyaz ikon/rakam */
+html.light-theme .scroll-up-button {
+  border-color: black;
+  color: black;
 }
 
-.detail-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.add-library-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #ff4747;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+html.light-theme .scroll-up-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
