@@ -153,7 +153,7 @@
   background-color: black;
 }
 
-@media (min-width: 481px) {
+@media (min-width: 320px) {
   .background-image {
     position: absolute;
     height: 100%;
@@ -238,8 +238,8 @@
     position: relative;
     z-index: 3;
     color: white;
-    padding: 40px 20px;
     max-width: 500px;
+    
   }
 
   .start-rate__hero {
@@ -319,8 +319,6 @@
   }
 
   .hero-wrap__content {
-    margin-top: 118px;
-    margin-left: 135px;
     position: relative;
     z-index: 3;
     color: white;
