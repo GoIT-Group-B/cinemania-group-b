@@ -87,11 +87,11 @@ function startHeroAutoUpdate(interval = HERO_UPDATE_INTERVAL) {
       createFallbackHero();
     } finally {
       // döngüyü sürdür
-      setTimeout(update, interval);
+      //setTimeout(update, interval);
     }
   }
 
-  setTimeout(update, interval);
+  //setTimeout(update, interval);
 }
 
 function addHeroEventListeners(movie) {
