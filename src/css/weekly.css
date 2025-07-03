@@ -144,14 +144,14 @@
   }
 
   .trends-container {
-    grid-template-columns: repeat(3, 224px);
+    grid-template-columns: repeat(3, 280px);
     justify-items: center;
     gap: 16px;
   }
 
   .trend-card {
-    max-width: 224px;
-    height: 325px;
+    max-width: 280px;
+    height: 100%;
   }
 
   .trend-info {
@@ -177,14 +177,9 @@
   }
 
   .trends-container {
-    grid-template-columns: repeat(3, 224px);
+    grid-template-columns: repeat(1, 224px);
     justify-items: center;
     gap: 16px;
-  }
-
-  /* Başta sadece 1 kart */
-  .trends-container:not(.is-expanded) .trend-card:not(:first-child) {
-    display: none;
   }
 
   .trend-card {
@@ -224,5 +219,3 @@
     gap: 2px;
   }
 }
-
-

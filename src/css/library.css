@@ -48,20 +48,22 @@ select option.hidden-option {
 
 .library-gallery {
   display: flex;
-  
   flex-direction: column;
   gap: 16px;
   padding: 20px;
 }
-.load-more{
+
+.load-more {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 40px;
 }
-.load-more button{
+
+.load-more button {
   color: #111;
 }
+
 .movie-card {
   background: #1e1e1e;
   padding: 12px;
@@ -85,100 +87,91 @@ select option.hidden-option {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  justify-content: center;
+  width: 100%;
+  max-width: 100%;
 }
 
-.my-library-no-movies {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.my-library-no-movies .my-library-oops-message {
-  font-family: 'Roboto Medium';
-  font-size: 32px;
-}
-
-.my-library-no-movies button, .load-more-btn {
-  padding: auto;
-  border: none;
-  border-radius: 30px;
-  background: linear-gradient(to right, #f5921b, #ff2e00);
-  color: #fff;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 28px;
-  margin-right: 10px;
+.trend-card {
+  width: 100%;
+  max-width: 395px;
+  height: 574px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(to bottom, #000000 0%, #000000 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+  transform: scale(1) translateY(0);
   cursor: pointer;
-  transition: background 0.3s ease;
-  font-family: 'Roboto Regular';
-  width: 158px;
-  height: 52px;
+  transition: transform 0.2s ease;
 }
 
-.my-library-no-movies button a {
-  text-decoration: none;
-  color: #111111;
+.trend-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
-/*light theme css*/
-html.light-theme .dropdown select {
-  background: white;
-  color: #111;
-}
-
-html.light-theme .dropdown::after {
-  background: white;
-  color: #111;
-}
-
-/* === Tablet (max-width: 768px) === */
-@media (max-width: 768px) {
+/* Responsive - Tablet */
+@media (max-width: 1279px) and (min-width: 769px) {
   .library-gallery-list {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .trend-title {
-    max-width: 180px;
+    grid-template-columns: repeat(3, 280px);
+    justify-items: center;
+    gap: 16px;
   }
 
   .trend-card {
-    width: 224px;
-    height: auto;
+    max-width: 280px;
+    height: 100%;
   }
 
   .trend-info {
     padding: 12px;
   }
 
+  .trend-info h3 {
+    font-size: 16px;
+  }
+
+  .trend-info p {
+    font-size: 12px;
+  }
+
   .trend-stars {
-    bottom: 24px;
-    right: 12px;
-    transform: scale(0.9);
-  }
-
-  .my-library-no-movies .my-library-oops-message {
-    font-size: 24px;
-  }
-
-  .my-library-no-movies button {
     font-size: 14px;
-    width: 133px;
-    height: 40px;
   }
 }
 
-/* === Mobile (max-width: 480px) === */
-@media (max-width: 480px) {
+/* Responsive - Tablet ve altı (mobil üst sınırı) */
+@media (max-width: 768px) {
   .library-gallery-list {
-    grid-template-columns: 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
   }
 
   .trend-card {
-    width: 280px;
+    max-width: 224px;
+    height: 100%;
+  }
+}
+
+/* Responsive - Mobil */
+@media (max-width: 480px) {
+  .library-gallery-list {
+    grid-template-columns: repeat(1, 1fr); /* Mobilde 1 sütun */
+    justify-content: center;
+  }
+
+  .trend-card {
+    max-width: 224px;
     height: auto;
+    margin: 0 auto;
   }
 
   .trend-info {
@@ -189,15 +182,5 @@ html.light-theme .dropdown::after {
     bottom: 20px;
     right: 10px;
     transform: scale(0.85);
-  }
-
-  .my-library-no-movies .my-library-oops-message {
-    font-size: 20px;
-  }
-
-  .my-library-no-movies button {
-    font-size: 12px;
-    width: 121px;
-    height: 38px;
   }
 }
