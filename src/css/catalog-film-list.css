@@ -64,13 +64,13 @@
 }
 @media (max-width: 1279px) {
   .library-list {
-    grid-template-columns: repeat(3, 224px); /* 👈 Sabit genişlik */
+    grid-template-columns: repeat(3, 280px);
     display: grid;
     justify-content: center;
     
   }
   .movie-card {
-    width: 224px;
+    width: 280px;
     height: 325px;
   }
   .hero-content{
@@ -79,7 +79,7 @@
 }
 @media (max-width: 767px) {
   .library-list {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, 280px);
     justify-items: center;
   }
   .movie-card {
